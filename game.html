@@ -221,66 +221,96 @@
     </footer>
 
     <!-- 确保引入了底部的游戏数据库库脚本 -->
-    <script src="/js/games.js"></script>
+<script src="/games.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const pathParts = window.location.pathname.split('/').filter(Boolean);
+            // 1. 获取当前网址的完整路径和参数
+            const pathname = window.location.pathname;
+            const urlParams = new URLSearchParams(window.location.search);
             let slug = null;
             
-            if (pathParts[0] === 'games' && pathParts[1]) {
-                slug = pathParts[1].replace(/\/$/, '');
-            } else {
-                slug = (new URLSearchParams(window.location.search).get('slug') || '').replace(/\/$/, '');
+            // 2. 智能提取 slug
+            if (pathname.includes('/games/')) {
+                // 线上环境：从 /games/tap-arrow-away/ 中提取出 tap-arrow-away
+                const parts = pathname.split('/').filter(Boolean);
+                // 找到 'games' 后面那一段
+                const gamesIndex = parts.indexOf('games');
+                if (gamesIndex !== -1 && parts[gamesIndex + 1]) {
+                    slug = parts[gamesIndex + 1];
+                }
+            } 
+            
+            // 如果路径里没拿到，尝试从本地测试的 ?slug= 参数里拿
+            if (!slug) {
+                slug = urlParams.get('slug') || '';
             }
 
-            // 修正slug匹配逻辑：将数据库命名中的下划线同步转换为连字符
+            // 去掉末尾可能存在的斜杠，并全部转为小写
+            slug = slug.trim().toLowerCase().replace(/\/$/, '');
+
+            console.log("Current detected slug:", slug);
+
+            // 3. 核心修复：去数据库里匹配游戏
+            // 数据库（games.js）里第一项带下划线（如 Tap_Arrow_Away）
+            // 我们必须把数据库里的名字也转成统一的连字符小写格式进行安全对比
             const game = games.find(item => {
-                const gameSlug = item[0].toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
-                return gameSlug === slug;
+                const gameDatabaseSlug = item[0].toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
+                return gameDatabaseSlug === slug;
             });
 
+            // 如果死活找不到这个游戏，说明 slug 错了，退回首页
             if (!game) {
+                console.error("Game not found for slug:", slug);
                 window.location.replace('/');
                 return;
             }
 
+            // 4. 提取游戏数据
             const gameName = game[0].replace(/_/g, ' ');
-            const details = gameDetails[game[0]] || { desc: "Play free browser games instantly.", rating: "4.5" };
+            const details = (typeof gameDetails !== 'undefined' && gameDetails[game[0]]) 
+                ? gameDetails[game[0]] 
+                : { desc: "Play free browser games instantly.", rating: "4.5" };
             const gdId = game[12];
             
-            // 安全统一的 Referrer SDK 链接配置
-            const gdUrl = `https://html5.gamedistribution.com/${gdId}/?gd_sdk_referrer_url=https://vortex-ly.com`;
+            // 动态设置安全的 Referrer 域名（顺便修复了之前两端域名冲突的隐患）
+            const currentHost = window.location.origin;
+            const gdUrl = `https://html5.gamedistribution.com/${gdId}/?gd_sdk_referrer_url=${currentHost}`;
 
-            // 动态填充 SEO 元素
+            // 5. 动态填充 SEO 元素
             document.title = `${gameName} - Play Free Online on Vortexly`;
             document.getElementById('pageTitle').textContent = `${gameName} - Play on Vortexly`;
             document.getElementById('pageDesc').setAttribute('content', details.desc);
-            document.getElementById('canonicalTag').setAttribute('href', `https://vortex-ly.com/games/${slug}/`);
+            document.getElementById('canonicalTag').setAttribute('href', window.location.href);
             
             // 填充 Open Graph
-            document.getElementById('ogTitle').setAttribute('content', `${gameName} - Play Free Online`);
-            document.getElementById('ogDesc').setAttribute('content', details.desc);
-            document.getElementById('ogUrl').setAttribute('href', `https://vortex-ly.com/games/${slug}/`);
-            document.getElementById('ogImage').setAttribute('content', game[4]);
+            if(document.getElementById('ogTitle')) document.getElementById('ogTitle').setAttribute('content', `${gameName} - Play Free Online`);
+            if(document.getElementById('ogDesc')) document.getElementById('ogDesc').setAttribute('content', details.desc);
+            if(document.getElementById('ogUrl')) document.getElementById('ogUrl').setAttribute('href', window.location.href);
+            if(document.getElementById('ogImage')) document.getElementById('ogImage').setAttribute('content', game[4]);
 
-            // 渲染结构数据 (Schema.json)
-            document.getElementById('schemaScript').textContent = JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "VideoGame",
-                "name": gameName,
-                "description": details.desc,
-                "image": game[4],
-                "url": `https://vortex-ly.com/games/${slug}/`,
-                "genre": game[6].split(' ')[0],
-                "playMode": "SinglePlayer",
-                "applicationCategory": "Game"
-            });
+            // 渲染 Schema.json 结构数据
+            const schemaScript = document.getElementById('schemaScript');
+            if(schemaScript) {
+                schemaScript.textContent = JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "VideoGame",
+                    "name": gameName,
+                    "description": details.desc,
+                    "image": game[4],
+                    "url": window.location.href,
+                    "genre": game[6].split(' ')[0],
+                    "playMode": "SinglePlayer",
+                    "applicationCategory": "Game"
+                });
+            }
 
-            // 填充UI
+            // 6. 渲染界面UI
             document.getElementById('gameTitle').textContent = gameName;
             document.getElementById('gameGenre').textContent = game[6].split(' ')[0];
             document.getElementById('gameRating').textContent = `⭐ ${details.rating}`;
             document.getElementById('gameDesc').textContent = details.desc;
+            
+            // 最后一步：塞入游戏链接，框架亮起
             document.getElementById('gameIframe').src = gdUrl;
         });
     </script>
