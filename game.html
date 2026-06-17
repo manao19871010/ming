@@ -310,7 +310,6 @@
     <script src="/games.js"></script>
 
     <script>
-    // 右边 Friv 风格卡片生成机制
     function generateSidebar(currentKey) {
         var grid = document.getElementById('recommendationGrid');
         if (!grid || typeof games === 'undefined') return;
@@ -338,74 +337,80 @@
         grid.innerHTML = html;
     }
 
-    // ============================================
-    // 🚀 初始化与数据深度映射绑定
-    // ============================================
     document.addEventListener('DOMContentLoaded', function() {
         if (typeof games === 'undefined' || typeof gameDetails === 'undefined') {
-            console.error("games.js 数据包未成功载入");
+            console.error("games.js 数据未载入");
             return;
         }
 
-        // 1. 精准抓取 URL 标识
+        // ============================================
+        // 🚀 核心防抖、防斜杠过滤路由引擎
+        // ============================================
         var rawPath = window.location.pathname;
+        
+        // 彻底剔除开头和结尾所有的斜杠，强行转换为干净的字符串（例如："games/tap-arrow-away"）
         var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
         var slugFromUrl = "";
 
         if (cleanPath.startsWith('games/')) {
-            slugFromUrl = cleanPath.replace('games/', ''); 
+            slugFromUrl = cleanPath.replace('games/', '');
+            // 再次清除 slug 内部可能残存的任何尾部斜杠
+            slugFromUrl = slugFromUrl.replace(/\/+$/, '');
         }
+
+        console.log("[Debug] 提取到的最终干净 Slug 是:", slugFromUrl);
 
         if (!slugFromUrl) {
             document.getElementById('gameTitle').textContent = "Game Not Found";
             return;
         }
 
-        // 2. 核心比对：将 URL 的 "tap-arrow-away" 对齐回数据库的 "Tap_Arrow_Away"
+        // 进行高精度 Key 绑定
         var matchedKey = Object.keys(gameDetails).find(function(key) {
-            return key.toLowerCase().replace(/_/g, '-') === slugFromUrl;
+            var formattedKey = key.toLowerCase().replace(/_/g, '-');
+            return formattedKey === slugFromUrl;
         });
 
         if (matchedKey) {
             var details = gameDetails[matchedKey];
             var gameName = matchedKey.replace(/_/g, ' ');
 
-            // 3. 【绝对修复】从一维数组对应项的下标 12 里，精准拔出真实的 GD ID
+            // 深度遍历寻找 games 库中匹配的数据项
             var baseInfo = games.find(function(g) { return g[0] === matchedKey; }) || [];
+            
+            // 稳妥提取哈希 ID（由于你的 games.js 项格式特殊，最后一位下标为 12 才是 GD 哈希）
             var realGdId = baseInfo[12] || ""; 
             var gdUrl = "https://html5.gamedistribution.com/" + realGdId + "/";
 
-            console.log("[Success] 精准提取到真实 GD 哈希 ID:", realGdId);
+            console.log("[Debug] 成功定位到真实的 GD ID:", realGdId);
 
-            // 4. 填充 SEO 顶层标签
+            // 替换 SEO 元素
             document.title = gameName + " - Play on Vortexly";
             if (document.getElementById('pageDesc')) document.getElementById('pageDesc').setAttribute('content', details.desc);
             if (document.getElementById('canonicalTag')) document.getElementById('canonicalTag').setAttribute('href', window.location.href);
 
-            // 5. 渲染底部的文字盒子
+            // 渲染 UI 盒子
             if (document.getElementById('gameTitle'))  document.getElementById('gameTitle').textContent = gameName;
             if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
             if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
             if (document.getElementById('gameGenre'))  document.getElementById('gameGenre').textContent = baseInfo[6] ? baseInfo[6].split(' ')[0] : "Games";
 
-            // 6. 【致命一击】把完全合法的 GD 嵌入式链接丢进大绿框内
+            // 打开 Iframe 画面注入通道
             var iframe = document.getElementById('gameIframe');
             if (iframe && realGdId) {
                 iframe.src = gdUrl;
-                console.log("🎉 Iframe 画面通道全面打通:", gdUrl);
+                console.log("[🎉 成功] Iframe 载入完成:", gdUrl);
             } else {
-                console.error("Iframe 未找到，或该游戏的 GD ID 在数组下标 12 处为空！");
+                console.error("未能成功渲染 Iframe 画面");
             }
 
-            // 7. 渲染右侧关联推荐卡片
             generateSidebar(matchedKey);
         } else {
-            if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "Game Sandbox Not Found";
+            document.getElementById('gameTitle').textContent = "Game Sandbox Not Found";
             generateSidebar("");
         }
     });
 
-    // 全屏核心指令
     function goFullScreen() {
         const iframe = document.getElementById('gameIframe');
         if (iframe) {
