@@ -3,22 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
     <title id="pageTitle">Free Online Games - Vortexly</title>
-    <meta name="description" id="pageDesc" content="Play free online games on Vortexly. No download, no sign-up required.">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" id="canonicalTag" href="https://vortexly.com/">
-
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Vortexly">
-    <meta id="ogTitle"    property="og:title"       content="Play Free Games - Vortexly">
-    <meta id="ogDesc"     property="og:description" content="Play free online games on Vortexly">
-    <meta id="ogUrl"      property="og:url"         content="https://vortexly.com/">
-    <meta id="ogImage"    property="og:image"       content="https://vortexly.com/og-default.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <script type="application/ld+json" id="schemaScript">{}</script>
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -26,7 +12,6 @@
         :root {
             --bg-primary: #0b0c10;
             --bg-secondary: #1f2833;
-            --text-main: #c5a059;
             --text-pure: #ffffff;
             --text-muted: #858585;
             --accent: #c5a059;
@@ -34,13 +19,7 @@
             --border-color: #2c3539;
             --card-bg: #151a22;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--bg-primary);
             color: var(--text-pure);
@@ -49,7 +28,6 @@
             display: flex;
             flex-direction: column;
         }
-
         header {
             background-color: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
@@ -57,20 +35,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
-
         .logo a {
             color: var(--accent);
             font-size: 24px;
             font-weight: 700;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-
         .back-btn {
             background: transparent;
             color: var(--text-pure);
@@ -80,15 +52,7 @@
             cursor: pointer;
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
         }
-
-        .back-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
         .main-container {
             max-width: 1200px;
             width: 100%;
@@ -99,13 +63,6 @@
             gap: 30px;
             flex: 1;
         }
-
-        .game-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
         .iframe-container {
             position: relative;
             width: 100%;
@@ -113,19 +70,13 @@
             background: #000;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             border: 1px solid var(--border-color);
         }
-
         .iframe-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             border: none;
         }
-
         .control-bar {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -134,8 +85,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 20px;
         }
-
         .control-btn {
             background: var(--accent);
             color: var(--bg-primary);
@@ -144,130 +95,24 @@
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
         }
-
-        .control-btn:hover {
-            background: var(--accent-hover);
-        }
-
         .info-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 25px;
             border-radius: 12px;
+            margin-top: 20px;
         }
-
-        .info-card h1 {
-            font-size: 28px;
-            color: var(--text-pure);
-            margin-bottom: 10px;
-        }
-
-        .meta-tags {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .tag {
-            font-size: 13px;
-            color: var(--accent);
-            background: rgba(197, 160, 89, 0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: 500;
-        }
-
-        .description {
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .sidebar-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-pure);
-            border-left: 3px solid var(--accent);
-            padding-left: 10px;
-        }
-
-        .rec-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-        }
-
+        .info-card h1 { font-size: 28px; margin-bottom: 10px; }
+        .description { color: var(--text-muted); line-height: 1.6; }
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .sidebar-title { font-size: 18px; border-left: 3px solid var(--accent); padding-left: 10px; }
+        .rec-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
         .rec-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
-            display: flex;
-            gap: 12px;
-            padding: 8px;
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 8px; display: flex; gap: 12px; cursor: pointer;
         }
-
-        .rec-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent);
-        }
-
-        .rec-card img {
-            width: 80px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 4px;
-        }
-
-        .rec-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .rec-name {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-pure);
-            margin-bottom: 4px;
-        }
-
-        .rec-meta {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            padding: 20px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-top: auto;
-        }
-
-        @media (max-width: 968px) {
-            .main-container {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                margin-top: 20px;
-            }
-            .rec-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
-        }
+        .rec-card img { width: 80px; height: 60px; object-fit: cover; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -284,9 +129,8 @@
             </div>
 
             <div class="control-bar">
-                <div class="meta-tags">
-                    <span class="tag" id="gameGenre">Loading...</span>
-                    <span class="tag" id="gameRating">⭐ 4.5</span>
+                <div>
+                    <span style="color: var(--accent);" id="gameRating">⭐ 4.5</span>
                 </div>
                 <button class="control-btn" onclick="goFullScreen()">🖵 Fullscreen</button>
             </div>
@@ -303,33 +147,22 @@
         </aside>
     </main>
 
-    <footer>
-        &copy; 2026 Vortexly. All Rights Reserved.
-    </footer>
-
     <script src="/games.js"></script>
 
     <script>
+    // 渲染右侧推荐卡片
     function generateSidebar(currentKey) {
         var grid = document.getElementById('recommendationGrid');
         if (!grid || typeof games === 'undefined') return;
-
         var filtered = games.filter(function(g) { return g[0] !== currentKey; });
-        var topGames = filtered.slice(0, 5); 
-
         var html = "";
-        topGames.forEach(function(item) {
-            var key = item[0];
-            var path = item[1];
-            var thumb = item[4];
-            var displayTitle = key.replace(/_/g, ' ');
-
+        filtered.slice(0, 5).forEach(function(item) {
             html += `
-                <div class="rec-card" onclick="window.location.href='${path}'">
-                    <img src="${thumb}" alt="${displayTitle}">
-                    <div class="rec-info">
-                        <div class="rec-name">${displayTitle}</div>
-                        <div class="rec-meta">🎮 Play Free</div>
+                <div class="rec-card" onclick="window.location.href='${item[1]}'">
+                    <img src="${item[4]}" alt="${item[0]}">
+                    <div>
+                        <div style="font-size: 14px; font-weight:500;">${item[0].replace(/_/g, ' ')}</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">🎮 Play Free</div>
                     </div>
                 </div>
             `;
@@ -338,87 +171,60 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        if (typeof games === 'undefined' || typeof gameDetails === 'undefined') {
-            console.error("games.js 数据未载入");
+        if (typeof gameDetails === 'undefined') {
+            console.error("无法载入 games.js 数据配置");
             return;
         }
 
-        // ============================================
-        // 🚀 核心防抖、防斜杠过滤路由引擎
-        // ============================================
+        // 1. 拆解浏览器地址栏参数
         var rawPath = window.location.pathname;
-        
-        // 彻底剔除开头和结尾所有的斜杠，强行转换为干净的字符串（例如："games/tap-arrow-away"）
         var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
         var slugFromUrl = "";
 
         if (cleanPath.startsWith('games/')) {
-            slugFromUrl = cleanPath.replace('games/', '');
-            // 再次清除 slug 内部可能残存的任何尾部斜杠
-            slugFromUrl = slugFromUrl.replace(/\/+$/, '');
+            slugFromUrl = cleanPath.replace('games/', '').replace(/\/+$/, '');
         }
 
-        console.log("[Debug] 提取到的最终干净 Slug 是:", slugFromUrl);
+        console.log("[解密成功] 参数片段为:", slugFromUrl);
 
-        if (!slugFromUrl) {
-            document.getElementById('gameTitle').textContent = "Game Not Found";
-            return;
-        }
-
-        // 进行高精度 Key 绑定
+        // 2. 在数据库中对齐大写 Key
         var matchedKey = Object.keys(gameDetails).find(function(key) {
-            var formattedKey = key.toLowerCase().replace(/_/g, '-');
-            return formattedKey === slugFromUrl;
+            return key.toLowerCase().replace(/_/g, '-') === slugFromUrl;
         });
 
         if (matchedKey) {
             var details = gameDetails[matchedKey];
             var gameName = matchedKey.replace(/_/g, ' ');
 
-            // 深度遍历寻找 games 库中匹配的数据项
-            var baseInfo = games.find(function(g) { return g[0] === matchedKey; }) || [];
+            // 3. 【超级核心】彻底抛弃数组查找！直接从对象属性里拔出 gameId 
+            var realGdId = details.gameId || "";
             
-            // 稳妥提取哈希 ID（由于你的 games.js 项格式特殊，最后一位下标为 12 才是 GD 哈希）
-            var realGdId = baseInfo[12] || ""; 
-            var gdUrl = "https://html5.gamedistribution.com/" + realGdId + "/";
+            console.log("[核心验证] 直读拿到的真实 GD 哈希 ID 是:", realGdId);
 
-            console.log("[Debug] 成功定位到真实的 GD ID:", realGdId);
-
-            // 替换 SEO 元素
+            // 4. 动态更改标题和文本渲染
             document.title = gameName + " - Play on Vortexly";
-            if (document.getElementById('pageDesc')) document.getElementById('pageDesc').setAttribute('content', details.desc);
-            if (document.getElementById('canonicalTag')) document.getElementById('canonicalTag').setAttribute('href', window.location.href);
+            document.getElementById('gameTitle').textContent = gameName;
+            document.getElementById('gameDesc').textContent = details.desc;
+            document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
 
-            // 渲染 UI 盒子
-            if (document.getElementById('gameTitle'))  document.getElementById('gameTitle').textContent = gameName;
-            if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
-            if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
-            if (document.getElementById('gameGenre'))  document.getElementById('gameGenre').textContent = baseInfo[6] ? baseInfo[6].split(' ')[0] : "Games";
-
-            // 打开 Iframe 画面注入通道
+            // 5. 打开渲染通道注入到大绿框
             var iframe = document.getElementById('gameIframe');
             if (iframe && realGdId) {
-                iframe.src = gdUrl;
-                console.log("[🎉 成功] Iframe 载入完成:", gdUrl);
+                iframe.src = "https://html5.gamedistribution.com/" + realGdId + "/";
+                console.log("🎉 [绝杀成功] Iframe 画面通道已被强制疏通！");
             } else {
-                console.error("未能成功渲染 Iframe 画面");
+                console.error("未在对应的 gameDetails 配置中发现 gameId 字段！");
             }
 
             generateSidebar(matchedKey);
         } else {
-            document.getElementById('gameTitle').textContent = "Game Sandbox Not Found";
-            generateSidebar("");
+            document.getElementById('gameTitle').textContent = "Game Not Found";
         }
     });
 
     function goFullScreen() {
         const iframe = document.getElementById('gameIframe');
-        if (iframe) {
-            if (iframe.requestFullscreen) { iframe.requestFullscreen(); }
-            else if (iframe.mozRequestFullScreen) { iframe.mozRequestFullScreen(); }
-            else if (iframe.webkitRequestFullscreen) { iframe.webkitRequestFullscreen(); }
-            else if (iframe.msRequestFullscreen) { iframe.msRequestFullscreen(); }
-        }
+        if (iframe && iframe.requestFullscreen) { iframe.requestFullscreen(); }
     }
     </script>
 </body>
