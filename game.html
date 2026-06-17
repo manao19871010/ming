@@ -21,6 +21,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
     <style>
         :root {
@@ -85,12 +88,6 @@
             gap: 2rem;
         }
 
-        @media (max-width: 968px) {
-            main {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .game-container {
             background-color: var(--bg-card);
             border-radius: 12px;
@@ -127,19 +124,6 @@
             position: relative;
         }
 
-        /* 右上角倒计时人性化常驻小标签 */
-        .timer-notice {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #ef4444;
-            color: white;
-            font-size: 0.8rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-
         .game-meta {
             display: flex;
             align-items: center;
@@ -173,19 +157,46 @@
             font-size: 0.95rem;
         }
 
+        /* 右侧侧边栏样式 */
         .sidebar {
             background-color: var(--bg-card);
             border-radius: 12px;
             padding: 1.5rem;
             border: 1px solid #334155;
             height: fit-content;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .sidebar h2 {
             font-size: 1.25rem;
-            margin-bottom: 1rem;
             border-bottom: 2px solid #334155;
             padding-bottom: 0.5rem;
+        }
+
+        /* 💡 2. 谷歌广告专用包裹样式 */
+        .sidebar-ad-wrapper {
+            margin-top: 0.5rem;
+            text-align: center;
+            border-top: 1px dashed rgba(148, 163, 184, 0.15);
+            padding-top: 1.5rem;
+        }
+
+        .ad-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .ad-slot-box {
+            width: 100%;
+            min-height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         footer {
@@ -196,6 +207,16 @@
             font-size: 0.9rem;
             border-top: 1px solid #334155;
             margin-top: auto;
+        }
+
+        /* 响应式媒体查询：当屏幕小于 968px 时，单列显示 */
+        @media (max-width: 968px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                margin-top: 1.5rem; /* 💡 移动端掉到下方时拉开安全间距，防止搓屏幕误触广告被谷歌惩罚 */
+            }
         }
     </style>
 </head>
@@ -215,47 +236,73 @@
             </div>
             
             <div class="game-info">
-               
+                <div class="game-meta">
+                    <span class="tag" id="gameGenre">Casual</span>
+                    <span class="rating" id="gameRating">⭐ 4.5</span>
+                </div>
+                <h1 class="game-title" id="gameTitle">Loading Game...</h1>
+                <p class="game-desc" id="gameDesc">
+                    Please wait while the game is loading. If it takes too long, try refreshing the page.
+                </p>
             </div>
+
             <div class="game-action-buttons" style="margin-top: 1.5rem; display: flex; gap: 10px;">
-    <button onclick="goFullScreen()" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <i class="fas fa-expand"></i> Fullscreen
-    </button>
-    <a href="/" style="background: #334155; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 8px;">
-        <i class="fas fa-home"></i> Back to Home
-    </a>
-</div>
+                <button onclick="goFullScreen()" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-expand"></i> Fullscreen
+                </button>
+                <a href="/" style="background: #334155; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
         </div>
 
         <div class="sidebar">
-            <h2>Recommended</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">More games coming soon!</p>
+            <div>
+                <h2>Recommended</h2>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">More games coming soon!</p>
+            </div>
+
+            <div class="sidebar-ad-wrapper">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-slot-box">
+                    
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" 
+                         data-ad-slot="YYYYYYYYYY"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.location.hostname !== '127.0.0.1' && window.location.hostname !== 'localhost' ? window.adsbygoogle || [] : []).push({});
+                    </script>
+
+                </div>
+            </div>
         </div>
     </main>
 
     <footer>
         <p>&copy; 2026 Vortexly. All rights reserved.</p>
     </footer>
-<script src="/games.js"></script>
+
+    <script src="/games.js"></script>
     <script>
 // ============================================
 // 详情页核心控制逻辑 (同时适配本地测试与 Cloudflare Pages 伪静态环境)
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    const pathname = window.location.pathname; // 获取当前路径，如 "/games/tap-arrow-away/"
+    const pathname = window.location.pathname; 
     let slug = null;
 
     // 1. 路由兼容性解析提取 Slug
     if (pathname.includes('/games/')) {
-        // 线上环境：从 Cloudflare 伪静态路由中提取游戏 Slug
         const pathParts = pathname.split('/').filter(Boolean);
         const gamesIndex = pathParts.indexOf('games');
         if (gamesIndex !== -1 && pathParts[gamesIndex + 1]) {
             slug = pathParts[gamesIndex + 1];
         }
     } else {
-        // 本地环境：从 URL 参数 ?slug=xxx 中提取
         const urlParams = new URLSearchParams(window.location.search);
         slug = urlParams.get('slug');
     }
@@ -268,14 +315,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // 2. 🎯 在匹配 games.js 数据库时，把数据库的原名也转换为中划线进行比对
+    // 2. 匹配 games.js 数据库
     const game = games.find(item => {
         if (!item || !item[0]) return false;
         const gameDatabaseSlug = item[0].trim().toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
         return gameDatabaseSlug === slug;
     });
 
-    // 如果未找到对应数据
     if (!game) {
         console.error("未找到匹配的游戏数据:", slug);
         if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "Game Not Found";
@@ -284,9 +330,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 3. 提取并清洗基础数据
-    const gameRawName = game[0]; // "Tap_Arrow_Away"
-    const gameName = gameRawName.replace(/_/g, ' '); // "Tap Arrow Away"
-    const gdId = game[12]; // 游戏分发 ID
+    const gameRawName = game[0]; 
+    const gameName = gameRawName.replace(/_/g, ' '); 
+    const gdId = game[12]; 
     
     // 4. 读取长描述与星级
     var details = { desc: "", rating: "4.5" };
@@ -313,11 +359,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = `⭐ ${details.rating || '4.5'}`;
     if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
     
-    // 🔴 【移除误伤逻辑】如果你想让玩家留下来玩游戏，记得隐藏或删除之前那个“2秒返回首页”的倒计时！
-    if (document.getElementById('redirectTimer')) {
-        document.getElementById('redirectTimer').style.display = 'none'; 
-    }
-
     // 7. 完美加载游戏画面
     const iframe = document.getElementById('gameIframe');
     if (iframe) {
@@ -326,6 +367,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log(`=== 游戏 [${gameName}] 详情渲染成功 ===`);
 });
+
+// 核心全屏控制函数
+function goFullScreen() {
+    const iframe = document.getElementById('gameIframe');
+    if (iframe) {
+        if (iframe.requestFullscreen) { iframe.requestFullscreen(); }
+        else if (iframe.mozRequestFullScreen) { iframe.mozRequestFullScreen(); }
+        else if (iframe.webkitRequestFullscreen) { iframe.webkitRequestFullscreen(); }
+        else if (iframe.msRequestFullscreen) { iframe.msRequestFullscreen(); }
+    }
+}
     </script>
 </body>
 </html>
