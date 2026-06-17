@@ -242,10 +242,10 @@
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    const pathname = window.location.pathname; // 获取当前的线上路径，例如 "/games/tap-arrow-away/"
+    const pathname = window.location.pathname; // 获取当前线上路径，如 "/games/tap-arrow-away/"
     let slug = null;
 
-    // 1. 针对 Cloudflare Pages 伪静态环境进行深度路径提取
+    // 1. 从 Cloudflare 路由中提取游戏 Slug
     if (pathname.includes('/games/')) {
         const pathParts = pathname.split('/').filter(Boolean);
         const gamesIndex = pathParts.indexOf('games');
@@ -254,36 +254,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 规范化 Slug 格式
     if (slug) {
         slug = slug.trim().toLowerCase().replace(/^\/+|\/+$/g, '');
     } else {
-        console.error("无法从当前 URL 路径中截取到有效的游戏 slug。");
+        console.error("无法提取到有效的游戏 slug");
         return;
     }
 
-    // 2. 拿着截取出来的 slug 去匹配外部库 games.js
+    // 2. 🎯【核心修复】在匹配 games.js 数据库时，把数据库的原名也转换为中划线进行等值比对
     const game = games.find(item => {
         if (!item || !item[0]) return false;
-        // 把数据库里的原名转换成标准短网址格式进行等值比对
+        // 把数据库里的 "Tap_Arrow_Away" 转换成 "tap-arrow-away" 后再与 URL 的 slug 比对
         const gameDatabaseSlug = item[0].trim().toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
         return gameDatabaseSlug === slug;
     });
 
-    // 找不到匹配项时的界面降级提示（页面依旧会在这里停留，绝不弹回首页）
+    // 如果依然找不到
     if (!game) {
-        console.error("在当前的 games.js 数据库中未找到任何匹配此路径的游戏数据:", slug);
+        console.error("未找到匹配的游戏数据:", slug);
         if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "Game Not Found";
-        if (document.getElementById('gameDesc')) document.getElementById('gameDesc').textContent = `Could not find game details matching "${slug}".`;
         return;
     }
 
-    // 3. 提取游戏基础核心数据
-    const gameRawName = game[0]; // 数据库原名 (例如: "Tap_Arrow_Away")
-    const gameName = gameRawName.replace(/_/g, ' '); // 转化为干净的带空格标题
-    const gdId = game[12]; // 获取 GameDistribution 游戏 ID
+    // 3. 提取并清洗基础数据
+    const gameRawName = game[0]; // "Tap_Arrow_Away"
+    const gameName = gameRawName.replace(/_/g, ' '); // "Tap Arrow Away"
+    const gdId = game[12]; // 游戏分发 ID
     
-    // 4. 兼容读取外部字典里配置的长描述与星级
+    // 4. 读取长描述与星级
     var details = { desc: "", rating: "4.5" };
     if (typeof gamedetails !== 'undefined' && gamedetails[gameRawName]) {
         details = gamedetails[gameRawName];
@@ -291,34 +289,31 @@ document.addEventListener('DOMContentLoaded', () => {
         details = gameDetails[gameRawName];
     }
 
-    // 如果你在字典里没填该小游戏描述，则用它的分类为它动态拼凑一段优美的 SEO 长句
     if (!details.desc && game[6]) {
         details.desc = `Play ${gameName}, a free online ${game[6].split(' ')[0]} game on Vortexly. Enjoy full screen gameplay with no downloads required!`;
     }
 
-    // 5. 拼接标准的跨域安全小游戏分发源地址
     const currentHost = window.location.origin;
     const gdUrl = `https://html5.gamedistribution.com/${gdId}/?gd_sdk_referrer_url=${currentHost}`;
 
-    // 6. 动态替换页面头部的顶级 Google 抓取 SEO Meta 标签
+    // 5. 动态替换页面头部 SEO Meta 标签
     document.title = `${gameName} - Play Free Online on Vortexly`;
     if (document.getElementById('pageTitle')) document.getElementById('pageTitle').textContent = `${gameName} - Play on Vortexly`;
-    if (document.getElementById('pageDesc'))  document.getElementById('pageDesc').setAttribute('content', details.desc);
+    if (document.getElementById('pageDesc')) document.getElementById('pageDesc').setAttribute('content', details.desc);
     if (document.getElementById('canonicalTag')) document.getElementById('canonicalTag').setAttribute('href', window.location.href);
 
-    // 7. 🎯 将捞出来的详情数据丝滑注入到你页面对应的 UI 节点中（展示红框详情）
+    // 6. 渲染红框核心 UI
     if (document.getElementById('gameTitle'))  document.getElementById('gameTitle').textContent = gameName;
     if (document.getElementById('gameGenre'))  document.getElementById('gameGenre').textContent = game[6] ? game[6].split(' ')[0] : "Games";
     if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = `⭐ ${details.rating || '4.5'}`;
     if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
     
-    // 8. 唤醒小游戏画面：向 iframe 注入分发厂商地址，游戏瞬间亮起！
+    // 7. 完美加载游戏画面
     const iframe = document.getElementById('gameIframe');
     if (iframe) {
         iframe.src = gdUrl;
     }
-
-    console.log(`=== 游戏 [${gameName}] 详情渲染成功，页面在此处正常停留。 ===`);
+});.log(`=== 游戏 [${gameName}] 详情渲染成功，页面在此处正常停留。 ===`);
 });
     </script>
 </body>
