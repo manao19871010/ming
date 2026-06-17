@@ -2,105 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Loading Game... - HTML5 Gaming Paradise</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title id="pageTitle">Free Online Games - Vortexly</title>
+    <meta name="description" id="pageDesc" content="Play free online games on Vortexly. No download, no sign-up required.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" id="canonicalTag" href="https://vortexly.com/">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vortexly">
+    <meta id="ogTitle"    property="og:title"       content="Play Free Games - Vortexly">
+    <meta id="ogDesc"     property="og:description" content="Play free online games on Vortexly">
+    <meta id="ogUrl"      property="og:url"         content="https://vortexly.com/">
+    <meta id="ogImage"    property="og:image"       content="https://vortexly.com/og-default.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json" id="schemaScript">{}</script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* ============================================
-           CSS RESET & FRIV DARK THEME
-           ============================================ */
+        :root {
+            --bg-primary: #0b0c10;
+            --bg-secondary: #1f2833;
+            --text-main: #c5a059;
+            --text-pure: #ffffff;
+            --text-muted: #858585;
+            --accent: #c5a059;
+            --accent-hover: #e5c079;
+            --border-color: #2c3539;
+            --card-bg: #151a22;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
-            background-color: #1a1a2e;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
+            background-color: var(--bg-primary);
+            color: var(--text-pure);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
-        /* ============================================
-           HEADER & NAVIGATION
-           ============================================ */
         header {
-            background: linear-gradient(135deg, #0f0c20, #15102a);
-            padding: 15px 20px;
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #e94560;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .logo a {
-            color: #e94560;
-            font-size: 24px;
-            font-weight: bold;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
-        }
-        .back-btn {
-            background: #e94560;
-            color: white;
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
-        }
-        .back-btn:hover {
-            background: #ff5273;
-            transform: translateY(-2px);
-            box-shadow: 0 0 15px rgba(233, 69, 96, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        /* ============================================
-           MAIN LAYOUT (Friv Grid Arena)
-           ============================================ */
-        .arena-container {
-            max-width: 1400px;
+        .logo a {
+            color: var(--accent);
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--text-pure);
+            border: 1px solid var(--border-color);
+            padding: 8px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .main-container {
+            max-width: 1200px;
             width: 100%;
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 0 20px;
             display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 20px;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
             flex: 1;
         }
 
-        @media (max-width: 1024px) {
-            .arena-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ============================================
-           GAME SCREEN & IFRAME
-           ============================================ */
-        .game-main {
+        .game-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
-        .video-container {
+
+        .iframe-container {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; 
-            background-color: #000000;
+            padding-top: 56.25%;
+            background: #000;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            border: 2px solid #4f3b78;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
         }
-        .video-container iframe {
+
+        .iframe-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -109,282 +126,295 @@
             border: none;
         }
 
-        /* ============================================
-           GAME INFO BOX (动态数据展示区)
-           ============================================ */
-        .game-info-card {
-            background: #161233;
-            border-left: 5px solid #e94560;
-            padding: 20px;
-            border-radius: 0 12px 12px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        .game-meta-header {
+        .control-bar {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 20px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .game-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .game-stats {
-            display: flex;
-            gap: 15px;
-            font-size: 14px;
-        }
-        .stat-tag {
-            background: #251f4f;
-            padding: 4px 10px;
-            border-radius: 6px;
-            color: #00f2fe;
-            font-weight: 600;
-        }
-        .stat-tag.rating {
-            color: #ffcc00;
-        }
-        .game-description {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #b3b3cc;
         }
 
-        /* ============================================
-           SIDEBAR RECOMMENDATIONS (Friv Thumbnails)
-           ============================================ */
-        .sidebar-recommend {
-            background: #0f0c20;
+        .control-btn {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-hover);
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px;
             border-radius: 12px;
-            padding: 15px;
-            border: 1px solid #251f4f;
-            height: fit-content;
         }
-        .sidebar-recommend h3 {
+
+        .info-card h1 {
+            font-size: 28px;
+            color: var(--text-pure);
+            margin-bottom: 10px;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            font-size: 13px;
+            color: var(--accent);
+            background: rgba(197, 160, 89, 0.1);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .description {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-title {
             font-size: 18px;
-            margin-bottom: 15px;
-            color: #e94560;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #251f4f;
-            padding-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-pure);
+            border-left: 3px solid var(--accent);
+            padding-left: 10px;
         }
+
         .rec-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
-        @media (max-width: 1024px) {
-            .rec-grid {
-                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            }
-        }
+
         .rec-card {
-            position: relative;
-            aspect-ratio: 4/3;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .rec-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .rec-card:hover {
-            transform: scale(1.05);
-            border-color: #e94560;
-            box-shadow: 0 0 12px rgba(233, 69, 96, 0.6);
-        }
-        .rec-title-hover {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(15, 12, 32, 0.85);
-            color: white;
-            font-size: 11px;
-            padding: 4px;
-            text-align: center;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .rec-card:hover .rec-title-hover {
-            opacity: 1;
+            transition: transform 0.2s, border-color 0.2s;
+            display: flex;
+            gap: 12px;
+            padding: 8px;
         }
 
-        /* Footer */
+        .rec-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+
+        .rec-card img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .rec-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rec-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-pure);
+            margin-bottom: 4px;
+        }
+
+        .rec-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
         footer {
-            text-align: center;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
             padding: 20px;
-            color: #4f3b78;
-            font-size: 13px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
             margin-top: auto;
-            border-top: 1px solid #0f0c20;
+        }
+
+        @media (max-width: 968px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                margin-top: 20px;
+            }
+            .rec-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <a href="/">Crazy Games</a>
-        </div>
-        <a href="/" class="back-btn">⬅ Back to Home</a>
+        <div class="logo"><a href="/">Vortexly</a></div>
+        <a href="/" class="back-btn">← Back to Home</a>
     </header>
 
-    <main class="arena-container">
-        
-        <section class="game-main">
-            <div class="video-container">
-                <iframe id="gameFrame" src="about:blank" allowfullscreen="true" scrolling="no"></iframe>
+    <main class="main-container">
+        <section class="game-wrapper">
+            <div class="iframe-container">
+                <iframe id="gameIframe" src="about:blank" allowfullscreen="true" scrolling="no"></iframe>
             </div>
 
-            <article class="game-info-card">
-                <div class="game-meta-header">
-                    <h1 class="game-title" id="gameTitle">Loading game info...</h1>
-                    <div class="game-stats">
-                        <span class="stat-tag" id="gamePlayers">👥 0 个玩家</span>
-                        <span class="stat-tag rating" id="gameRating">⭐ 0.0</span>
-                    </div>
+            <div class="control-bar">
+                <div class="meta-tags">
+                    <span class="tag" id="gameGenre">Loading...</span>
+                    <span class="tag" id="gameRating">⭐ 4.5</span>
                 </div>
-                <p class="game-description" id="gameDesc">
-                    Please wait while we set up the gaming sandbox environment for you...
-                </p>
+                <button class="control-btn" onclick="goFullScreen()">🖵 Fullscreen</button>
+            </div>
+
+            <article class="info-card">
+                <h1 id="gameTitle">Loading game title...</h1>
+                <p class="description" id="gameDesc">Loading game description...</p>
             </article>
         </section>
 
-        <aside class="sidebar-recommend">
-            <h3>Popular Games</h3>
-            <div class="rec-grid" id="recommendationGrid">
-            </div>
+        <aside class="sidebar">
+            <h2 class="sidebar-title">Popular Games</h2>
+            <div class="rec-grid" id="recommendationGrid"></div>
         </aside>
-
     </main>
 
     <footer>
-        &copy; 2026 Crazy Games Sandbox. All Rights Reserved.
+        &copy; 2026 Vortexly. All Rights Reserved.
     </footer>
 
-    <script src="games.js"></script>
+    <script src="/games.js"></script>
 
     <script>
-    // 右侧热门游戏卡片生成机制
-    function generateSidebarRecommendations(currentKey) {
+    // 右边 Friv 风格卡片生成机制
+    function generateSidebar(currentKey) {
         var grid = document.getElementById('recommendationGrid');
         if (!grid || typeof games === 'undefined') return;
 
-        var filteredGames = games.filter(function(g) { return g[0] !== currentKey; });
-        var displayLimit = filteredGames.slice(0, 6);
+        var filtered = games.filter(function(g) { return g[0] !== currentKey; });
+        var topGames = filtered.slice(0, 5); 
 
-        var htmlBuffer = "";
-        displayLimit.forEach(function(item) {
-            var nameKey = item[0];      
-            var path = item[1];         
-            var thumb = item[4];        
-            var cleanTitle = nameKey.replace(/_/g, ' ');
+        var html = "";
+        topGames.forEach(function(item) {
+            var key = item[0];
+            var path = item[1];
+            var thumb = item[4];
+            var displayTitle = key.replace(/_/g, ' ');
 
-            htmlBuffer += `
+            html += `
                 <div class="rec-card" onclick="window.location.href='${path}'">
-                    <img src="${thumb}" alt="${cleanTitle}" loading="lazy">
-                    <div class="rec-title-hover">${cleanTitle}</div>
+                    <img src="${thumb}" alt="${displayTitle}">
+                    <div class="rec-info">
+                        <div class="rec-name">${displayTitle}</div>
+                        <div class="rec-meta">🎮 Play Free</div>
+                    </div>
                 </div>
             `;
         });
-
-        grid.innerHTML = htmlBuffer;
+        grid.innerHTML = html;
     }
 
+    // ============================================
+    // 🚀 初始化与数据深度映射绑定
+    // ============================================
     document.addEventListener('DOMContentLoaded', function() {
-        // ============================================
-        // ⚙️ 路由智能解析内核
-        // ============================================
-        function AutoMatchGame() {
-            var rawPath = window.location.pathname;
-            var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
-            var slugFromUrl = "";
-
-            if (cleanPath.startsWith('games/')) {
-                slugFromUrl = cleanPath.replace('games/', ''); 
-            } else {
-                var urlParams = new URLSearchParams(window.location.search);
-                var queryParam = urlParams.get('game') || urlParams.get('name');
-                if (queryParam) {
-                    slugFromUrl = queryParam.toLowerCase().replace(/_/g, '-');
-                }
-            }
-
-            if (!slugFromUrl) return null;
-
-            // 在数据库中搜寻匹配的游戏实体 Key
-            var targetKey = Object.keys(gameDetails).find(function(key) {
-                var formattedKey = key.toLowerCase().replace(/_/g, '-');
-                return formattedKey === slugFromUrl;
-            });
-
-            if (targetKey) {
-                var baseInfo = games.find(function(g) { return g[0] === targetKey; }) || [];
-                return {
-                    key: targetKey,
-                    title: targetKey.replace(/_/g, ' '),   
-                    desc: gameDetails[targetKey].desc,
-                    players: gameDetails[targetKey].players || "1.2k",
-                    rating: gameDetails[targetKey].rating || "4.5",
-                    // 修复点二：精准提取一维数中第13个位置（也就是哈希序列）的真实的远端游戏识别码
-                    gameId: baseInfo[12] || ""             
-                };
-            }
-            return null;
-        }
-
-        // ============================================
-        // 🚀 精准注入渲染核心
-        // ============================================
         if (typeof games === 'undefined' || typeof gameDetails === 'undefined') {
-            document.getElementById('gameTitle').textContent = "Database Error";
+            console.error("games.js 数据包未成功载入");
             return;
         }
 
-        var currentGame = AutoMatchGame();
+        // 1. 精准抓取 URL 标识
+        var rawPath = window.location.pathname;
+        var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
+        var slugFromUrl = "";
 
-        if (currentGame) {
-            // 修改网页标签页的标题
-            document.title = "Play " + currentGame.title + " Online - Free HTML5 Games";
+        if (cleanPath.startsWith('games/')) {
+            slugFromUrl = cleanPath.replace('games/', ''); 
+        }
 
-            // 填充文本信息至大绿框下方
-            if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = currentGame.title;
-            if (document.getElementById('gameDesc'))  document.getElementById('gameDesc').textContent = currentGame.desc;
-            if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + currentGame.rating;
-            if (document.getElementById('gamePlayers')) document.getElementById('gamePlayers').textContent = "👥 " + currentGame.players + " Players";
+        if (!slugFromUrl) {
+            document.getElementById('gameTitle').textContent = "Game Not Found";
+            return;
+        }
 
-            // 修复点三：使用上面真实存在的 id="gameFrame" 标签进行渲染，绝不漏掉 GD 画面
-            var gameIframe = document.getElementById('gameFrame');
-            if (currentGame.gameId && gameIframe) {
-                var iframeUrl = "https://html5.gamedistribution.com/" + currentGame.gameId + "/";
-                console.log("[Success] 正在往绿框容器中载入真实GD游戏链接:", iframeUrl);
-                gameIframe.src = iframeUrl;
+        // 2. 核心比对：将 URL 的 "tap-arrow-away" 对齐回数据库的 "Tap_Arrow_Away"
+        var matchedKey = Object.keys(gameDetails).find(function(key) {
+            return key.toLowerCase().replace(/_/g, '-') === slugFromUrl;
+        });
+
+        if (matchedKey) {
+            var details = gameDetails[matchedKey];
+            var gameName = matchedKey.replace(/_/g, ' ');
+
+            // 3. 【绝对修复】从一维数组对应项的下标 12 里，精准拔出真实的 GD ID
+            var baseInfo = games.find(function(g) { return g[0] === matchedKey; }) || [];
+            var realGdId = baseInfo[12] || ""; 
+            var gdUrl = "https://html5.gamedistribution.com/" + realGdId + "/";
+
+            console.log("[Success] 精准提取到真实 GD 哈希 ID:", realGdId);
+
+            // 4. 填充 SEO 顶层标签
+            document.title = gameName + " - Play on Vortexly";
+            if (document.getElementById('pageDesc')) document.getElementById('pageDesc').setAttribute('content', details.desc);
+            if (document.getElementById('canonicalTag')) document.getElementById('canonicalTag').setAttribute('href', window.location.href);
+
+            // 5. 渲染底部的文字盒子
+            if (document.getElementById('gameTitle'))  document.getElementById('gameTitle').textContent = gameName;
+            if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
+            if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
+            if (document.getElementById('gameGenre'))  document.getElementById('gameGenre').textContent = baseInfo[6] ? baseInfo[6].split(' ')[0] : "Games";
+
+            // 6. 【致命一击】把完全合法的 GD 嵌入式链接丢进大绿框内
+            var iframe = document.getElementById('gameIframe');
+            if (iframe && realGdId) {
+                iframe.src = gdUrl;
+                console.log("🎉 Iframe 画面通道全面打通:", gdUrl);
             } else {
-                console.error("[Error] 对应游戏的 gameId 丢失，请检查 games.js 数据项。");
+                console.error("Iframe 未找到，或该游戏的 GD ID 在数组下标 12 处为空！");
             }
 
-            // 绘制右侧推荐位
-            generateSidebarRecommendations(currentGame.key);
-
+            // 7. 渲染右侧关联推荐卡片
+            generateSidebar(matchedKey);
         } else {
-            document.getElementById('gameTitle').textContent = "Game Sandbox";
-            document.getElementById('gameDesc').textContent = "Welcome! Please select a game to start playing.";
-            generateSidebarRecommendations("");
+            if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "Game Sandbox Not Found";
+            generateSidebar("");
         }
     });
+
+    // 全屏核心指令
+    function goFullScreen() {
+        const iframe = document.getElementById('gameIframe');
+        if (iframe) {
+            if (iframe.requestFullscreen) { iframe.requestFullscreen(); }
+            else if (iframe.mozRequestFullScreen) { iframe.mozRequestFullScreen(); }
+            else if (iframe.webkitRequestFullscreen) { iframe.webkitRequestFullscreen(); }
+            else if (iframe.msRequestFullscreen) { iframe.msRequestFullscreen(); }
+        }
+    }
     </script>
 </body>
 </html>
