@@ -215,14 +215,16 @@
             </div>
             
             <div class="game-info">
-                <div id="redirectTimer" class="timer-notice">详情展示中，2秒后返回首页...</div>
-                <div class="game-meta">
-                    <span id="gameGenre" class="tag">Loading...</span>
-                    <span id="gameRating" class="rating">⭐ --</span>
-                </div>
-                <h1 id="gameTitle" class="game-title">Loading Game...</h1>
-                <p id="gameDesc" class="game-desc">Loading game descriptions and details...</p>
+               
             </div>
+            <div class="game-action-buttons" style="margin-top: 1.5rem; display: flex; gap: 10px;">
+    <button onclick="goFullScreen()" style="background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-expand"></i> Fullscreen
+    </button>
+    <a href="/" style="background: #334155; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+        <i class="fas fa-home"></i> Back to Home
+    </a>
+</div>
         </div>
 
         <div class="sidebar">
@@ -234,45 +236,50 @@
     <footer>
         <p>&copy; 2026 Vortexly. All rights reserved.</p>
     </footer>
-
-    <script src="/games.js"></script>
+<script src="/games.js"></script>
     <script>
 // ============================================
-// 详情页核心控制逻辑 (适配 Cloudflare Pages 伪静态环境)
+// 详情页核心控制逻辑 (同时适配本地测试与 Cloudflare Pages 伪静态环境)
 // ============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    const pathname = window.location.pathname; // 获取当前线上路径，如 "/games/tap-arrow-away/"
+    const pathname = window.location.pathname; // 获取当前路径，如 "/games/tap-arrow-away/"
     let slug = null;
 
-    // 1. 从 Cloudflare 路由中提取游戏 Slug
+    // 1. 路由兼容性解析提取 Slug
     if (pathname.includes('/games/')) {
+        // 线上环境：从 Cloudflare 伪静态路由中提取游戏 Slug
         const pathParts = pathname.split('/').filter(Boolean);
         const gamesIndex = pathParts.indexOf('games');
         if (gamesIndex !== -1 && pathParts[gamesIndex + 1]) {
             slug = pathParts[gamesIndex + 1];
         }
+    } else {
+        // 本地环境：从 URL 参数 ?slug=xxx 中提取
+        const urlParams = new URLSearchParams(window.location.search);
+        slug = urlParams.get('slug');
     }
 
     if (slug) {
         slug = slug.trim().toLowerCase().replace(/^\/+|\/+$/g, '');
     } else {
         console.error("无法提取到有效的游戏 slug");
+        if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "URL Error";
         return;
     }
 
-    // 2. 🎯【核心修复】在匹配 games.js 数据库时，把数据库的原名也转换为中划线进行等值比对
+    // 2. 🎯 在匹配 games.js 数据库时，把数据库的原名也转换为中划线进行比对
     const game = games.find(item => {
         if (!item || !item[0]) return false;
-        // 把数据库里的 "Tap_Arrow_Away" 转换成 "tap-arrow-away" 后再与 URL 的 slug 比对
         const gameDatabaseSlug = item[0].trim().toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
         return gameDatabaseSlug === slug;
     });
 
-    // 如果依然找不到
+    // 如果未找到对应数据
     if (!game) {
         console.error("未找到匹配的游戏数据:", slug);
         if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = "Game Not Found";
+        if (document.getElementById('gameDesc')) document.getElementById('gameDesc').textContent = "Sorry, the game you are looking for does not exist in our database.";
         return;
     }
 
@@ -283,9 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 4. 读取长描述与星级
     var details = { desc: "", rating: "4.5" };
-    if (typeof gamedetails !== 'undefined' && gamedetails[gameRawName]) {
-        details = gamedetails[gameRawName];
-    } else if (typeof gameDetails !== 'undefined' && gameDetails[gameRawName]) {
+    if (typeof gameDetails !== 'undefined' && gameDetails[gameRawName]) {
         details = gameDetails[gameRawName];
     }
 
@@ -302,18 +307,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('pageDesc')) document.getElementById('pageDesc').setAttribute('content', details.desc);
     if (document.getElementById('canonicalTag')) document.getElementById('canonicalTag').setAttribute('href', window.location.href);
 
-    // 6. 渲染红框核心 UI
+    // 6. 渲染核心 UI 数据
     if (document.getElementById('gameTitle'))  document.getElementById('gameTitle').textContent = gameName;
     if (document.getElementById('gameGenre'))  document.getElementById('gameGenre').textContent = game[6] ? game[6].split(' ')[0] : "Games";
     if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = `⭐ ${details.rating || '4.5'}`;
     if (document.getElementById('gameDesc'))   document.getElementById('gameDesc').textContent = details.desc;
     
+    // 🔴 【移除误伤逻辑】如果你想让玩家留下来玩游戏，记得隐藏或删除之前那个“2秒返回首页”的倒计时！
+    if (document.getElementById('redirectTimer')) {
+        document.getElementById('redirectTimer').style.display = 'none'; 
+    }
+
     // 7. 完美加载游戏画面
     const iframe = document.getElementById('gameIframe');
     if (iframe) {
         iframe.src = gdUrl;
     }
-});.log(`=== 游戏 [${gameName}] 详情渲染成功，页面在此处正常停留。 ===`);
+    
+    console.log(`=== 游戏 [${gameName}] 详情渲染成功 ===`);
 });
     </script>
 </body>

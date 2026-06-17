@@ -432,149 +432,106 @@
         // ============================================
         // 2. 核心渲染引擎（100% 兼容你的 games.js 数据）
         // ============================================
-        // ============================================
-// 1. 核心渲染函数：动态生成游戏卡片网格
-// ============================================
-function displayGames() {
-    var container = document.getElementById('gameGrid');
-    if (!container) return;
-    container.innerHTML = '';
+        function displayGames() {
+            var gamesContainer = document.getElementById('gamesContainer');
+            var noResults = document.getElementById('noResults');
+            var gamesOutputText = "";
+            var visibleCounter = 0;
+            
+            // 安全防线：如果检查不到数据，直接报错提示
+            if (typeof games === 'undefined') {
+                console.error("【致命错误】未检测到全局变量 games，请确保 games.js 正确加载！");
+                gamesContainer.innerHTML = "<p style='color:red; text-align:center; grid-column:1/-1;'>Database Error: 'games' not found.</p>";
+                return;
+            }
+            
+            // 循环遍历你 games.js 里的所有游戏
+            for (var i = 0; i < games.length; i++) {
+                var gameName = games[i][0];                     // "Tap_Arrow_Away"
+                var cleanName = gameName.replace(/_/g, " ");    // "Tap Arrow Away"
+                var gameThumb = games[i][4];                     // 缩略图链接
+                var gameDevices = games[i][5];                   // 兼容设备列表
+                var gameCategory = games[i][6];                  // "Casual New Landscape"
+                
+                // 解析分类：将 "Casual New" 拆开，取第一个作为主分类
+                var gameTags = gameCategory.toLowerCase().split(" ");
+                var mainCategory = gameTags[0];                  // "casual"
+                
+                // 【绿灯特权】：如果在 Live Server 本地测试，跳过设备严格拦截，保证全部卡片可见
+                if (window.location.hostname !== '127.0.0.1' && window.location.hostname !== 'localhost') {
+                    if (gameDevices.indexOf(deviceCategory) === -1 && deviceCategory !== "Desktop") {
+                        continue; // 线上环境如果不兼容当前设备，则隐藏
+                    }
+                }
+                
+                // 分类栏拦截器
+                if (currentCategory !== "all" && mainCategory !== currentCategory) continue;
+                
+                // 搜索栏拦截器
+                if (currentSearchQuery && cleanName.toLowerCase().indexOf(currentSearchQuery) === -1) continue;
+                
+                visibleCounter++;
+                
+                // 徽章角标控制 (Hot / New / Top)
+                var badgeHtml = "";
+                if (gameCategory.indexOf("Hot") > -1) badgeHtml = "<span class='card-badge badge-hot'>Hot</span>";
+                else if (gameCategory.indexOf("New") > -1) badgeHtml = "<span class='card-badge badge-new'>New</span>";
+                else if (gameCategory.indexOf("Top") > -1) badgeHtml = "<span class='card-badge badge-top'>Top</span>";
+                
+                var orientation = gameCategory.indexOf("Portrait") > -1 ? "Portrait" : "Landscape";
+                
+                // 读取详情数据
+                var details = (typeof gameDetails !== 'undefined' && gameDetails[gameName]) ? gameDetails[gameName] : { desc: "Free online browser game.", players: "1.2k", rating: "4.5" };
+                    
+            
+                                // 自动生成最漂亮的内页跳转 Slug 路径
+                var innerSlug = gameName.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
 
-    var searchInput = document.getElementById('searchInput');
-    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                // 【核心修改】智能兼容：如果是本地 file 协议或 5500/8080 等本地端口，使用 URL 参数传递；
+                // 如果是线上环境，完美配合 Cloudflare _redirects 使用 /games/slug/ 伪静态路径
+                var gameUrl = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:') 
+                    ? `game.html?slug=${innerSlug}` 
+                    : `/games/${innerSlug}/`;
 
-    var filtered = games.filter(function(game) {
-        var nameMatch = game[0].replace(/_/g, ' ').toLowerCase().includes(query);
-        var catMatch = false;
+                gamesOutputText += `<a href="${gameUrl}" class="game-card" data-category="${mainCategory}">`;
 
-        if (currentCategory === 'all') {
-            catMatch = true;
-        } else {
-            var gameCats = game[6].toLowerCase().split(' ');
-            catMatch = gameCats.includes(currentCategory);
+ 
+
+
+                        
+                // 拼装拼接 HTML 卡片
+                // gamesOutputText += `<a href="${localInternalPath}" class="game-card" data-category="${mainCategory}">`;
+                gamesOutputText += `    <div class="card-thumb">`;
+                gamesOutputText += `        ${badgeHtml}`;
+                gamesOutputText += `        <span class="card-category">${mainCategory}</span>`;
+                gamesOutputText += `        <span class="card-rating">★ ${details.rating}</span>`;
+                gamesOutputText += `        <span class="card-orientation">${orientation}</span>`;
+                gamesOutputText += `        <img src="${gameThumb}" alt="${cleanName}" loading="lazy">`;
+                gamesOutputText += `    </div>`;
+                gamesOutputText += `    <div class="card-body">`;
+                gamesOutputText += `        <h3 class="card-title">${cleanName}</h3>`;
+                gamesOutputText += `        <p class="card-desc">${details.desc}</p>`;
+                gamesOutputText += `        <div class="card-footer">`;
+                gamesOutputText += `            <span class="card-players">${details.players} playing</span>`;
+                gamesOutputText += `            <button class="btn-play">PLAY</button>`;
+                gamesOutputText += `        </div>`;
+                gamesOutputText += `    </div>`;
+                gamesOutputText += `</a>`;
+            }
+            
+            // 更新首页顶部的各项计数看板
+            document.getElementById('gameCount').textContent = `// ${visibleCounter} titles`;
+            document.getElementById('liveCountBadge').textContent = `${visibleCounter} Games Live`;
+            
+            // 无结果展示
+            if (visibleCounter === 0) {
+                gamesContainer.innerHTML = "";
+                noResults.style.display = "block";
+            } else {
+                gamesContainer.innerHTML = gamesOutputText;
+                noResults.style.display = "none";
+            }
         }
-
-        return nameMatch && catMatch;
-    });
-
-    filtered.forEach(function(game) {
-        var rawName = game[0]; // 例如: "Tap_Arrow_Away"
-        var cleanName = rawName.replace(/_/g, ' '); // 页面显示的干净名称: "Tap Arrow Away"
-        
-        // 🎯 核心改变（谷歌 SEO 关键）：生成纯小写、中划线的短网址 Slug
-        // 比如把 "Tap_Arrow_Away" 变成 "tap-arrow-away"
-        var slug = rawName.trim().toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
-        
-        var card = document.createElement('div');
-        card.className = 'game-card';
-        card.innerHTML = `
-            <a href="/games/${slug}/">
-                <img src="${game[4]}" alt="${cleanName}" loading="lazy">
-                <div class="game-card-title">${cleanName}</div>
-            </a>
-        `;
-        container.appendChild(card);
-    });
-
-    if (document.getElementById('statFiltered')) {
-        document.getElementById('statFiltered').textContent = filtered.length;
-    }
-}
-        // function displayGames() {
-        //     var gamesContainer = document.getElementById('gamesContainer');
-        //     var noResults = document.getElementById('noResults');
-        //     var gamesOutputText = "";
-        //     var visibleCounter = 0;
-            
-        //     // 安全防线：如果检查不到数据，直接报错提示
-        //     if (typeof games === 'undefined') {
-        //         console.error("【致命错误】未检测到全局变量 games，请确保 games.js 正确加载！");
-        //         gamesContainer.innerHTML = "<p style='color:red; text-align:center; grid-column:1/-1;'>Database Error: 'games' not found.</p>";
-        //         return;
-        //     }
-            
-        //     // 循环遍历你 games.js 里的所有游戏
-        //     for (var i = 0; i < games.length; i++) {
-        //         var gameName = games[i][0];                     // "Tap_Arrow_Away"
-        //         var cleanName = gameName.replace(/_/g, " ");    // "Tap Arrow Away"
-        //         var gameThumb = games[i][4];                     // 缩略图链接
-        //         var gameDevices = games[i][5];                   // 兼容设备列表
-        //         var gameCategory = games[i][6];                  // "Casual New Landscape"
-                
-        //         // 解析分类：将 "Casual New" 拆开，取第一个作为主分类
-        //         var gameTags = gameCategory.toLowerCase().split(" ");
-        //         var mainCategory = gameTags[0];                  // "casual"
-                
-        //         // 【绿灯特权】：如果在 Live Server 本地测试，跳过设备严格拦截，保证全部卡片可见
-        //         if (window.location.hostname !== '127.0.0.1' && window.location.hostname !== 'localhost') {
-        //             if (gameDevices.indexOf(deviceCategory) === -1 && deviceCategory !== "Desktop") {
-        //                 continue; // 线上环境如果不兼容当前设备，则隐藏
-        //             }
-        //         }
-                
-        //         // 分类栏拦截器
-        //         if (currentCategory !== "all" && mainCategory !== currentCategory) continue;
-                
-        //         // 搜索栏拦截器
-        //         if (currentSearchQuery && cleanName.toLowerCase().indexOf(currentSearchQuery) === -1) continue;
-                
-        //         visibleCounter++;
-                
-        //         // 徽章角标控制 (Hot / New / Top)
-        //         var badgeHtml = "";
-        //         if (gameCategory.indexOf("Hot") > -1) badgeHtml = "<span class='card-badge badge-hot'>Hot</span>";
-        //         else if (gameCategory.indexOf("New") > -1) badgeHtml = "<span class='card-badge badge-new'>New</span>";
-        //         else if (gameCategory.indexOf("Top") > -1) badgeHtml = "<span class='card-badge badge-top'>Top</span>";
-                
-        //         var orientation = gameCategory.indexOf("Portrait") > -1 ? "Portrait" : "Landscape";
-                
-        //         // 读取详情数据
-        //         var details = (typeof gameDetails !== 'undefined' && gameDetails[gameName]) ? gameDetails[gameName] : { desc: "Free online browser game.", players: "1.2k", rating: "4.5" };
-                
-        //         // 自动生成最漂亮的内页跳转 Slug 路径
-        //         var innerSlug = gameName.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
-                
-        //         // 兼容本地测试：Live Server 协议下跳转到 game.html 并传参，线上自动保持规范的 /games/slug/ 路径
-        //         // var localInternalPath = (window.location.protocol === 'file:' || window.location.port === '5500') 
-        //         //     ? `game.html?slug=${innerSlug}` 
-        //         //     : `/games/${innerSlug}/`;
-
-        //         // 统一使用 game.html?slug= 格式，避免服务器配置问题
-        //         var gameUrl = `game.html?slug=${innerSlug}`;    
-        //         gamesOutputText += `<a href="${gameUrl}" class="game-card" data-category="${mainCategory}">`;
-        //         // 拼装拼接 HTML 卡片
-        //         // gamesOutputText += `<a href="${localInternalPath}" class="game-card" data-category="${mainCategory}">`;
-        //         gamesOutputText += `    <div class="card-thumb">`;
-        //         gamesOutputText += `        ${badgeHtml}`;
-        //         gamesOutputText += `        <span class="card-category">${mainCategory}</span>`;
-        //         gamesOutputText += `        <span class="card-rating">★ ${details.rating}</span>`;
-        //         gamesOutputText += `        <span class="card-orientation">${orientation}</span>`;
-        //         gamesOutputText += `        <img src="${gameThumb}" alt="${cleanName}" loading="lazy">`;
-        //         gamesOutputText += `    </div>`;
-        //         gamesOutputText += `    <div class="card-body">`;
-        //         gamesOutputText += `        <h3 class="card-title">${cleanName}</h3>`;
-        //         gamesOutputText += `        <p class="card-desc">${details.desc}</p>`;
-        //         gamesOutputText += `        <div class="card-footer">`;
-        //         gamesOutputText += `            <span class="card-players">${details.players} playing</span>`;
-        //         gamesOutputText += `            <button class="btn-play">PLAY</button>`;
-        //         gamesOutputText += `        </div>`;
-        //         gamesOutputText += `    </div>`;
-        //         gamesOutputText += `</a>`;
-        //     }
-            
-        //     // 更新首页顶部的各项计数看板
-        //     document.getElementById('gameCount').textContent = `// ${visibleCounter} titles`;
-        //     document.getElementById('liveCountBadge').textContent = `${visibleCounter} Games Live`;
-            
-        //     // 无结果展示
-        //     if (visibleCounter === 0) {
-        //         gamesContainer.innerHTML = "";
-        //         noResults.style.display = "block";
-        //     } else {
-        //         gamesContainer.innerHTML = gamesOutputText;
-        //         noResults.style.display = "none";
-        //     }
-        // }
 
         // ============================================
         // 3. 搜索与分类点击事件监听器
