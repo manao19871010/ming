@@ -428,7 +428,7 @@
         function toggleMobileNav() {
             document.getElementById('mobileNav').classList.toggle('open');
         }
-
+       
         // ============================================
         // 2. 核心渲染引擎（100% 兼容你的 games.js 数据）
         // ============================================
@@ -493,7 +493,12 @@
                     ? `game.html?slug=${innerSlug}` 
                     : `/games/${innerSlug}/`;
 
+                    
+                
                 gamesOutputText += `<a href="${gameUrl}" class="game-card" data-category="${mainCategory}">`;
+                console.log("---------------------");
+                console.log(gameUrl);
+                  console.log("---------------------");
 
  
 

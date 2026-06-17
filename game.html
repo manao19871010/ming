@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+   
     <style>
         :root {
             --bg-primary: #0b0c10;
@@ -150,82 +150,59 @@
     <script src="/games.js"></script>
 
     <script>
-    // 渲染右侧推荐卡片
-    function generateSidebar(currentKey) {
-        var grid = document.getElementById('recommendationGrid');
-        if (!grid || typeof games === 'undefined') return;
-        var filtered = games.filter(function(g) { return g[0] !== currentKey; });
-        var html = "";
-        filtered.slice(0, 5).forEach(function(item) {
-            html += `
-                <div class="rec-card" onclick="window.location.href='${item[1]}'">
-                    <img src="${item[4]}" alt="${item[0]}">
-                    <div>
-                        <div style="font-size: 14px; font-weight:500;">${item[0].replace(/_/g, ' ')}</div>
-                        <div style="font-size: 12px; color: var(--text-muted);">🎮 Play Free</div>
-                    </div>
-                </div>
-            `;
-        });
-        grid.innerHTML = html;
+   document.addEventListener('DOMContentLoaded', function() {
+    if (typeof gameDetails === 'undefined' || typeof games === 'undefined') {
+        console.error("games.js 加载失败");
+        return;
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        if (typeof gameDetails === 'undefined') {
-            console.error("无法载入 games.js 数据配置");
-            return;
+    // 兼容两种取参方式：1. 伪静态路径 /games/xxx/  2. query参数 ?slug=xxx
+    function getGameSlug() {
+        // 先尝试从路径取
+        const pathParts = window.location.pathname.split('/').filter(Boolean);
+        const gamesIndex = pathParts.indexOf('games');
+        if (gamesIndex > -1 && pathParts[gamesIndex + 1]) {
+            return pathParts[gamesIndex + 1].toLowerCase();
         }
+        // 路径取不到，再从URL参数取
+        const params = new URLSearchParams(window.location.search);
+        const slugParam = params.get('slug');
+        return slugParam ? slugParam.toLowerCase() : '';
+    }
 
-        // 1. 拆解浏览器地址栏参数
-        var rawPath = window.location.pathname;
-        var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
-        var slugFromUrl = "";
+    const slugFromUrl = getGameSlug();
+    console.log("最终解析到的游戏slug:", slugFromUrl);
 
-        if (cleanPath.startsWith('games/')) {
-            slugFromUrl = cleanPath.replace('games/', '').replace(/\/+$/, '');
-        }
-
-        console.log("[解密成功] 参数片段为:", slugFromUrl);
-
-        // 2. 在数据库中对齐大写 Key
-        var matchedKey = Object.keys(gameDetails).find(function(key) {
-            return key.toLowerCase().replace(/_/g, '-') === slugFromUrl;
-        });
-
-        if (matchedKey) {
-            var details = gameDetails[matchedKey];
-            var gameName = matchedKey.replace(/_/g, ' ');
-
-            // 3. 【超级核心】彻底抛弃数组查找！直接从对象属性里拔出 gameId 
-            var realGdId = details.gameId || "";
-            
-            console.log("[核心验证] 直读拿到的真实 GD 哈希 ID 是:", realGdId);
-
-            // 4. 动态更改标题和文本渲染
-            document.title = gameName + " - Play on Vortexly";
-            document.getElementById('gameTitle').textContent = gameName;
-            document.getElementById('gameDesc').textContent = details.desc;
-            document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
-
-            // 5. 打开渲染通道注入到大绿框
-            var iframe = document.getElementById('gameIframe');
-            if (iframe && realGdId) {
-                iframe.src = "https://html5.gamedistribution.com/" + realGdId + "/";
-                console.log("🎉 [绝杀成功] Iframe 画面通道已被强制疏通！");
-            } else {
-                console.error("未在对应的 gameDetails 配置中发现 gameId 字段！");
-            }
-
-            generateSidebar(matchedKey);
-        } else {
-            document.getElementById('gameTitle').textContent = "Game Not Found";
-        }
+    // slug转格式匹配gameDetails的键名（tap-arrow-away → Tap_Arrow_Away）
+    const matchedKey = Object.keys(gameDetails).find(function(key) {
+        return key.toLowerCase().replace(/_/g, '-') === slugFromUrl;
     });
 
-    function goFullScreen() {
+    if (matchedKey) {
+        const details = gameDetails[matchedKey];
+        const gameName = matchedKey.replace(/_/g, ' ');
+
+        console.log("匹配到游戏:", gameName, "GD ID:", details.gameId);
+
+        // 渲染页面信息
+        document.title = gameName + " - Play on Vortexly";
+        document.getElementById('gameTitle').textContent = gameName;
+        document.getElementById('gameDesc').textContent = details.desc;
+        document.getElementById('gameRating').textContent = "⭐ " + (details.rating || "4.5");
+
+        // 注入游戏iframe
         const iframe = document.getElementById('gameIframe');
-        if (iframe && iframe.requestFullscreen) { iframe.requestFullscreen(); }
+        if (iframe && details.gameId) {
+            iframe.src = "https://html5.gamedistribution.com/" + details.gameId + "/";
+        }
+
+        // 渲染右侧推荐
+        generateSidebar(matchedKey);
+    } else {
+        document.getElementById('gameTitle').textContent = "Game Not Found";
+        console.warn("未匹配到对应游戏");
     }
+});
     </script>
 </body>
 </html>
