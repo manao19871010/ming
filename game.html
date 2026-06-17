@@ -93,7 +93,6 @@
         .video-container {
             position: relative;
             width: 100%;
-            /* 16:9 黄金游戏比例，如果是复古街机可以调成 4:3 (75%) */
             padding-top: 56.25%; 
             background-color: #000000;
             border-radius: 12px;
@@ -267,7 +266,7 @@
         <aside class="sidebar-recommend">
             <h3>Popular Games</h3>
             <div class="rec-grid" id="recommendationGrid">
-                </div>
+            </div>
         </aside>
 
     </main>
@@ -276,111 +275,130 @@
         &copy; 2026 Crazy Games Sandbox. All Rights Reserved.
     </footer>
 
-    <script src="/games.js"></script>
+    <script src="games.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+    <script>
     // ============================================
-    // ⚙️ 线上超级容错路由解析引擎
+    // ✨ 新增：补齐缺失的侧边栏推荐位动态生成引擎
     // ============================================
-    function AutoMatchGame() {
-        // 1. 获取当前线上的真实路径 (例如: "/games/tap-arrow-away/" 或 "/games/tap-arrow-away")
-        var rawPath = window.location.pathname;
-        console.log("[Debug] 当前页面 URL 路径 (pathname):", rawPath);
+    function generateSidebarRecommendations(currentKey) {
+        var grid = document.getElementById('recommendationGrid');
+        if (!grid || typeof games === 'undefined') return;
 
-        // 2. 将路径转化为小写，并去掉开头和结尾的斜杠，防止 Cloudflare 伪静态斜杠不一致
-        var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
-        console.log("[Debug] 标准化后的路径 (cleanPath):", cleanPath); // 变成 "games/tap-arrow-away"
+        // 过滤掉当前正在玩的游戏
+        var filteredGames = games.filter(function(g) { return g[0] !== currentKey; });
+        
+        // 限制右侧最多展示 6 个推荐位
+        var displayLimit = filteredGames.slice(0, 6);
 
-        var slugFromUrl = "";
+        var htmlBuffer = "";
+        displayLimit.forEach(function(item) {
+            var nameKey = item[0];      
+            var path = item[1];         
+            var thumb = item[4];        
+            var cleanTitle = nameKey.replace(/_/g, ' ');
 
-        // 3. 提取真正的游戏 Slug
-        if (cleanPath.startsWith('games/')) {
-            slugFromUrl = cleanPath.replace('games/', ''); // 得到 "tap-arrow-away"
-        } else {
-            // 【本地兼容】如果本地是用 ?game= 传参
-            var urlParams = new URLSearchParams(window.location.search);
-            var queryParam = urlParams.get('game') || urlParams.get('name');
-            if (queryParam) {
-                slugFromUrl = queryParam.toLowerCase().replace(/_/g, '-');
-            }
-        }
-
-        console.log("[Debug] 提取出的游戏标识 (slugFromUrl):", slugFromUrl);
-
-        if (!slugFromUrl) return null;
-
-        // 4. 开始在数据库中匹配 (支持 games 数组和 gameDetails 字典)
-        // 匹配逻辑：把数据库里的 Key（如 "Tap_Arrow_Away"）转成小写、下划线换成中划线，去对齐 URL
-        var targetKey = Object.keys(gameDetails).find(function(key) {
-            var formattedKey = key.toLowerCase().replace(/_/g, '-');
-            return formattedKey === slugFromUrl;
+            htmlBuffer += `
+                <div class="rec-card" onclick="window.location.href='${path}'">
+                    <img src="${thumb}" alt="${cleanTitle}" loading="lazy">
+                    <div class="rec-title-hover">${cleanTitle}</div>
+                </div>
+            `;
         });
 
-        if (targetKey) {
-            console.log("[Debug] 🎉 成功在数据库中匹配到 Key:", targetKey);
-            
-            // 提取一维数组 games 里的基础数据（如封面、gameId）
-            var baseInfo = games.find(function(g) { return g[0] === targetKey; }) || [];
-            
-            return {
-                key: targetKey,
-                title: targetKey.replace(/_/g, ' '),   // 自动把下划线换成空格作为标题
-                desc: gameDetails[targetKey].desc,
-                players: gameDetails[targetKey].players || "1.2k",
-                rating: gameDetails[targetKey].rating || "4.5",
-                gameId: baseInfo[12] || ""             // 数组第 13 项是你的游戏远程 ID
-            };
-        }
-
-        console.warn("[Debug] ❌ 在 games.js 数据库中未找到匹配的游戏。");
-        return null;
+        grid.innerHTML = htmlBuffer;
     }
 
-    // ============================================
-    // 🚀 执行渲染逻辑
-    // ============================================
-    // 检查全局变量是否成功从 games.js 加载
-    if (typeof games === 'undefined' || typeof gameDetails === 'undefined') {
-        console.error("【致命错误】games.js 未成功加载！请检查 <script src='/games.js'> 的路径是否正确，或者文件是否有语法错误。");
-        document.getElementById('gameTitle').textContent = "Database Error";
-        document.getElementById('gameDesc').textContent = "Failed to load games.js database.";
-        return;
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        // ============================================
+        // ⚙️ 线上超级容错路由解析引擎
+        // ============================================
+        function AutoMatchGame() {
+            var rawPath = window.location.pathname;
+            console.log("[Debug] 当前页面 URL 路径 (pathname):", rawPath);
 
-    var currentGame = AutoMatchGame();
+            var cleanPath = rawPath.toLowerCase().replace(/^\/+|\/+$/g, ''); 
+            console.log("[Debug] 标准化后的路径 (cleanPath):", cleanPath); 
 
-    if (currentGame) {
-        // 1. 修改标签页标题
-        document.title = "Play " + currentGame.title + " Online - Free HTML5 Games";
+            var slugFromUrl = "";
 
-        // 2. 填充文本数据到界面
-        if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = currentGame.title;
-        if (document.getElementById('gameDesc'))  document.getElementById('gameDesc').textContent = currentGame.desc;
-        if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + currentGame.rating;
-        if (document.getElementById('gamePlayers')) document.getElementById('gamePlayers').textContent = "👥 " + currentGame.players + " Players";
+            if (cleanPath.startsWith('games/')) {
+                slugFromUrl = cleanPath.replace('games/', ''); 
+            } else {
+                var urlParams = new URLSearchParams(window.location.search);
+                var queryParam = urlParams.get('game') || urlParams.get('name');
+                if (queryParam) {
+                    slugFromUrl = queryParam.toLowerCase().replace(/_/g, '-');
+                }
+            }
 
-        // 3. 动态加载游戏 Iframe 核心主体
-        if (currentGame.gameId && document.getElementById('gameFrame')) {
-            var iframeUrl = "https://html5.gamedistribution.com/" + currentGame.gameId + "/";
-            console.log("[Debug] 正在载入游戏 Iframe 链接:", iframeUrl);
-            document.getElementById('gameFrame').src = iframeUrl;
-        } else {
-            console.error("[Debug] 无法载入 Iframe：未找到对应的 gameId。");
+            console.log("[Debug] 提取出的游戏标识 (slugFromUrl):", slugFromUrl);
+
+            if (!slugFromUrl) return null;
+
+            var targetKey = Object.keys(gameDetails).find(function(key) {
+                var formattedKey = key.toLowerCase().replace(/_/g, '-');
+                return formattedKey === slugFromUrl;
+            });
+
+            if (targetKey) {
+                console.log("[Debug] 🎉 成功在数据库中匹配到 Key:", targetKey);
+                
+                var baseInfo = games.find(function(g) { return g[0] === targetKey; }) || [];
+                
+                return {
+                    key: targetKey,
+                    title: targetKey.replace(/_/g, ' '),   
+                    desc: gameDetails[targetKey].desc,
+                    players: gameDetails[targetKey].players || "1.2k",
+                    rating: gameDetails[targetKey].rating || "4.5",
+                    gameId: baseInfo[12] || ""             
+                };
+            }
+
+            console.warn("[Debug] ❌ 在 games.js 数据库中未找到匹配的游戏。");
+            return null;
         }
 
-        // 4. 生成侧边栏推荐
-        if (typeof generateSidebarRecommendations === 'function') {
+        // ============================================
+        // 🚀 执行渲染逻辑
+        // ============================================
+        if (typeof games === 'undefined' || typeof gameDetails === 'undefined') {
+            console.error("【致命错误】games.js 未成功加载！请检查路径或语法错误。");
+            document.getElementById('gameTitle').textContent = "Database Error";
+            document.getElementById('gameDesc').textContent = "Failed to load games.js database.";
+            return;
+        }
+
+        var currentGame = AutoMatchGame();
+
+        if (currentGame) {
+            document.title = "Play " + currentGame.title + " Online - Free HTML5 Games";
+
+            // 填充文本数据到对应的标签 ID
+            if (document.getElementById('gameTitle')) document.getElementById('gameTitle').textContent = currentGame.title;
+            if (document.getElementById('gameDesc'))  document.getElementById('gameDesc').textContent = currentGame.desc;
+            if (document.getElementById('gameRating')) document.getElementById('gameRating').textContent = "⭐ " + currentGame.rating;
+            if (document.getElementById('gamePlayers')) document.getElementById('gamePlayers').textContent = "👥 " + currentGame.players + " Players";
+
+            // 动态加载游戏 Iframe 主体
+            if (currentGame.gameId && document.getElementById('gameFrame')) {
+                var iframeUrl = "https://html5.gamedistribution.com/" + currentGame.gameId + "/";
+                console.log("[Debug] 正在载入游戏 Iframe 链接:", iframeUrl);
+                document.getElementById('gameFrame').src = iframeUrl;
+            } else {
+                console.error("[Debug] 无法载入 Iframe：未找到对应的 gameId。");
+            }
+
+            // 执行生成右侧热门推荐
             generateSidebarRecommendations(currentGame.key);
-        }
 
-    } else {
-        // 降级容错：如果没有匹配到任何游戏信息
-        document.getElementById('gameTitle').textContent = "Game Sandbox";
-        document.getElementById('gameDesc').textContent = "Welcome! Please select a game from the right panel to start playing.";
-        if (typeof generateSidebarRecommendations === 'function') generateSidebarRecommendations("");
-    }
-});
+        } else {
+            document.getElementById('gameTitle').textContent = "Game Sandbox";
+            document.getElementById('gameDesc').textContent = "Welcome! Please select a game from the right panel to start playing.";
+            generateSidebarRecommendations("");
+        }
+    });
     </script>
 </body>
 </html>
