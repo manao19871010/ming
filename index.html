@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Vortexly">
+    <meta name="author" content="vortex-ly">
 
-    <title>Vortexly — Free Online Games, No Download Required</title>
+    <title>vortex-ly — Free Online Games, No Download Required</title>
     <meta name="description" content="Play 100% free browser games instantly — no download, no sign-up. Action, puzzle, casual & strategy games updated weekly. Play on desktop or mobile.">
     <meta name="keywords" content="free online games, browser games, no download games, play free games, html5 games, casual games, puzzle games">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="https://vortexly.com/">
+    <link rel="canonical" href="https://vortex-ly.com/">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Vortexly — Free Online Games">
+    <meta property="og:title" content="vortex-ly — Free Online Games">
     <meta property="og:description" content="Play free browser games instantly. No download, no sign-up.">
-    <meta property="og:url" content="https://vortexly.com/">
-    <meta property="og:image" content="https://vortexly.com/og-image.jpg">
+    <meta property="og:url" content="https://vortex-ly.com/">
+    <meta property="og:image" content="https://vortex-ly.com/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -265,7 +265,7 @@
         <div class="nav-inner">
             <a href="/" class="logo">
                 <div class="logo-icon"><i class="fas fa-gamepad"></i></div>
-                <span class="logo-text">VORTE<span>XLY</span></span>
+                <span class="logo-text">VORTEX<span>-LY</span></span>
             </a>
             <nav id="topNav">
                 <a href="#" class="active" onclick="filterByCategory('all', event)">Home</a>
@@ -394,23 +394,23 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Vortexly. All rights reserved.</p>
+            <p>© 2026 vortex-ly. All rights reserved.</p>
             <p>Made with ❤️ for gamers</p>
         </div>
     </footer>
 
-    <!-- 挂载底层数据库脚本 -->
+    <!-- Load the underlying database script -->
     <script src="games.js"></script>
  <!-- <script src="/games.js"></script> -->
     <script>
         // ============================================
-        // 1. 全局配置与状态初始化
+        // 1. Global Configuration and State Initialization
         // ============================================
         var currentCategory = "all";
         var currentSearchQuery = "";
-        var deviceCategory = "Desktop"; // 默认桌面端
+        var deviceCategory = "Desktop"; // Default to desktop
 
-        // 简单的设备检测
+        // Simple device detection
         var userAgent = navigator.userAgent.toLowerCase();
         var touchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
         
@@ -418,10 +418,10 @@
         else if (/ipad|macintosh/i.test(userAgent) && touchDevice) deviceCategory = "iPadNew";
         else if (/iphone/i.test(userAgent)) deviceCategory = "iPhone";
 
-        // 给移动端/触屏加上标记样式
+        // Add marker class for mobile/touch devices
         if (touchDevice) document.body.classList.add('touch-device');
 
-        // 简易 Cookie Banner 隐藏控制
+        // Simple Cookie Banner hide control
         function acceptCookie() { document.getElementById('cookieBanner').classList.add('hidden'); }
         function dismissCookie() { document.getElementById('cookieBanner').classList.add('hidden'); }
         
@@ -430,7 +430,7 @@
         }
        
         // ============================================
-        // 2. 核心渲染引擎（100% 兼容你的 games.js 数据）
+        // 2. Core Rendering Engine (100% compatible with your games.js data)
         // ============================================
         function displayGames() {
             var gamesContainer = document.getElementById('gamesContainer');
@@ -438,41 +438,41 @@
             var gamesOutputText = "";
             var visibleCounter = 0;
             
-            // 安全防线：如果检查不到数据，直接报错提示
+            // Safety guard: If no data is detected, throw an error prompt directly
             if (typeof games === 'undefined') {
-                console.error("【致命错误】未检测到全局变量 games，请确保 games.js 正确加载！");
+                console.error("[Fatal Error] Global variable 'games' not detected! Please ensure games.js is loaded correctly.");
                 gamesContainer.innerHTML = "<p style='color:red; text-align:center; grid-column:1/-1;'>Database Error: 'games' not found.</p>";
                 return;
             }
             
-            // 循环遍历你 games.js 里的所有游戏
+            // Loop through all games in your games.js
             for (var i = 0; i < games.length; i++) {
                 var gameName = games[i][0];                     // "Tap_Arrow_Away"
                 var cleanName = gameName.replace(/_/g, " ");    // "Tap Arrow Away"
-                var gameThumb = games[i][4];                     // 缩略图链接
-                var gameDevices = games[i][5];                   // 兼容设备列表
+                var gameThumb = games[i][4];                     // Thumbnail URL
+                var gameDevices = games[i][5];                   // Compatible device list
                 var gameCategory = games[i][6];                  // "Casual New Landscape"
                 
-                // 解析分类：将 "Casual New" 拆开，取第一个作为主分类
+                // Parse category: Split "Casual New" and take the first part as the main category
                 var gameTags = gameCategory.toLowerCase().split(" ");
                 var mainCategory = gameTags[0];                  // "casual"
                 
-                // 【绿灯特权】：如果在 Live Server 本地测试，跳过设备严格拦截，保证全部卡片可见
+                // [Green Light Privilege]: If testing locally on Live Server, skip strict device filtering to ensure all cards are visible
                 if (window.location.hostname !== '127.0.0.1' && window.location.hostname !== 'localhost') {
                     if (gameDevices.indexOf(deviceCategory) === -1 && deviceCategory !== "Desktop") {
-                        continue; // 线上环境如果不兼容当前设备，则隐藏
+                        continue; // Hide if incompatible with the current device in the online environment
                     }
                 }
                 
-                // 分类栏拦截器
+                // Category filter interceptor
                 if (currentCategory !== "all" && mainCategory !== currentCategory) continue;
                 
-                // 搜索栏拦截器
+                // Search bar filter interceptor
                 if (currentSearchQuery && cleanName.toLowerCase().indexOf(currentSearchQuery) === -1) continue;
                 
                 visibleCounter++;
                 
-                // 徽章角标控制 (Hot / New / Top)
+                // Badge control (Hot / New / Top)
                 var badgeHtml = "";
                 if (gameCategory.indexOf("Hot") > -1) badgeHtml = "<span class='card-badge badge-hot'>Hot</span>";
                 else if (gameCategory.indexOf("New") > -1) badgeHtml = "<span class='card-badge badge-new'>New</span>";
@@ -480,15 +480,15 @@
                 
                 var orientation = gameCategory.indexOf("Portrait") > -1 ? "Portrait" : "Landscape";
                 
-                // 读取详情数据
+                // Read detailed data
                 var details = (typeof gameDetails !== 'undefined' && gameDetails[gameName]) ? gameDetails[gameName] : { desc: "Free online browser game.", players: "1.2k", rating: "4.5" };
                     
             
-                                // 自动生成最漂亮的内页跳转 Slug 路径
+                                // Automatically generate the most user-friendly slug path for inner page navigation
                 var innerSlug = gameName.toLowerCase().replace(/_/g, '-').replace(/ /g, '-');
 
-                // 【核心修改】智能兼容：如果是本地 file 协议或 5500/8080 等本地端口，使用 URL 参数传递；
-                // 如果是线上环境，完美配合 Cloudflare _redirects 使用 /games/slug/ 伪静态路径
+                // [Core Modification] Smart Compatibility: If using the local file protocol or local ports like 5500/8080, pass data via URL parameters;
+                // If in the online environment, perfectly cooperate with Cloudflare _redirects to use the /games/slug/ pseudo-static path
                 var gameUrl = (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.protocol === 'file:') 
                     ? `game.html?slug=${innerSlug}` 
                     : `/games/${innerSlug}/`;
@@ -496,15 +496,9 @@
                     
                 
                 gamesOutputText += `<a href="${gameUrl}" class="game-card" data-category="${mainCategory}">`;
-                console.log("---------------------");
-                console.log(gameUrl);
-                  console.log("---------------------");
-
- 
-
 
                         
-                // 拼装拼接 HTML 卡片
+                // Assemble the HTML card
                 // gamesOutputText += `<a href="${localInternalPath}" class="game-card" data-category="${mainCategory}">`;
                 gamesOutputText += `    <div class="card-thumb">`;
                 gamesOutputText += `        ${badgeHtml}`;
@@ -524,11 +518,11 @@
                 gamesOutputText += `</a>`;
             }
             
-            // 更新首页顶部的各项计数看板
+            // Update the various count dashboards at the top of the homepage
             document.getElementById('gameCount').textContent = `// ${visibleCounter} titles`;
-            document.getElementById('liveCountBadge').textContent = `${visibleCounter} Games Live`;
+            document.getElementById('liveCountBadge').textContent = ` Games `;
             
-            // 无结果展示
+            // Display no results state
             if (visibleCounter === 0) {
                 gamesContainer.innerHTML = "";
                 noResults.style.display = "block";
@@ -539,7 +533,7 @@
         }
 
         // ============================================
-        // 3. 搜索与分类点击事件监听器
+        // 3. Search and Category Click Event Listeners
         // ============================================
         function handleSearch(val) {
             currentSearchQuery = val.trim().toLowerCase();
@@ -557,7 +551,7 @@
             if(e) e.preventDefault();
             currentCategory = cat.toLowerCase();
             
-            // 激活顶部主导航高亮样式
+            // Activate the highlight style of the top main navigation
             document.querySelectorAll('#topNav a').forEach(a => {
                 a.classList.remove('active');
                 var text = a.textContent.toLowerCase();
@@ -566,7 +560,7 @@
                 }
             });
 
-            // 激活分类胶囊按钮高亮样式
+            // Activate the highlight style of the category pill buttons
             document.querySelectorAll('.cat-pill').forEach(pill => {
                 pill.classList.remove('active');
                 if(pill.dataset.filter === currentCategory) pill.classList.add('active');
@@ -576,22 +570,22 @@
         }
 
         // ============================================
-        // 4. 页面初始化启动
+        // 4. Page Initialization and Startup
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            // 给首页分类胶囊按钮绑定点击事件
+            // Bind click events to the category pill buttons on the homepage
             document.querySelectorAll('.cat-pill').forEach(function(pill) {
                 pill.addEventListener('click', function() {
                     filterByCategory(this.dataset.filter);
                 });
             });
             
-            // 载入可用总游戏数
+            // Load the total number of available games
             if (typeof games !== 'undefined') {
                 document.getElementById('statAvailable').textContent = games.length;
             }
             
-            // 执行渲染！
+            // Execute rendering!
             displayGames();
         });
     </script>
