@@ -1,9 +1,36 @@
 // ============================================
-        // GAME DATABASE (Friv Style Array Format)
-        // ============================================
-        // [name, path1, path2, path3, thumbnail, devices, category, date, desktopPop, androidPop, iPadPop, iPhonePop]  
-
+// GAME DATABASE (Friv Style Array Format)
+// ============================================
+// Field Index Reference:
+// [0] name        Unique game identifier (underscore format, matches detail data key)
+// [1] path1       Main path for game detail page
+// [2] path2       Backup path (reserved)
+// [3] path3       Backup path (reserved)
+// [4] thumbnail   Game cover thumbnail URL
+// [5] devices     Supported device list (space-separated)
+// [6] category    Category + tags + orientation (space-separated, main category is first word)
+// [7] publishDate Game release date
+// [8] desktopPop  Desktop popularity score
+// [9] androidPop  Android popularity score
+// [10] iPadPop    iPad popularity score
+// [11] iPhonePop  iPhone popularity score
+// [12] gameId     Unique GameDistribution platform ID
 var games = [
+
+    ["Dynamons_4", "/games/dynamons-4/", "", "", "https://img.gamedistribution.com/abbcaef3d1294f5ab7c5b77a2c727baa-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "RPG New Landscape", "2026-07-31", 92, 90, 88, 85, "abbcaef3d1294f5ab7c5b77a2c727baa"],
+    ["Steal_A_Fish", "/games/steal-a-fish/", "", "", "https://img.gamedistribution.com/d9afb8cc970c48c4b7cacef65a5aef61-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-07-31", 89, 86, 83, 80, "d9afb8cc970c48c4b7cacef65a5aef61"],
+    ["Dynamons_5", "/games/dynamons-5/", "", "", "https://img.gamedistribution.com/53bb9433a5324091a4b29544ea0f93dd-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "RPG New Landscape", "2026-07-31", 93, 91, 89, 86, "53bb9433a5324091a4b29544ea0f93dd"],
+    ["Annoying_Boss_Punch_Game", "/games/annoying-boss-punch-game/", "", "", "https://img.gamedistribution.com/bd9cc9da45b04ee293306209653d8cfb-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action Casual New Landscape", "2026-07-31", 88, 85, 82, 79, "bd9cc9da45b04ee293306209653d8cfb"],
+    ["Bubble_Shooter_Crystal_Hunt", "/games/bubble-shooter-crystal-hunt/", "", "", "https://img.gamedistribution.com/11abb92c950f4b29a60b36037fde6951-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-07-31", 89, 91, 89, 94, "11abb92c950f4b29a60b36037fde6951"],
+    ["World_Wars_Tanks", "/games/world-wars-tanks/", "", "", "https://img.gamedistribution.com/7fd03dcfe17541c9a7749c50dcfe25de-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Strategy Action New Landscape", "2026-07-31", 91, 88, 85, 82, "7fd03dcfe17541c9a7749c50dcfe25de"],
+    ["Farm_vs_Zombies", "/games/farm-vs-zombies/", "", "", "https://img.gamedistribution.com/557d5359337f4ed6aa97d2f1da0acf41-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Strategy Survival New Landscape", "2026-07-31", 90, 87, 84, 81, "557d5359337f4ed6aa97d2f1da0acf41"],
+
+    ["Hawaii_Match_6", "/games/hawaii-match-6/", "", "", "https://img.gamedistribution.com/1a6495d26ac541c8820eca4527ed6cfa-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle Match3 New Landscape", "2026-07-28", 90, 88, 85, 82, "1a6495d26ac541c8820eca4527ed6cfa"],
+    ["Escape_the_Alien_Prison", "/games/escape-the-alien-prison/", "", "", "https://img.gamedistribution.com/be797a3996324c03b20bad496a82819f-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action Sci-Fi Parkour New Landscape", "2026-07-22", 93, 90, 87, 84, "be797a3996324c03b20bad496a82819f"],
+    ["Palm_Island_Solitaire", "/games/palm-island-solitaire/", "", "", "https://img.gamedistribution.com/03091e0b83dd4efb826dc65d73393e9e-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Card Solitaire New Landscape", "2026-07-28", 89, 86, 83, 80, "03091e0b83dd4efb826dc65d73393e9e"],
+    ["Car_Eats_Car_Volcanic_Adventure", "/games/car-eats-car-volcanic-adventure/", "", "", "https://img.gamedistribution.com/2889b8c611d84c00a3e077ee5bd21bf0-512x512.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing Action New Landscape", "2026-07-28", 92, 89, 86, 84, "2889b8c611d84c00a3e077ee5bd21bf0"],
+    ["Beach_Club", "/games/beach-club/", "", "", "https://img.gamedistribution.com/5e400f95d3fc4ee9b2538fefcf864e67-512x512.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual Simulation New Landscape", "2026-07-28", 88, 85, 82, 79, "5e400f95d3fc4ee9b2538fefcf864e67"],
+
     ["Tap_Arrow_Away", "/games/tap-arrow-away/", "", "", "https://img.gamedistribution.com/07393e2820d1486ca209959528869a5f-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual New Landscape", "2026-06-13", 90, 87, 84, 80, "07393e2820d1486ca209959528869a5f"],
     ["Football_3D", "/games/football-3d/", "", "", "https://img.gamedistribution.com/540d36010bb94e288a660456efaebff9-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action Top Landscape", "2026-01-01", 98, 95, 92, 90, "540d36010bb94e288a660456efaebff9"],
     ["Jewel_Coloring", "/games/jewel-coloring/", "", "", "https://img.gamedistribution.com/fe81d3ecbf5540ca8d9fe39387635d8a-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", 90, 87, 84, 80, "fe81d3ecbf5540ca8d9fe39387635d8a"],
@@ -23,128 +50,927 @@ var games = [
     ["Combinations_Daily", "/games/combinations-daily/", "", "", "https://img.gamedistribution.com/c725caf57a5940deb09730cdf322f3a1-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", 90, 87, 84, 81, "c725caf57a5940deb09730cdf322f3a1"],
     ["Math_Stars", "/games/math-stars/", "", "", "https://img.gamedistribution.com/e7e5bb0e6caf47b5965d813736921e76-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual New Landscape", "2026-06-13", 87, 84, 81, 78, "e7e5bb0e6caf47b5965d813736921e76"],
     ["Worm_Puzzle_Snake_Apple", "/games/worm-puzzle-snake-apple/", "", "", "https://img.gamedistribution.com/7e5efdcdc8d84b2291c0febe8de5e638-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", 89, 86, 83, 80, "7e5efdcdc8d84b2291c0febe8de5e638"],
-    ["Sugar_Pop_Land", "/games/sugar-pop-land/", "", "", "https://img.gamedistribution.com/5bf8cb720bd147a4b62167eefdf38788-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual New Landscape", "2026-06-13", 88, 85, 82, 79, "5bf8cb720bd147a4b62167eefdf38788"]
+    ["Sugar_Pop_Land", "/games/sugar-pop-land/", "", "", "https://img.gamedistribution.com/5bf8cb720bd147a4b62167eefdf38788-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual New Landscape", "2026-06-13", 88, 85, 82, 79, "5bf8cb720bd147a4b62167eefdf38788"],
+
+    ["Meme_Myth_Wukong", "/games/meme-myth-wukong/", "", "", "https://img.gamedistribution.com/e4af90c070cf499da371b44232a6aaca-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "90", "91", "93", "87", "e4af90c070cf499da371b44232a6aaca"],
+    ["Hill_Climb_Pixel_Car", "/games/hill-climb-pixel-car/", "", "", "https://img.gamedistribution.com/6d493125b300434fad9be4cf8c858bbd-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-06-13", "93", "93", "88", "95", "6d493125b300434fad9be4cf8c858bbd"],
+    ["Bubble_Game_3", "/games/bubble-game-3/", "", "", "https://img.gamedistribution.com/27673bc45d2e4b27b7cd24e422f7c257-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "88", "94", "94", "94", "27673bc45d2e4b27b7cd24e422f7c257"],
+    ["Mahjong_Connect", "/games/mahjong-connect/", "", "", "https://img.gamedistribution.com/a7f5393b417346268657f3bd67eac24e-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "87", "91", "90", "a7f5393b417346268657f3bd67eac24e"],
+    ["The_Mergest_Kingdom", "/games/the-mergest-kingdom/", "", "", "https://img.gamedistribution.com/b5203bfef51242c39690c761321d769f-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Strategy New Landscape", "2026-06-13", "92", "87", "90", "95", "b5203bfef51242c39690c761321d769f"],
+    ["Fireboy_and_Watergirl_1_Forest_Temple", "/games/fireboy-and-watergirl-1-forest-temple/", "", "", "https://img.gamedistribution.com/a55c9cc9c21e4fc683c8c6857f3d0c75-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-06-13", "93", "88", "88", "90", "a55c9cc9c21e4fc683c8c6857f3d0c75"],
+    ["Moto_X3M_Bike_Race_Game", "/games/moto-x3m-bike-race-game/", "", "", "https://img.gamedistribution.com/5b0abd4c0faa4f5eb190a9a16d5a1b4c-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-06-13", "94", "89", "88", "88", "5b0abd4c0faa4f5eb190a9a16d5a1b4c"],
+    ["Rummikub", "/games/rummikub/", "", "", "https://img.gamedistribution.com/6bf29e0982a64f898a81c3f3612aba26-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "89", "87", "93", "90", "6bf29e0982a64f898a81c3f3612aba26"],
+    ["Candy_Riddles_Free_Match_3_Puzzle", "/games/candy-riddles--free-match-3-puzzle/", "", "", "https://img.gamedistribution.com/639df47033804f18bf39e113ef29f4fa-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "93", "93", "90", "639df47033804f18bf39e113ef29f4fa"],
+    ["Snow_Rider_3D", "/games/snow-rider-3d/", "", "", "https://img.gamedistribution.com/3b79a8537ebc414fb4f9672a9b8c68c8-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-06-13", "95", "91", "91", "95", "3b79a8537ebc414fb4f9672a9b8c68c8"],
+    ["Block_Blast", "/games/block-blast/", "", "", "https://img.gamedistribution.com/3a364ed8d075418abb7849e1d63b6015-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "92", "95", "91", "94", "3a364ed8d075418abb7849e1d63b6015"],
+    ["Kris_Mahjong", "/games/kris-mahjong/", "", "", "https://img.gamedistribution.com/5ed3b1c510c3400db0ef580c60cbcdca-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "93", "93", "91", "94", "5ed3b1c510c3400db0ef580c60cbcdca"],
+    ["Garden_Tales", "/games/garden-tales/", "", "", "https://img.gamedistribution.com/fa29efc197d04cb1bb3074b8255f817f-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "89", "94", "91", "94", "fa29efc197d04cb1bb3074b8255f817f"],
+    ["Skydom", "/games/skydom/", "", "", "https://img.gamedistribution.com/ae10263247c44278b33c845ff1c2df80-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "89", "94", "95", "ae10263247c44278b33c845ff1c2df80"],
+    ["Tropical_Merge", "/games/tropical-merge/", "", "", "https://img.gamedistribution.com/4eafc18cbceb45ed884f6c5d70df3963-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Merge New Landscape", "2026-06-13", "87", "89", "91", "93", "4eafc18cbceb45ed884f6c5d70df3963"],
+    ["Traffic_Jam_3D", "/games/traffic-jam-3d/", "", "", "https://img.gamedistribution.com/337302b23b5943d8bcfc501d81d50cdb-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing New Landscape", "2026-06-13", "88", "94", "95", "92", "337302b23b5943d8bcfc501d81d50cdb"],
+    ["Jewels_Blitz_5", "/games/jewels-blitz-5/", "", "", "https://img.gamedistribution.com/0dd92ae2a7214f289608049167f2ebd4-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "90", "87", "93", "89", "0dd92ae2a7214f289608049167f2ebd4"],
+    ["Jewels_Blitz_6", "/games/jewels-blitz-6/", "", "", "https://img.gamedistribution.com/bbd9c393a8b14f50aa19715f33ea50dc-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "95", "87", "92", "91", "bbd9c393a8b14f50aa19715f33ea50dc"],
+    ["Match_Arena", "/games/match-arena/", "", "", "https://img.gamedistribution.com/15e07594984f413f9b578afe16778eb9-512x512.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "93", "93", "87", "92", "15e07594984f413f9b578afe16778eb9"],
+    ["Hexa_Stack", "/games/hexa-stack/", "", "", "https://img.gamedistribution.com/ac3276e1819644858f0c8693c219064c-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "94", "89", "89", "ac3276e1819644858f0c8693c219064c"],
+    ["Mahjong_Match", "/games/mahjong-match/", "", "", "https://img.gamedistribution.com/fe22c2e8ce44494cbde70fa8b30105d2-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "89", "91", "91", "87", "fe22c2e8ce44494cbde70fa8b30105d2"],
+    ["Arrow_Escape", "/games/arrow-escape/", "", "", "https://img.gamedistribution.com/abda34d396174f6487968885157388e2-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "93", "89", "91", "abda34d396174f6487968885157388e2"],
+    ["Fruit_Sort_Logic", "/games/fruit-sort-logic/", "", "", "https://img.gamedistribution.com/54794eb4734d4c0cb480bc876a5851cf-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "93", "90", "89", "95", "54794eb4734d4c0cb480bc876a5851cf"],
+    ["Cooking_Empire", "/games/cooking-empire/", "", "", "https://img.gamedistribution.com/63e4110fb71d4588a8f4b6081fea5bdb-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Casual New Landscape", "2026-06-13", "94", "88", "92", "90", "63e4110fb71d4588a8f4b6081fea5bdb"],
+    ["Coffee_Color_Blocks", "/games/coffee-color-blocks/", "", "", "https://img.gamedistribution.com/0904d5fb5d0044fe9fddf1cd5834cff2-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "88", "89", "87", "87", "0904d5fb5d0044fe9fddf1cd5834cff2"],
+    ["Hidden_Objects_Island_Secrets", "/games/hidden-objects--island-secrets/", "", "", "https://img.gamedistribution.com/7ffd63337f514fd1bb16fa54f15d1f68-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "90", "87", "90", "89", "7ffd63337f514fd1bb16fa54f15d1f68"],
+    ["Bubble_Shooter_Crystal_Hunt", "/games/bubble-shooter-crystal-hunt/", "", "", "https://img.gamedistribution.com/11abb92c950f4b29a60b36037fde6951-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "89", "91", "89", "94", "11abb92c950f4b29a60b36037fde6951"],
+    ["Farm_Blast", "/games/farm-blast/", "", "", "https://img.gamedistribution.com/8e9f68b6765f4c39a4c243c4dc6a4ec5-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "93", "90", "92", "8e9f68b6765f4c39a4c243c4dc6a4ec5"],
+    ["Obby_Football_Soccer_3D", "/games/obby-football-soccer-3d/", "", "", "https://img.gamedistribution.com/7c03475573ec4a31b3926cc32b29bff1-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Sports New Landscape", "2026-06-13", "91", "88", "85", "82", "7c03475573ec4a31b3926cc32b29bff1"],
+    ["Easter_Mahjong_Deluxe", "/games/easter-mahjong-deluxe/", "", "", "https://img.gamedistribution.com/0056b0eab7c141aaaf8d7a5a76c02558-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "89", "86", "83", "80", "0056b0eab7c141aaaf8d7a5a76c02558"],
+    ["Steal_Brainrot_Eggs", "/games/steal-brainrot-eggs/", "", "", "https://img.gamedistribution.com/e07da43b39e443738d6a84a4a6255c32-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action New Landscape", "2026-06-13", "92", "89", "86", "83", "e07da43b39e443738d6a84a4a6255c32"],
+    ["Tap_3D_Blocks", "/games/tap-3d-blocks/", "", "", "https://img.gamedistribution.com/2c50bfeecb6c4849b504cfe446bf844e-200x120.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-06-13", "87", "84", "81", "78", "2c50bfeecb6c4849b504cfe446bf844e"],
+    ["My_Arcade_Center_2", "/games/my-arcade-center-2/", "", "", "https://img.gamedistribution.com/54aca2f7503041c0bd97e74d7e316a67-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Strategy New Landscape", "2026-06-13", "90", "87", "84", "81", "54aca2f7503041c0bd97e74d7e316a67"],
+
+    ["Car_Eats_Car_Underwater_Adventure", "/games/car-eats-car-underwater-adventure/", "", "", "https://img.gamedistribution.com/16de13074932401f9f65f4023e586ab4-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing New Landscape", "2026-06-13", "91", "88", "86", "83", "16de13074932401f9f65f4023e586ab4"],
+    ["Traffic_Racing", "/games/traffic-racing/", "", "", "https://img.gamedistribution.com/f3ee6674b4ea4579aeefd54d7bf388f0-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing New Landscape", "2026-06-13", "89", "92", "90", "87", "f3ee6674b4ea4579aeefd54d7bf388f0"],
+    ["i8_City_Driver", "/games/i8-city-driver/", "", "", "https://img.gamedistribution.com/f6acd919192c441c9aca2d20a18e04c6-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing New Landscape", "2026-06-13", "92", "90", "88", "91", "f6acd919192c441c9aca2d20a18e04c6"],
+    ["Epic_Stunts_PvP_3D", "/games/epic-stunts-pvp-3d/", "", "", "https://img.gamedistribution.com/a75b82d28b4b4083bbc8ad4394570d97-200x120.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidHigh", "Racing Multi Landscape", "2026-06-13", "93", "91", "94", "90", "a75b82d28b4b4083bbc8ad4394570d97"],
+    ["Driverz_Ed", "/games/driverz-ed/", "", "", "https://img.gamedistribution.com/c18628dc38904a5c8da49c7ba330d93b-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing OpenWorld Landscape", "2026-06-13", "90", "87", "85", "88", "c18628dc38904a5c8da49c7ba330d93b"],
+    ["SpelunKing", "/games/spelunking/", "", "", "https://img.gamedistribution.com/a3a4111db59d496b96de651c307009ad-1280x550.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Match3 Puzzle Landscape", "2026-06-13", "94", "92", "90", "93", "a3a4111db59d496b96de651c307009ad"],
+
+    ["Fierce_Shot", "/games/fierce-shot/", "", "", "https://img.gamedistribution.com/837eb6bd30a14d818e8fb33e80f8df7d-512x512.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Sports New Portrait", "2026-07-21", 92, 89, 85, 82, "837eb6bd30a14d818e8fb33e80f8df7d"],
+    ["Barbee_Summer_Vacation", "/games/barbee-summer-vacation/", "", "", "https://img.gamedistribution.com/37f8e78be66540648b0066d7f2826b6a-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Girls New Landscape", "2026-07-21", 88, 85, 82, 79, "37f8e78be66540648b0066d7f2826b6a"],
+    ["Wake_Up_the_Box", "/games/wake-up-the-box/", "", "", "https://img.gamedistribution.com/88d7078602364cfd845f7c2796c456c7-512x384.jpeg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle New Landscape", "2026-07-21", 90, 87, 84, 80, "88d7078602364cfd845f7c2796c456c7"],
+    ["SpelunKing", "/games/spelunking/", "", "", "https://img.gamedistribution.com/a3a4111db59d496b96de651c307009ad-200x120.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Match3 New Landscape", "2026-07-21", 86, 83, 80, 77, "a3a4111db59d496b96de651c307009ad"],
+    ["Mansion_Story_Match", "/games/mansion-story-match/", "", "", "https://img.gamedistribution.com/1011183f1ce348f0a3735476f5523302-200x120.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Match3 New Landscape", "2026-07-21", 89, 86, 83, 80, "1011183f1ce348f0a3735476f5523302"],
+    ["Offroad_Crash_Climber_4X4", "/games/offroad-crash-climber-4x4/", "", "", "https://img.gamedistribution.com/e779cdcaf9ee4dfe97b8df28e282a3e1-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Racing New Landscape", "2026-07-21", 91, 88, 85, 81, "e779cdcaf9ee4dfe97b8df28e282a3e1"],
+
+    ["Escape_the_Alien_Prison", "/games/escape-the-alien-prison/", "", "", "https://img.gamedistribution.com/be797a3996324c03b20bad496a82819f-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Action Sci-Fi Parkour Landscape", "2026-07-22", 93, 90, 87, 84, "be797a3996324c03b20bad496a82819f"],
+    ["Pop_Fruit", "/games/pop-fruit/", "", "", "https://img.gamedistribution.com/36637018e58a4aaa91dd7603ab121852-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle Casual Sorting Landscape", "2026-07-22", 87, 84, 81, 78, "36637018e58a4aaa91dd7603ab121852"],
+    ["Cake_Merge_2", "/games/cake-merge-2/", "", "", "https://img.gamedistribution.com/c89cf76cc0804e51a12259a9e1e1f09f-512x512.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle Merge Casual Landscape", "2026-07-22", 89, 86, 83, 80, "c89cf76cc0804e51a12259a9e1e1f09f"],
+    ["Marble_Sort", "/games/marble-sort/", "", "", "https://img.gamedistribution.com/0ad5260ef01948faa1b4fab8ecd4c1b2-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle Sorting Casual Landscape", "2026-07-22", 88, 85, 82, 79, "0ad5260ef01948faa1b4fab8ecd4c1b2"],
+    ["Sweet_Match", "/games/sweet-match/", "", "", "https://img.gamedistribution.com/d54d5b9cc9ee42f6b51df68efee2259a-512x384.jpg", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Puzzle Match Casual Landscape", "2026-07-22", 90, 87, 84, 81, "d54d5b9cc9ee42f6b51df68efee2259a"]
+
+
+
 ];
 
+// ============================================
+// GAME DETAILS EXTENSION
+// ============================================
+// Field Reference:
+// gameId     GameDistribution platform ID (matches the last field of the array)
+// desc       Short description (used for homepage game cards)
+// players    Online player count (display only)
+// rating     Game rating (display only)
+// overview   Full game description (main copy for detail page, 120-180 words)
+// howToPlay  Gameplay instructions for detail page
+// features   List of game highlights (displayed on detail page)
+// tags       Topic tags (for tag aggregation pages and SEO optimization)
 var gameDetails = {
-    "Tap_Arrow_Away": { 
+        "Dynamons_4": {
+        gameId: "abbcaef3d1294f5ab7c5b77a2c727baa",
+        desc: "Play Dynamons 4 free online no download - the best monster battle RPG game for kids. Collect evolve train creatures in this unblocked HTML5 browser adventure game playable on mobile and desktop.",
+        players: "3.6k",
+        rating: "4.7",
+        overview: "Dynamons 4 is the best free online monster battle RPG game you can play right now with no download required. This unblocked HTML5 browser game delivers an exciting sequel to the beloved Dynamons series, perfectly playable on both mobile phones and desktop computers. Get ready to train and win battles with your team of unique Dynamons as you explore vibrant fantasy worlds. Collect rare mystical creatures, evolve them into powerful forms, and help them grow stronger to come out on top and be the very best trainer. Perfect for kids and RPG fans, this free adventure game features deep turn-based combat, a huge roster of collectible creatures, and an epic story-driven campaign. Play instantly in your browser - no installation, no signup, just pure monster catching RPG fun.",
+        howToPlay: "Play Dynamons 4 free on any device: explore the world map to encounter wild Dynamons and challenge other trainers. Use turn-based battle commands to attack, defend, or use special skills against your opponent. Catch weakened Dynamons to add them to your team and unlock new creatures. Level up your Dynamons to make them stronger and evolve them into more powerful forms. Build your ultimate team and defeat every gym leader to become the champion. No download needed - play instantly in any modern web browser.",
+        features: ["Free online monster RPG game no download", "Collect & evolve unique Dynamons creatures", "Turn-based strategic battle system", "Vibrant fantasy world exploration", "Mobile friendly HTML5 game", "Deep team customization & builds", "Epic story campaign mode"],
+        tags: ["RPG", "Monster", "Adventure", "Collect", "Evolve", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Turn Based", "No Download"]
+    },
+    "Steal_A_Fish": {
+        gameId: "d9afb8cc970c48c4b7cacef65a5aef61",
+        desc: "Play Steal A Fish free online no download - the best underwater stealth action game. Sneak through deep sea steal fish escape danger in this unblocked HTML5 browser simulator game.",
+        players: "2.2k",
+        rating: "4.5",
+        overview: "Steal A Fish is the best free online underwater stealth action game you can play instantly with no download required. This unblocked HTML5 browser simulator dives you straight into a thrilling underwater world where stealth meets chaos in fast-paced adventure gameplay, and works great on both mobile and desktop. Sneak through the deep sea, steal valuable fish from guarded areas, and escape before danger catches up to you. The deeper you go, the greater the risk and the bigger the reward. Perfect for quick action sessions, this free underwater game features multiple depth levels, increasing difficulty, and satisfying stealth mechanics. Play now directly in your browser - no installation, no signup, just deep sea adventure fun.",
+        howToPlay: "Play Steal A Fish free on desktop and mobile: use arrow keys or touch controls to navigate your character through underwater environments. Sneak past guards and dangerous sea creatures to reach valuable fish targets. Grab the fish and make your escape back to the surface without being spotted. Collect coins and rewards for successful heists to unlock better gear and abilities. Progress through deeper, more dangerous ocean zones with bigger rewards. No download needed - dive in instantly in any modern web browser.",
+        features: ["Free online underwater stealth action game", "Deep sea exploration & heist gameplay", "Multiple difficulty depth levels", "Sneak & escape mechanics", "Mobile friendly HTML5 game", "Increasing risk & reward system", "Smooth underwater physics"],
+        tags: ["Action", "Stealth", "Underwater", "Adventure", "Simulator", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Ocean", "No Download"]
+    },
+    "Dynamons_5": {
+        gameId: "53bb9433a5324091a4b29544ea0f93dd",
+        desc: "Play Dynamons 5 free online no download - the best monster collecting RPG sequel. Explore 4 temples catch evolve Dynamons in this unblocked HTML5 browser adventure game.",
+        players: "3.9k",
+        rating: "4.8",
+        overview: "Dynamons 5 is the best free online monster collecting RPG adventure you can play right now with no download required. This unblocked HTML5 browser game brings a brand new Dynamons adventure from the studio that created Dynamons 4 and Dynamons World, and works perfectly on both mobile and desktop. Explore four unique worlds including the Water Temple, Fire Temple, Electric Temple, and the perilous mysterious Legendary Cave. Collect cute, strong, and mystical Dynamons as you traverse the colorful fantasy world. You will start with a small team, but throughout the game you can collect new creatures and customize your squad. Perfect for RPG fans, this free game features deeper battle mechanics, more creatures than ever, and hours of exploration gameplay.",
+        howToPlay: "Play Dynamons 5 free on any device: travel across the world map to explore temples and caves. Encounter wild Dynamons in turn-based battles and use strategic attacks to weaken them. Catch new Dynamons to expand your collection and build your dream team. Level up your creatures and evolve them into stronger forms. Challenge powerful temple guardians and legendary bosses as you progress. Customize your squad to create the ultimate battle team. No download needed - play instantly in any modern web browser.",
+        features: ["Free online monster RPG sequel no download", "Four unique temple worlds to explore", "Collect & evolve mystical Dynamons", "Deep turn-based battle mechanics", "Mobile friendly HTML5 game", "Full squad customization system", "Legendary cave endgame content"],
+        tags: ["RPG", "Monster", "Adventure", "Collect", "Evolve", "Temples", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Fantasy", "No Download"]
+    },
+    "Annoying_Boss_Punch_Game": {
+        gameId: "bd9cc9da45b04ee293306209653d8cfb",
+        desc: "Play Annoying Boss Punch Game free online no download - the best funny office stress relief game. Punch kick slap your boss in this unblocked HTML5 browser action game for all ages.",
+        players: "2.7k",
+        rating: "4.6",
+        overview: "Annoying Boss Punch Game is the best free online funny stress relief game you can play instantly with no download required. This unblocked HTML5 browser action game lets you step into the craziest office stress-relief adventure, and works great on both mobile and desktop devices. Smash, slap, punch, and kick your annoying boss in this hilarious web action game built for pure fun and endless entertainment. Tired of boring meetings, overtime pressure, and nonstop office lectures? Release your stress with crazy reactions, funny animations, and chaotic office destruction. Throw punches, launch flying chappals, smash eggs, use water balloons, and create total office madness. Perfect for quick breaks, this free casual game delivers pure laugh-out-loud stress relief.",
+        howToPlay: "Play Annoying Boss Punch Game free on any device: tap or click on different attack options to unleash various funny moves on your boss. Try punches, kicks, slaps, flying shoes, eggs, water balloons, and more chaotic weapons. Each attack deals damage and triggers hilarious reaction animations. Unlock new crazy weapons and attack styles as you progress through the game. Keep dealing damage to fill your stress relief meter and unlock bonus levels. No installation needed - play directly in your web browser for instant stress relief.",
+        features: ["Free online funny stress relief game", "Multiple crazy attack weapons", "Hilarious boss reaction animations", "Chaotic office destruction", "Mobile friendly HTML5 game", "Unlockable weapons & levels", "Pure casual entertainment fun"],
+        tags: ["Action", "Casual", "Funny", "Stress Relief", "Office", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Comedy", "No Download"]
+    },
+    "Bubble_Shooter_Crystal_Hunt": {
+        gameId: "11abb92c950f4b29a60b36037fde6951",
+        desc: "Play Bubble Shooter Crystal Hunt free online no download - the best endless bubble popping puzzle game. Pop bubbles collect crystals beat the wall in this unblocked HTML5 browser game for all ages.",
+        players: "2.1k",
+        rating: "4.5",
+        overview: "Bubble Shooter Crystal Hunt is the best free online endless bubble shooting puzzle game you can play right now with no download required. This unblocked HTML5 browser game delivers exciting bubble-popping action where players collect target bubbles along with rare magical crystals, and works perfectly on mobile and desktop devices. Aim carefully and match three or more bubbles of the same color to clear space while the bubble wall slowly moves toward the border line, increasing tension with every shot. Crystals are hidden within bubble clusters and must also be collected to progress and boost your score. With endless levels and increasing difficulty, this free bubble shooter offers addictive casual puzzle fun for players of all ages.",
+        howToPlay: "Play Bubble Shooter Crystal Hunt free on any device: aim your bubble shooter and tap to fire a bubble. Match 3 or more bubbles of the same color to pop them and clear space on the board. Collect the magical crystals hidden in bubble clusters to increase your score and advance through levels. The bubble wall will slowly move down toward you - do not let it cross the border line, or the game will end. Use special power-up bubbles to clear large sections and collect crystals faster. No download needed - play instantly in any modern web browser.",
+        features: ["Free online endless bubble shooter game", "Magical crystal collection gameplay", "Slowly advancing bubble wall", "Special power-up bubbles", "Mobile friendly HTML5 game", "Increasing difficulty tension", "Classic bubble popping fun"],
+        tags: ["Puzzle", "Bubble Shooter", "Endless", "Crystal", "Casual", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Match", "No Download"]
+    },
+    "World_Wars_Tanks": {
+        gameId: "7fd03dcfe17541c9a7749c50dcfe25de",
+        desc: "Play World Wars Tanks free online no download - the best WW2 tactical tank arcade game. Choose your faction battle historic tanks in this unblocked HTML5 browser strategy war game.",
+        players: "2.9k",
+        rating: "4.7",
+        overview: "World Wars Tanks is the best free online tactical tank arcade game dedicated to the major battles of World War II, playable instantly with no download required. This unblocked HTML5 browser strategy game puts you in command of authentic WWII tanks across historic battlefields, and works great on both mobile and desktop. Choose one of four main factions: USSR with durable widely produced tanks and excellent cross-country ability; Germany with powerful armor and highly accurate guns; USA with balanced vehicles and good mobility; UK with heavy armor and powerful guns. Command iconic tanks like the Kpfw. IV, M Sherman, M Lee, and more across intense arcade battles. Perfect for war game fans, this free title delivers fast-paced tactical tank combat action.",
+        howToPlay: "Play World Wars Tanks free on desktop and mobile: use arrow keys to maneuver your tank across the WWII battlefield. Aim your turret and fire at enemy tanks to destroy them and win each battle. Choose your faction and tank before each mission to match your playstyle. Use cover and terrain strategically to avoid enemy fire while lining up your shots. Progress through historic battle campaigns and unlock more powerful tanks. Complete objectives to earn medals and climb the ranks. No download needed - battle instantly in any modern web browser.",
+        features: ["Free online WW2 tank arcade game", "Four playable historic factions", "Authentic WWII tank roster", "Tactical arcade combat gameplay", "Mobile friendly HTML5 game", "Historic battle campaigns", "Upgrade & unlock system"],
+        tags: ["Strategy", "Action", "Tanks", "WW2", "War", "Arcade", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Military", "No Download"]
+    },
+    "Farm_vs_Zombies": {
+        gameId: "557d5359337f4ed6aa97d2f1da0acf41",
+        desc: "Play Farm vs Zombies free online no download - the best tower defense survival strategy game. Plant defenses protect your farm from zombies in this unblocked HTML5 browser game for all ages.",
+        players: "3.2k",
+        rating: "4.6",
+        overview: "Farm vs Zombies is the best free online tower defense survival strategy game you can play instantly with no download required. This unblocked HTML5 browser game pits a brave farmer against hordes of hungry undead, and works perfectly on both mobile and desktop computers. The undead are hungry, but this farmer is not backing down. Plant mutant defensive plants, harvest resources in real-time, and protect your homestead across waves of zombie attacks. Strategically place your defenses, manage your resources wisely, and upgrade your plants to stop even the strongest zombie hordes. Perfect for strategy and tower defense fans, this free survival game features multiple farm zones, increasing difficulty waves, and satisfying tactical gameplay.",
+        howToPlay: "Play Farm vs Zombies free on any device: plant defensive crops and plants along the zombie path to attack incoming enemies. Collect sun and resources to plant more defenses and upgrade existing ones. Harvest resources in real-time to build up your farm defenses faster. Stop every zombie from reaching your farmhouse to survive each wave. Unlock new mutant plants and stronger defenses as you progress. Survive all waves to complete each farm zone and unlock new areas. No installation needed - play directly in your web browser.",
+        features: ["Free online tower defense strategy game", "Plant mutant farm defenses", "Real-time resource harvesting", "Multiple zombie types & waves", "Mobile friendly HTML5 game", "Farm homestead setting", "Upgradeable defense system"],
+        tags: ["Strategy", "Tower Defense", "Survival", "Zombies", "Farm", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "Casual", "No Download"]
+    },
+        "Hawaii_Match_6": {
+        gameId: "1a6495d26ac541c8820eca4527ed6cfa",
+        desc: "Play Hawaii Match 6 free online no download - the best tropical match 3 puzzle game for adults. Match exotic fruits flowers treasures in this relaxing unblocked HTML5 browser game playable on mobile and desktop.",
+        players: "2.9k",
+        rating: "4.7",
+        overview: "Hawaii Match 6 is the best free online tropical match 3 puzzle game you can play right now with no download required. This unblocked HTML5 browser game takes you on a relaxing island adventure through beautiful Hawaiian landscapes, perfect on both mobile phones and desktop computers. Explore sun-soaked beaches, lush jungles, and volcanic vistas while matching exotic fruits, tropical flowers, and hidden island treasures. Complete fun challenging goals in limited moves by combining symbols and creating powerful bonus boosters. Perfect for quick casual breaks, relaxing brain training, or unwinding after a long day, this free match 3 game features hundreds of levels, helpful boosters, hidden rewards, and smooth one-tap controls. Play now directly in your browser - no installation, no signup, just endless tropical puzzle fun.",
+        howToPlay: "Play Hawaii Match 6 free on any device: swap adjacent tiles to match 3 or more of the same symbol and clear them from the board. Create bigger matches of 4 or 5 to unlock powerful boosters with explosive effects. Complete each level's objective before you run out of moves to advance through the tropical island maps. Collect hidden treasures and bonus rewards as you progress. Use special boosters strategically to beat the most challenging levels. No download needed - play instantly in any modern web browser.",
+        features: ["Free online match 3 puzzle game no download", "Beautiful tropical Hawaii island theme", "Hundreds of challenging match levels", "Powerful boosters & bonus rewards", "Mobile friendly HTML5 game", "Exotic fruits flowers treasures symbols", "Relaxing casual gameplay"],
+        tags: ["Match 3", "Puzzle", "Tropical", "Hawaii", "Island", "Relaxing", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Escape_the_Alien_Prison": {
+        gameId: "be797a3996324c03b20bad496a82819f",
+        desc: "Play Escape the Alien Prison free online no download - the best sci-fi parkour action game for boys. Run jump fight escape alien spaceship prison in this unblocked HTML5 browser adventure game playable on mobile and desktop.",
+        players: "3.2k",
+        rating: "4.7",
+        overview: "Escape the Alien Prison is the best free online sci-fi action game you can play right now with no download required. This unblocked HTML5 browser game combines intense parkour running gameplay with an epic space prison escape story that works perfectly on mobile and desktop. You wake up trapped inside a massive high-tech alien spaceship lost deep in the cosmos, with only one mission: break out and fight your way to freedom. Navigate deadly obstacle courses, hack complex security systems, and take down dangerous extraterrestrial threats across dozens of challenging levels. Perfect for boys who love action games, this free parkour adventure features a complete single player story campaign, brain-teasing puzzles, hidden collectibles, and full character progression. Play instantly in your browser - no installation, no signup, just pure free sci-fi action gaming fun.",
+        howToPlay: "Play Escape the Alien Prison free on desktop and mobile: use arrow keys or touch controls to run, jump, and slide through the alien spaceship. Navigate dangerous obstacle courses and avoid deadly traps along your escape route. Hack security systems to unlock doors and disable alarms. Fight or sneak past extraterrestrial guards to stay alive. Collect hidden items and solve puzzles to progress through the story campaign. No download needed - start your escape instantly in any modern web browser.",
+        features: ["Free online sci-fi action game no download", "Epic alien prison escape story campaign", "Fast-paced parkour & running gameplay", "Challenging puzzles & hacking mechanics", "Mobile friendly HTML5 game", "Hidden collectibles & progression system", "High-tech spaceship environments"],
+        tags: ["Action", "Parkour", "Sci-Fi", "Running", "Escape", "Adventure", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Palm_Island_Solitaire": {
+        gameId: "03091e0b83dd4efb826dc65d73393e9e",
+        desc: "Play Palm Island Solitaire free online no download - the best tropical golf solitaire card game for adults. Relax with sunny island card puzzles in this unblocked HTML5 browser game playable on mobile.",
+        players: "2.4k",
+        rating: "4.6",
+        overview: "Palm Island Solitaire is the best free online tropical card game you can play instantly with no download required. This unblocked HTML5 browser game puts a fresh sunny twist on classic Golf Solitaire and works perfectly on mobile phones, tablets, and desktop computers. Catch the island breeze as you play through relaxing card levels with palm trees, ocean views, and beach vibes. Score low by matching cards one rank higher or lower, reshuffle when you get stuck, and enjoy every move with playful golf lingo and tropical flair. Perfect for quick casual breaks or longer relaxing sessions at home, this free solitaire game features dozens of levels, smooth animations, and simple tap controls. Play now directly in your browser - no installation, no signup, just sunny island card game fun.",
+        howToPlay: "Play Palm Island Solitaire free on any device: tap a card that is one rank higher or lower than the active card to move it to the foundation. Clear as many cards from the board as possible to score low and win each level. Use the reshuffle button when you get stuck with no valid moves. Work strategically to clear the entire board for a perfect score. Progress through sunny tropical island themes as you unlock new levels. No installation needed - play directly in your web browser.",
+        features: ["Free online golf solitaire card game", "Tropical palm island beach theme", "Reshuffle & hint support", "Dozens of relaxing levels", "Mobile friendly HTML5 game", "Smooth tap controls", "Sunny casual gameplay"],
+        tags: ["Card Game", "Solitaire", "Golf Solitaire", "Tropical", "Island", "Casual", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Car_Eats_Car_Volcanic_Adventure": {
+        gameId: "2889b8c611d84c00a3e077ee5bd21bf0",
+        desc: "Play Car Eats Car Volcanic Adventure free online no download - the best monster car racing battle game for boys. Overtake rivals upgrade cars fight police in this unblocked HTML5 browser racing game.",
+        players: "3.4k",
+        rating: "4.8",
+        overview: "Car Eats Car Volcanic Adventure is the best free online monster car racing battle game you can play with no download required. This unblocked HTML5 browser game delivers chaotic highway racing combat against rival vehicles and police chases, and works great on both mobile and desktop. Overtake enemies on dynamic volcanic tracks, build and customize your own evil monster car in the incubator, and do everything you can to free your friends from prison. Good driving skills and turbo speed are essential in this crazy driving simulator filled with police chase action. Become a car tycoon, upgrade your vehicles, and fight giant boss cars to survive these ultimate volcanic races. Perfect for boys who love action racing, this free game features multiple tracks, full vehicle upgrades, and explosive combat gameplay.",
+        howToPlay: "Play Car Eats Car Volcanic Adventure free on desktop and mobile: use arrow keys to steer your monster car and activate turbo boosts for maximum speed. Overtake rival vehicles while dodging police patrols on volcanic highway tracks. Collect upgrade parts scattered along the road to strengthen your car's attack and speed stats. Build custom cars in the incubator to unlock unique monster vehicles. Defeat boss cars at the end of each track to free your imprisoned friends. No download needed - race instantly in any modern web browser.",
+        features: ["Free online monster car racing game", "Volcanic highway battle tracks", "Custom car building & upgrades", "Intense police chase sequences", "Boss vehicle combat fights", "Turbo acceleration mechanics", "Mobile friendly HTML5 game"],
+        tags: ["Racing", "Combat", "Monster Car", "Police Chase", "Action", "Volcano", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Beach_Club": {
+        gameId: "5e400f95d3fc4ee9b2538fefcf864e67",
+        desc: "Play Beach Club free online no download - the best relaxing beach management tycoon game. Build expand your beach empire collect money in this unblocked HTML5 browser simulation game for all ages.",
+        players: "2.7k",
+        rating: "4.6",
+        overview: "Beach Club is the best free online beach management tycoon game you can play instantly with no download required. This unblocked HTML5 browser simulation game lets you build and run your very own beach paradise, and works perfectly on mobile and desktop devices. Relax while listening to waves, ocean sounds, and seagulls as you manage your sunny beach resort. Let your helpers do all the work while you stroll through the sand collecting money from happy customers. Unlock new facilities, buy more seats, expand your beach area, and build your own summer empire from a small spot into the most beautiful beach club around. Perfect for casual relaxing sessions, this free idle tycoon game features smooth progression, multiple upgrade tiers, and satisfying idle gameplay.",
+        howToPlay: "Play Beach Club free on any device: tap on customers and facilities to collect money as it accumulates. Use your earnings to unlock new beach items, buy more seats, and expand your resort area. Hire helpers to automatically manage sections of your beach club. Keep towels clean and facilities upgraded to attract more visitors and earn higher profits. Keep expanding until you build the biggest and most beautiful beach paradise around. No installation needed - play directly in your web browser.",
+        features: ["Free online beach management tycoon game", "Relaxing idle simulation gameplay", "Hire helpers auto-management", "Expandable beach resort empire", "Multiple upgrade tiers", "Mobile friendly HTML5 game", "Calming ocean atmosphere"],
+        tags: ["Simulation", "Tycoon", "Management", "Beach", "Idle", "Casual", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    
+    "Tap_Arrow_Away": {
         gameId: "07393e2820d1486ca209959528869a5f",
-        desc: "An addictive tap-away puzzle game. Remove arrow blocks to solve puzzles and reveal hidden pixel art & cute animals across hundreds of levels.", 
-        players: "1.5k", 
-        rating: "4.5" 
+        desc: "An addictive tap-away puzzle game. Remove arrow blocks to solve puzzles and relax your mind.",
+        players: "1.5k",
+        rating: "4.5",
+        overview: "Tap Arrow Away is a relaxing yet challenging puzzle game that combines classic arrow removal mechanics with clean, minimal visuals. The board is filled with colorful arrow blocks that only move in the direction they point. Tap each arrow to send it off the board in its facing direction, and clear the entire grid level by level. With hundreds of unique levels, increasing difficulty, and hidden pixel art rewards for perfect clears, it delivers smooth one-tap gameplay perfect for short breaks or longer casual sessions.",
+        howToPlay: "Tap on any arrow block to remove it from the grid. Blocks can only be removed if they have a clear path in the direction the arrow is pointing. Plan your tap order carefully to avoid blocking other arrows. Clear all arrows from the board to complete the level and unlock pixel art rewards. Use hints if you get stuck on a tricky level.",
+        features: ["Hundreds of unique levels", "Hidden pixel art rewards", "Smooth one-tap controls", "Increasing difficulty curve", "Relaxing minimal visual style"],
+        tags: ["Puzzle", "Relaxing", "Pixel Art", "Single Player", "Casual"]
     },
-    "Football_3D": { 
+    "Football_3D": {
         gameId: "540d36010bb94e288a660456efaebff9",
-        desc: "Take to the pitch in this slick 3D football game. Score, tackle, win!", 
-        players: "5.8k", 
-        rating: "4.8" 
+        desc: "Take to the pitch in this slick 3D football game. Score, tackle, and lead your team to victory!",
+        players: "5.8k",
+        rating: "4.8",
+        overview: "Football 3D delivers fast-paced soccer action right in your browser with stunning full 3D graphics. Take control of your team across multiple game modes, from quick matches to full tournament brackets. Dribble past defenders, make precise passes, and score amazing goals to win matches and climb the ranks. With intuitive keyboard and touch controls, realistic physics, and dynamic stadium atmosphere, it captures the thrill of real football in an accessible browser format.",
+        howToPlay: "Use the arrow keys or WASD to move your player across the pitch. Press the spacebar to shoot, and hold it to increase shot power. Pass the ball to teammates with a short tap, and switch players to defend against your opponent. Score more goals than the opposing team before time runs out to win the match. Unlock new teams and stadiums as you progress.",
+        features: ["Full 3D graphics", "Multiple game modes", "Intuitive touch & keyboard controls", "Realistic football physics", "Team & stadium unlock system"],
+        tags: ["Sports", "Football", "3D", "Action", "Single Player"]
     },
-    "Jewel_Coloring": { 
+    "Jewel_Coloring": {
         gameId: "fe81d3ecbf5540ca8d9fe39387635d8a",
-        desc: "Color by number with dazzling jewels! Relax and create stunning pixel art designs.", 
-        players: "1.8k", 
-        rating: "4.6" 
+        desc: "A calming jewel coloring puzzle game. Fill beautiful patterns with colors and unwind.",
+        players: "1.8k",
+        rating: "4.6",
+        overview: "Jewel Coloring is a relaxing color-by-number puzzle game featuring beautiful jewel-themed designs. Each pattern is divided into numbered sections — simply pick the corresponding color and tap to fill in the area. The game features hundreds of unique coloring pages, from intricate jewel patterns to nature scenes and mandalas. With smooth controls, a calming color palette, and no time pressure, it is the perfect casual game for relaxation and creative expression.",
+        howToPlay: "Select a color from the palette at the bottom of the screen. Tap on numbered sections of the image that match the selected color to fill them in. Zoom in and out with pinch or scroll controls to see tiny details. Complete the entire image to unlock it to your gallery. New coloring pages are added regularly for endless creative fun.",
+        features: ["Hundreds of coloring pages", "Jewel & nature themed designs", "Smooth pinch-to-zoom controls", "Calming stress-free gameplay", "Regular new content updates"],
+        tags: ["Puzzle", "Coloring", "Casual", "Relaxing", "Single Player"]
     },
-    "Bubble_Blasters": { 
+    "Bubble_Blasters": {
         gameId: "5d8d11e9919245939a57378a02b8fc8b",
-        desc: "Run, jump and blast bubbles in this fun platformer adventure. Collect coins and reach the goal!", 
-        players: "2.3k", 
-        rating: "4.5" 
+        desc: "A fast-paced bubble blasting game. Pop waves of colorful bubbles and chase high scores.",
+        players: "2.1k",
+        rating: "4.4",
+        overview: "Bubble Blasters is an energetic bubble popping game with fast-paced arcade action. Aim your blaster to shoot and match colorful bubbles, clearing them from the board before they reach the bottom line. The game features multiple power-ups, combo multipliers, and increasing difficulty waves that keep the action intense. With bright vibrant visuals, satisfying pop effects, and endless arcade gameplay, it delivers classic bubble shooter fun with a high-energy twist.",
+        howToPlay: "Aim your bubble blaster by moving your cursor or finger across the screen. Tap to fire a bubble, and match 3 or more bubbles of the same color to blast them away. Create chain combos to earn bonus points and multipliers. Collect special power-up bubbles for explosive effects. Don’t let the bubble wall reach the bottom line, or the game will end.",
+        features: ["Fast-paced arcade bubble action", "Combo multiplier system", "Special power-up bubbles", "Endless wave mode", "Vibrant satisfying visual effects"],
+        tags: ["Casual", "Bubble Shooter", "Arcade", "Single Player", "High Score"]
     },
-    "Hole_Puzzle": { 
+    "Hole_Puzzle": {
         gameId: "7697f626f5224cb284cf463ce1275495",
-        desc: "A hungry cat with a magical black-hole mouth eats everything! Move across levels, collect food and grow bigger.", 
-        players: "2.5k", 
-        rating: "4.7" 
+        desc: "A clever sliding hole puzzle game. Guide the ball into the hole with strategic moves.",
+        players: "1.6k",
+        rating: "4.5",
+        overview: "Hole Puzzle is a minimalist logic puzzle game where you tilt the board to roll a ball into the target hole. Each level features obstacles, walls, and traps that you must navigate around to reach the goal. With simple one-swipe controls, hundreds of unique levels, and increasing difficulty, it tests your spatial reasoning and problem-solving skills. The clean minimal design and smooth physics make it easy to pick up and hard to put down.",
+        howToPlay: "Swipe in any direction to tilt the board and roll the ball across the level. Guide the ball into the target hole to complete the level. Avoid falling off the edges or hitting trap holes. Use walls and obstacles to bounce the ball into the right position. Complete levels in as few moves as possible to earn a perfect 3-star rating.",
+        features: ["Hundreds of puzzle levels", "Smooth realistic physics", "Minimalist clean design", "3-star rating system", "Increasing difficulty curve"],
+        tags: ["Puzzle", "Casual", "Physics", "Brain Teaser", "Single Player"]
     },
-    "Solitaire_Daily": { 
+    "Solitaire_Daily": {
         gameId: "cacae8dbfe0f4ec598f8f7c29f7e0992",
-        desc: "Your daily dose of solitaire! Come back every day, relax and play cards. Do you have what it takes to master it?", 
-        players: "3.2k", 
-        rating: "4.8" 
+        desc: "Daily classic solitaire challenges. Play Klondike solitaire with fresh new puzzles every day.",
+        players: "3.2k",
+        rating: "4.7",
+        overview: "Solitaire Daily brings the timeless classic Klondike solitaire game to your browser with a fresh daily challenge system. Play a brand new solitaire hand every day, track your streaks, and compete for the best completion times. The game features customizable card backs, multiple difficulty levels, undo and hint functions, and a clean intuitive interface. Whether you are a casual player or a solitaire expert, the daily challenges offer fun and rewarding gameplay for everyone.",
+        howToPlay: "Build tableau columns in descending order with alternating red and black card colors. Move cards between columns and foundations by clicking or dragging. Tap the stock pile to draw new cards. Move all cards to the four foundation piles in ascending order by suit to win. Use the undo and hint functions if you get stuck, and try to beat your best time each day.",
+        features: ["Daily new solitaire challenges", "Streak tracking system", "Customizable card themes", "Hint & undo functions", "Clean intuitive interface"],
+        tags: ["Card Game", "Solitaire", "Casual", "Daily", "Single Player"]
     },
-    "Real_Football": { 
+    "Real_Football": {
         gameId: "0e790569b4c74967923678652de3dbc4",
-        desc: "Build your dream team and become world champions! Free football simulation with leagues, cups and manager mode.", 
-        players: "4.1k", 
-        rating: "4.7" 
+        desc: "Intense top-down football action. Dribble, pass and score your way to championship glory.",
+        players: "4.5k",
+        rating: "4.8",
+        overview: "Real Football delivers fast-paced top-down soccer action with authentic gameplay feel. Take control of your team across league matches, cup tournaments, and quick play modes. Master dribbling, through passes, and powerful shots to outplay your opponents and win trophies. The game features smooth responsive controls, intelligent AI opponents, and multiple team customization options. With its classic top-down perspective and addictive competitive gameplay, it captures the essence of retro football games with modern polish.",
+        howToPlay: "Use the arrow keys to move your selected player across the pitch. Press the spacebar to shoot, and tap another key to pass to nearby teammates. Switch control between players to defend against opponent attacks. Score more goals than your opponent before full time to win the match. Progress through leagues and tournaments to unlock better teams and rewards.",
+        features: ["Classic top-down football view", "Multiple game modes & tournaments", "Responsive smooth controls", "Intelligent AI opponents", "Team customization options"],
+        tags: ["Sports", "Football", "Action", "Retro", "Single Player"]
     },
-    "Magic_Brick_Wars": { 
+    "Magic_Brick_Wars": {
         gameId: "a9964948ad434acfb106811d323e6464",
-        desc: "Premium tower defence with your favorite characters! Fight wars using Fruit Ninja and Jetpack Joyride heroes.", 
-        players: "1.9k", 
-        rating: "4.5" 
+        desc: "A strategic brick breaking battle game. Destroy enemy bricks and defend your base.",
+        players: "2.3k",
+        rating: "4.6",
+        overview: "Magic Brick Wars puts a strategic twist on the classic brick breaker genre with competitive base vs base gameplay. Launch your ball to destroy the enemy’s brick defenses while protecting your own base from their attacks. Collect power-ups to unlock special abilities like multi-ball, laser shots, and expanded paddles. The game features multiple campaign levels, PvP duel mode, and a variety of magic abilities to master. With fast-paced action and deep strategy, it reimagines the brick breaker formula for competitive play.",
+        howToPlay: "Move your paddle left and right to bounce the ball and break bricks on the enemy side. Collect falling power-ups to gain special abilities and advantages. Defend your base from enemy balls to avoid taking damage. Destroy all of your opponent’s bricks and base to win the level. Unlock new magic abilities as you progress through the campaign.",
+        features: ["Strategic brick breaker combat", "Multiple power-ups & magic abilities", "Campaign & PvP duel modes", "Base defense mechanics", "Fast-paced competitive action"],
+        tags: ["Strategy", "Arcade", "Brick Breaker", "Action", "Multiplayer"]
     },
-    "Kick_Lucky_Boxes_Online": { 
+    "Kick_Lucky_Boxes_Online": {
         gameId: "381bb01b67a14e7ea30b5623eb36855e",
-        desc: "Launch lucky blocks to discover rare Brainrots! Upgrade power, collect rewards and escape before the tsunami hits.", 
-        players: "2.8k", 
-        rating: "4.6" 
+        desc: "A fun casual lucky box kicking game. Kick boxes to reveal prizes and collect big rewards.",
+        players: "1.9k",
+        rating: "4.4",
+        overview: "Kick Lucky Boxes Online is a lighthearted casual game where you kick colorful lucky boxes to reveal hidden prizes and rewards. Time your kicks perfectly to break open boxes filled with coins, gems, and rare bonus items. The game features multiple themed box sets, upgradeable kicking power, and exciting jackpot moments. With simple one-tap gameplay, satisfying reward effects, and endless casual fun, it is perfect for quick relaxing sessions and chasing big wins.",
+        howToPlay: "Tap or click at the right moment to kick the box as it moves across the screen. Perfectly timed kicks deal more damage and have a higher chance of rare rewards. Break open boxes to collect coins, gems, and special prizes. Use your coins to upgrade your kicking power and unlock new box themes. Hit the jackpot bonus for massive reward multipliers.",
+        features: ["Simple one-tap gameplay", "Multiple themed lucky boxes", "Upgradeable kick power", "Jackpot bonus rewards", "Satisfying casual fun"],
+        tags: ["Casual", "Arcade", "Lucky", "Single Player", "Rewards"]
     },
-    "Juice_Merge": { 
+    "Juice_Merge": {
         gameId: "d4c11a64ed754d71b4671d699c66a9c7",
-        desc: "Combine drinks to unlock exotic recipes in this colorful merge puzzle! Relax on a tropical beach as you collect.", 
-        players: "1.6k", 
-        rating: "4.5" 
+        desc: "A refreshing merge puzzle game. Combine juice fruits to create bigger, more delicious drinks.",
+        players: "2.0k",
+        rating: "4.5",
+        overview: "Juice Merge is a bright and refreshing merge puzzle game with a juicy fruit drink theme. Drop fruits into the glass and merge identical fruits together to create bigger, higher-value fruits and delicious juice drinks. The game features satisfying physics-based merging, colorful fruit designs, and endless high-score gameplay. Try to create the ultimate legendary juice before the glass fills up to the top. With cute visuals and simple controls, it is addictive casual fun for all ages.",
+        howToPlay: "Tap anywhere in the glass to drop the current fruit. Two identical fruits that touch each other will automatically merge into a bigger, higher-value fruit. Keep merging fruits to create larger and rarer fruit types. Don’t let the fruits fill up past the top of the glass, or the game will end. Try to reach the highest tier fruit and beat your best score.",
+        features: ["Physics-based merge gameplay", "Colorful juicy fruit theme", "Endless high-score mode", "Satisfying merge animations", "Simple one-tap controls"],
+        tags: ["Puzzle", "Merge", "Casual", "Fruit", "Single Player"]
     },
-    "Solitaire_Farm_Seasons_5": { 
+    "Solitaire_Farm_Seasons_5": {
         gameId: "567ad47ea5d04edaaa29a80cd9f9d1a3",
-        desc: "4,200+ levels of relaxing solitaire fun! Explore new maps, grow crops and enjoy this charming countryside journey.", 
-        players: "2.9k", 
-        rating: "4.7" 
+        desc: "Farm-themed solitaire adventure. Play solitaire and build your dream farm across the seasons.",
+        players: "2.7k",
+        rating: "4.7",
+        overview: "Solitaire Farm Seasons 5 combines classic solitaire gameplay with charming farm building and seasonal decoration mechanics. Play solitaire levels to earn coins, then use your earnings to build and decorate your very own farm through spring, summer, autumn, and winter. The game features hundreds of solitaire levels, dozens of farm buildings and decorations, and a cozy relaxing atmosphere. It is the perfect blend of casual card game fun and creative farm building.",
+        howToPlay: "Play solitaire by matching cards one rank higher or lower than the active card. Clear all cards from the board to complete the level and earn coins. Use your coins to purchase farm buildings, decorations, and seasonal upgrades. Unlock new areas of your farm as you progress through the seasons. Use power-ups and jokers to help you beat tricky levels.",
+        features: ["Hundreds of solitaire levels", "Farm building & decoration", "Four seasonal themes", "Power-ups & joker cards", "Cozy relaxing atmosphere"],
+        tags: ["Card Game", "Solitaire", "Farm", "Casual", "Building"]
     },
-    "Stickman_Adventure": { 
+    "Stickman_Adventure": {
         gameId: "fd5ae555f42e4dac872819ed9125616c",
-        desc: "Travel through time and space, defeat monsters and rescue your friends. A whole new world awaits, Hero!", 
-        players: "2.1k", 
-        rating: "4.5" 
+        desc: "An action-packed stickman platform adventure. Run, jump and fight through challenging levels.",
+        players: "3.1k",
+        rating: "4.6",
+        overview: "Stickman Adventure is a classic side-scrolling platform game featuring a brave stickman hero on an epic adventure. Run, jump, slide, and fight your way through dozens of challenging levels filled with enemies, traps, and hidden secrets. Collect coins and power-ups to unlock new abilities and weapons. The game features responsive controls, smooth stickman animations, and a variety of unique environments to explore. It delivers old-school platformer fun with modern polished gameplay.",
+        howToPlay: "Use the arrow keys to move left and right, and press up to jump. Press the attack button to fight enemies and break obstacles. Collect coins along the way to earn points and unlock upgrades. Avoid traps and enemy attacks to keep your health up. Reach the end of each level to advance, and defeat boss enemies at the end of each world.",
+        features: ["Dozens of platform levels", "Smooth stickman animations", "Combat & power-up system", "Multiple unique environments", "Classic side-scrolling action"],
+        tags: ["Action", "Platformer", "Stickman", "Adventure", "Single Player"]
     },
-    "Nonogram_Daily": { 
+    "Nonogram_Daily": {
         gameId: "0e26b95603a14b378612f60bfe7069df",
-        desc: "Draw and solve Japanese logic puzzles every day! Train your brain with fresh nonogram images daily.", 
-        players: "1.8k", 
-        rating: "4.6" 
+        desc: "Daily picross logic puzzles. Solve number clues to reveal hidden pixel art pictures.",
+        players: "2.2k",
+        rating: "4.7",
+        overview: "Nonogram Daily is a classic picture logic puzzle game also known as picross or griddlers. Use the number clues along the rows and columns to determine which cells to fill in, and gradually reveal a hidden pixel art picture. The game features a brand new puzzle every day, multiple difficulty levels from easy to expert, and a clean intuitive interface. Perfect for players who love logic puzzles and pixel art, the daily challenges offer rewarding brain-teasing fun every day.",
+        howToPlay: "Study the number clues at the top of each column and left of each row. The numbers tell you how many consecutive filled cells are in that line. Tap cells to fill them in, and mark empty cells with an X to help you solve. Fill in all correct cells to complete the puzzle and reveal the hidden picture. Try to solve the daily puzzle as fast as you can for the best score.",
+        features: ["Daily new nonogram puzzles", "Multiple difficulty levels", "Clean intuitive interface", "Hidden pixel art rewards", "Logic brain-teasing gameplay"],
+        tags: ["Puzzle", "Nonogram", "Logic", "Pixel Art", "Daily"]
     },
-    "Arrow_Sorting": { 
+    "Arrow_Sorting": {
         gameId: "2fb1dc3ebec147eeb9d7875354afcc20",
-        desc: "Tap arrows to unravel colorful fruit chains across countless levels. Simple to learn, surprisingly addictive!", 
-        players: "1.5k", 
-        rating: "4.5" 
+        desc: "A satisfying arrow sorting puzzle. Organize colored arrows into matching tubes to solve each level.",
+        players: "1.7k",
+        rating: "4.5",
+        overview: "Arrow Sorting is a calm and satisfying sorting puzzle game where you organize colored arrows into separate tubes. Each tube contains a mix of different colored arrows — your goal is to move them so each tube holds only arrows of one single color. The game features hundreds of levels with increasing difficulty, smooth satisfying animations, and no time pressure. It is the perfect casual puzzle for relaxing and training your logical thinking skills at your own pace.",
+        howToPlay: "Tap on a tube to pick up the top arrow inside it, then tap another tube to place the arrow there. You can only place an arrow on top of another arrow of the same color, or into an empty tube. Sort all arrows so each tube contains only one color to complete the level. Plan your moves carefully to avoid getting stuck, and use undo if you make a mistake.",
+        features: ["Hundreds of sorting levels", "Smooth satisfying animations", "No time pressure", "Undo function", "Relaxing logical gameplay"],
+        tags: ["Puzzle", "Sorting", "Casual", "Relaxing", "Brain Teaser"]
     },
-    "Mojicon_Garden_JigSolitaire": { 
+    "Mojicon_Garden_JigSolitaire": {
         gameId: "679c57024b5944f584585244718e1cee",
-        desc: "Solve beautiful jigsaw solitaire puzzles to restore a dry meadow into a lush blooming garden paradise.", 
-        players: "1.3k", 
-        rating: "4.4" 
+        desc: "A cozy garden-themed jigsaw solitaire hybrid. Match tiles and build your peaceful garden.",
+        players: "1.9k",
+        rating: "4.6",
+        overview: "Mojicon Garden JigSolitaire combines relaxing solitaire gameplay with charming jigsaw puzzle elements and a cozy garden setting. Match solitaire cards to progress through levels, and unlock jigsaw pieces that assemble into beautiful garden scenes. Collect cute mojicon characters, decorate your garden, and enjoy the calm, peaceful atmosphere. The game features dozens of levels, lovely hand-drawn art, and slow-paced casual gameplay perfect for unwinding.",
+        howToPlay: "Play solitaire by matching cards that are one rank higher or lower than the active card. Clear the board to complete each level and earn jigsaw pieces. Assemble jigsaw puzzles to unlock beautiful garden scenes and decorations. Collect adorable mojicon characters to live in your garden. Use boosters to help you get through harder solitaire levels.",
+        features: ["Solitaire & jigsaw hybrid gameplay", "Cozy garden theme", "Cute mojicon characters", "Hand-drawn art style", "Relaxing casual pace"],
+        tags: ["Puzzle", "Solitaire", "Jigsaw", "Garden", "Casual"]
     },
-    "Bloxorz_Block_Puzzle_3d": { 
+    "Bloxorz_Block_Puzzle_3d": {
         gameId: "1d9ac2ca58b2436ab1e7ce3b83fd709f",
-        desc: "Roll your block across 3D platforms and drop it into the goal hole. Test your logic across mind-bending levels!", 
-        players: "2.4k", 
-        rating: "4.7" 
+        desc: "The classic 3D block rolling puzzle. Roll the block across tiles and drop it into the goal hole.",
+        players: "2.4k",
+        rating: "4.7",
+        overview: "Bloxorz Block Puzzle 3D brings the iconic block rolling puzzle to life with full 3D graphics and smooth physics. Control a rectangular block and roll it across a grid of tiles, navigating gaps, switches, and fragile platforms to reach the square goal hole. The game features dozens of challenging levels that test your spatial reasoning and problem-solving skills. With simple controls, increasing difficulty, and that classic 'just one more level' addictiveness, it is a must-play for puzzle fans.",
+        howToPlay: "Use the arrow keys to roll the block one tile at a time across the grid. Carefully navigate around gaps and fragile tiles that break under your weight. Stand on switch tiles to activate bridges and open new paths. Roll the block and drop it perfectly into the square goal hole to complete the level. Don’t roll off the edge of the platform, or you will have to restart.",
+        features: ["Classic 3D block rolling gameplay", "Dozens of challenging levels", "Switches & bridge mechanics", "Smooth 3D graphics", "Spatial reasoning puzzle fun"],
+        tags: ["Puzzle", "3D", "Block", "Brain Teaser", "Single Player"]
     },
-    "Combinations_Daily": { 
+    "Combinations_Daily": {
         gameId: "c725caf57a5940deb09730cdf322f3a1",
-        desc: "Connect tiles, make combinations and maintain your daily streaks! Fresh puzzle challenges every single day.", 
-        players: "1.7k", 
-        rating: "4.5" 
+        desc: "Daily word combination puzzles. Find all hidden words from the given letters.",
+        players: "2.0k",
+        rating: "4.6",
+        overview: "Combinations Daily is a fun word puzzle game where you find all possible words from a set of letters. A new set of letters is available every day, and you must find every valid word combination to complete the daily challenge. The game features multiple difficulty levels, hint systems, and progress tracking for your daily streaks. It is a great way to expand your vocabulary, train your brain, and enjoy a quick daily word challenge.",
+        howToPlay: "Tap and drag across the letter tiles to form valid English words. Find all required words to complete the daily puzzle. Longer words earn more points and bonus rewards. Use hints if you get stuck on a word. Keep a daily streak going to unlock achievements and show off your word skills. New letter combinations are available every single day.",
+        features: ["Daily new word puzzles", "Multiple difficulty levels", "Streak & achievement system", "Hint support system", "Vocabulary building gameplay"],
+        tags: ["Puzzle", "Word", "Daily", "Brain Teaser", "Single Player"]
     },
-    "Math_Stars": { 
+    "Math_Stars": {
         gameId: "e7e5bb0e6caf47b5965d813736921e76",
-        desc: "Travel the galaxy and defeat space bosses by solving math problems! Fun educational adventure for kids ages 6-7.", 
-        players: "1.2k", 
-        rating: "4.4" 
+        desc: "Fun math puzzle challenges. Solve quick math problems and become a math star.",
+        players: "1.5k",
+        rating: "4.4",
+        overview: "Math Stars is an engaging educational math game that makes practicing arithmetic fun and rewarding. Solve quick addition, subtraction, multiplication, and division problems to earn stars and progress through difficulty levels. The game features timed challenge modes, multiple difficulty settings, and progress tracking to help you improve your math speed and accuracy. Suitable for both kids learning math and adults looking to keep their mind sharp with quick calculations.",
+        howToPlay: "Read each math problem and select the correct answer from the four options. Answer correctly to earn stars and move on to the next problem. Answer as many problems as you can before the timer runs out to get a high score. Choose from different difficulty levels and operation types to match your skill level. Unlock achievements as you improve your math skills.",
+        features: ["Multiple math operation types", "Adjustable difficulty levels", "Timed challenge mode", "Star reward system", "Educational & fun gameplay"],
+        tags: ["Casual", "Educational", "Math", "Puzzle", "Single Player"]
     },
-    "Worm_Puzzle_Snake_Apple": { 
+    "Worm_Puzzle_Snake_Apple": {
         gameId: "7e5efdcdc8d84b2291c0febe8de5e638",
-        desc: "Classic snake meets clever puzzles! Guide worms through tricky levels with funny movements and satisfying solutions.", 
-        players: "1.9k", 
-        rating: "4.5" 
+        desc: "A clever snake puzzle game. Guide the worm to eat all apples and solve each level.",
+        players: "1.8k",
+        rating: "4.5",
+        overview: "Worm Puzzle Snake Apple puts a puzzle twist on the classic snake game formula. Control a growing worm as you navigate grid-based levels, collecting all the apples to complete each stage. The worm grows longer with every apple you eat, making movement more challenging as you progress. The game features dozens of levels with obstacles, portals, and tricky layouts that test your planning skills. With simple controls and charming pixel art style, it is fun for casual and puzzle players alike.",
+        howToPlay: "Use the arrow keys to move the worm around the grid level. Eat every apple on the level to complete it. The worm grows longer with each apple you eat, so plan your path carefully. Avoid bumping into walls or the worm’s own body, or you will fail the level. Navigate around obstacles and use portals to reach hard-to-get apples.",
+        features: ["Dozens of puzzle levels", "Classic snake growth mechanics", "Obstacles & portal mechanics", "Charming pixel art style", "Planning-based puzzle gameplay"],
+        tags: ["Puzzle", "Snake", "Casual", "Pixel Art", "Single Player"]
     },
-    "Sugar_Pop_Land": { 
+    "Sugar_Pop_Land": {
         gameId: "5bf8cb720bd147a4b62167eefdf38788",
-        desc: "Match 3 or more sweets to clear them! Create special combos, chain powerful effects and complete every stage.", 
-        players: "2.2k", 
-        rating: "4.6" 
+        desc: "A sweet candy popping adventure. Match and pop colorful candies across hundreds of tasty levels.",
+        players: "2.5k",
+        rating: "4.6",
+        overview: "Sugar Pop Land is a vibrant match-3 puzzle game set in a colorful candy land full of sweet treats. Tap groups of matching candies to pop them and earn points, and create bigger groups to unlock powerful candy boosters. The game features hundreds of levels with unique objectives, special power candies, and increasing difficulty. With bright cheerful visuals, satisfying pop animations, and addictive casual gameplay, it is a delicious puzzle adventure for candy game fans of all ages.",
+        howToPlay: "Tap on groups of 2 or more adjacent candies of the same color to pop them. Create bigger groups to spawn special power candies with explosive effects. Complete each level’s objective before you run out of taps to advance. Use special boosters to help you beat tricky levels. Progress through Sugar Pop Land and unlock new candy-filled worlds.",
+        features: ["Hundreds of candy levels", "Powerful candy boosters", "Colorful sweet theme", "Satisfying pop animations", "Addictive casual gameplay"],
+        tags: ["Puzzle", "Match 3", "Candy", "Casual", "Single Player"]
+    },
+
+
+    "Meme_Myth_Wukong": {
+        gameId: "e4af90c070cf499da371b44232a6aaca",
+        desc: "A hilarious brainrot puzzle game inspired by classic myth and absurd memes. Solve weird puzzles with totally unexpected logic!",
+        players: "2.1k",
+        rating: "4.6",
+        overview: "Meme Myth: Wukong is a wildly creative puzzle game that blends classic Chinese mythology with internet meme culture and absurd, mind-bending logic. Guide the monkey hero through a series of ridiculous challenges where nothing follows normal rules. You will need to think sideways, tap every interactive object, and embrace the chaos to uncover the dumbest-yet-smartest solutions in each level. Featuring quirky hand-drawn visuals, unexpected plot twists, and a healthy dose of humor, this game delivers endless laughs and creative puzzle-solving fun for players who love out-of-the-box experiences.",
+        howToPlay: "Tap and interact with objects in each level to trigger events and solve puzzles. There are no fixed rules — think creatively and try every possible interaction. Look for subtle hints in the level design if you get stuck. Complete each absurd challenge to progress through the game and unlock more chaotic levels.",
+        features: ["Absurd meme-inspired puzzles", "Creative out-of-the-box gameplay", "Quirky hand-drawn art style", "Unexpected plot twists", "No fixed rules, full creative freedom"],
+        tags: ["Puzzle", "Comedy", "Meme", "Creative", "Single Player"]
+    },
+    "Hill_Climb_Pixel_Car": {
+        gameId: "6d493125b300434fad9be4cf8c858bbd",
+        desc: "An off-road pixel racing game. Master rough terrains, overcome obstacles, and perform spectacular jumps to become champion.",
+        players: "3.5k",
+        rating: "4.7",
+        overview: "Hill Climb Pixel Car is a fast-paced off-road racing game with a charming retro pixel art style. Take control of your motocross bike and race across challenging terrains including dirt tracks, sand dunes, mud pits, and grassy hills. Master your acceleration and balance to overcome steep obstacles, perform breathtaking jumps, and avoid crashing. With multiple levels of increasing difficulty, responsive controls, and competitive time-based racing action, this game delivers endless adrenaline thrills for racing fans of all skill levels.",
+        howToPlay: "Use the arrow keys to control your bike: press up to accelerate, down to brake or reverse, and left/right to adjust your balance mid-air. Time your jumps carefully to avoid flipping over. Race to the finish line as fast as possible to beat the clock and unlock new levels. Collect coins along the way to upgrade your bike’s performance.",
+        features: ["Challenging off-road terrains", "Spectacular jump mechanics", "Retro pixel art style", "Multiple difficulty levels", "Bike upgrade system"],
+        tags: ["Racing", "Action", "Pixel Art", "Off-Road", "Motocross"]
+    },
+    "Bubble_Game_3": {
+        gameId: "27673bc45d2e4b27b7cd24e422f7c257",
+        desc: "A classic bubble shooter game. Clear as many bubbles as you can and beat your high score in relaxing casual gameplay.",
+        players: "1.8k",
+        rating: "4.5",
+        overview: "Bubble Game 3 is a timeless bubble shooter puzzle game that is easy to learn but hard to master. Your goal is to shoot and match bubbles of the same color to pop them and clear the board. The game features dozens of levels with increasing difficulty, special power-up bubbles, and challenging obstacles that will test your aim and strategic thinking. With smooth gameplay, bright colorful visuals, and relaxing yet addictive mechanics, it is the perfect casual game for players of all ages to unwind with.",
+        howToPlay: "Aim your bubble shooter at the cluster of bubbles above the screen. Tap to fire a bubble, and match 3 or more bubbles of the same color to pop them. Clear all bubbles from the board to complete the level. Use special power-up bubbles to clear large sections at once. Do not let the bubbles reach the bottom of the screen, or you will lose a life.",
+        features: ["Classic bubble shooter gameplay", "Dozens of challenging levels", "Special power-up bubbles", "Colorful bubble visuals", "Relaxing casual gameplay"],
+        tags: ["Puzzle", "Bubble Shooter", "Casual", "Match", "Single Player"]
+    },
+    "Mahjong_Connect": {
+        gameId: "a7f5393b417346268657f3bd67eac24e",
+        desc: "A classic mahjong connect puzzle game. Match and clear mahjong pieces to complete the board before time runs out.",
+        players: "2.2k",
+        rating: "4.6",
+        overview: "Mahjong Connect is a traditional mahjong puzzle game that tests your observation and pattern-matching skills. The goal is to connect identical mahjong pieces with a clear path that has no more than two turns, then remove them from the board. The game features multiple classic mahjong layouts, varying difficulty levels, and a countdown timer to challenge your speed and accuracy. With beautiful traditional Chinese-style visuals, calming background music, and endless replayability, it is a perfect choice for mahjong fans and puzzle lovers alike.",
+        howToPlay: "Tap on two identical mahjong pieces to connect and remove them. The pieces can only be connected if there is a clear path between them with no more than two 90-degree turns. Clear all pieces from the board before the timer runs out to complete the level. Use hints if you get stuck, and try to beat your best time on each layout.",
+        features: ["Classic mahjong connect rules", "Multiple traditional layouts", "Timer challenge mode", "Built-in hint system", "Beautiful traditional art style"],
+        tags: ["Puzzle", "Mahjong", "Traditional", "Match", "Brain Teaser"]
+    },
+    "The_Mergest_Kingdom": {
+        gameId: "b5203bfef51242c39690c761321d769f",
+        desc: "A magical merge puzzle adventure. Merge objects, collect resources, and rebuild your own fantasy kingdom island.",
+        players: "4.1k",
+        rating: "4.8",
+        overview: "The Mergest Kingdom is a magical merge puzzle adventure that combines relaxing merge mechanics with creative kingdom building. Merge hundreds of different objects — from plants and trees to buildings and mythical creatures — to unlock new items and expand your kingdom. Collect resources, complete challenging quests, and design your own unique island kingdom exactly the way you want it. With endless merge combinations, regular new content updates, and a whimsical fantasy world, this game offers hours of creative and relaxing fun for all players.",
+        howToPlay: "Drag and drop identical objects to merge them into new, more powerful items. Merge three or more of the same item to unlock higher-tier objects. Collect merged resources to complete quests and unlock new areas of your kingdom. Tap on chests and mystery items to discover rare merge objects. Keep merging to grow your kingdom and uncover all the magical secrets of the Seventh Realm.",
+        features: ["Endless merge combinations", "Kingdom building & customization", "Challenging quest system", "Whimsical fantasy world", "Regular content updates"],
+        tags: ["Merge", "Strategy", "Fantasy", "Building", "Casual"]
+    },
+    "Fireboy_and_Watergirl_1_Forest_Temple": {
+        gameId: "a55c9cc9c21e4fc683c8c6857f3d0c75",
+        desc: "The classic cooperative puzzle adventure. Guide Fireboy and Watergirl through the Forest Temple and collect all diamonds.",
+        players: "5.8k",
+        rating: "4.9",
+        overview: "Fireboy and Watergirl 1: Forest Temple is the iconic cooperative puzzle adventure that started the beloved series. Guide the elemental pair through the mysterious Forest Temple, solving clever puzzles and avoiding deadly traps along the way. Fireboy cannot touch water, and Watergirl cannot touch fire — you will need to switch between the two characters, or play with a friend, to navigate each level, collect all diamonds, and reach the exit safely. With clever level design, smooth controls, and timeless cooperative gameplay, it is a must-play for puzzle fans of all ages.",
+        howToPlay: "Use the arrow keys to control Fireboy, and WASD keys to control Watergirl. Switch between characters to solve puzzles and avoid elemental hazards: Fireboy must stay out of water pools, and Watergirl must avoid fire pits. Collect all diamonds in the level to unlock the exit door. Reach the exit with both characters to complete the level. Play solo by switching characters, or play with a friend for cooperative fun.",
+        features: ["Classic cooperative puzzle gameplay", "Clever elemental level design", "Solo and 2-player modes", "Diamond collection challenges", "Timeless family-friendly fun"],
+        tags: ["Puzzle", "Adventure", "Cooperative", "2 Player", "Platformer"]
+    },
+    "Moto_X3M_Bike_Race_Game": {
+        gameId: "5b0abd4c0faa4f5eb190a9a16d5a1b4c",
+        desc: "The iconic off-road motorcycle racing game. Master 25 challenging levels, perform stunts, and beat the clock.",
+        players: "6.2k",
+        rating: "4.8",
+        overview: "Moto X3M Bike Race Game is the legendary off-road motorcycle racing game that defined the browser racing genre. Race through 25 challenging levels filled with ramps, loops, deadly obstacles, and stunning stunt opportunities. Master your bike control to perform breathtaking flips and stunts, beat the level clock, and unlock new tracks. With fast-paced gameplay, smooth realistic physics, and addictive level design, Moto X3M delivers endless adrenaline-fueled racing fun for players of all skill levels.",
+        howToPlay: "Press the up arrow to accelerate, down arrow to brake, and left/right arrows to adjust your bike’s balance mid-air. Perform stunts like wheelies and backflips to earn extra time bonuses. Race to the finish line as fast as possible to earn a 3-star rating. Avoid crashing your bike, and use checkpoints to restart if you fail. Unlock new levels by completing the previous tracks.",
+        features: ["25 challenging levels", "Breathtaking stunt mechanics", "Smooth bike physics", "3-star rating system", "Addictive fast-paced gameplay"],
+        tags: ["Racing", "Action", "Stunt", "Off-Road", "Moto X3M"]
+    },
+    "Rummikub": {
+        gameId: "6bf29e0982a64f898a81c3f3612aba26",
+        desc: "The original classic family tile game. Arrange tiles into smart combinations and be the first to empty your rack.",
+        players: "3.4k",
+        rating: "4.7",
+        overview: "Rummikub is one of the most popular family board games in the world, combining tactical thinking, luck, and tense competitive fun. The goal is to be the first player to place all your tiles on the table by creating valid combinations: either runs of consecutive numbers in the same color, or groups of the same number in different colors. With simple rules but deep strategic depth, and the ability to rearrange existing combinations on the table, it is perfect for family game nights and casual players of all ages.",
+        howToPlay: "Take turns placing tiles from your rack onto the table to create valid combinations. A valid combination is either a group of 3 or 4 tiles with the same number in different colors, or a run of 3 or more consecutive numbers in the same color. You can also add tiles to existing combinations on the table, or rearrange them to form new sets. Be the first to empty your tile rack to win the match.",
+        features: ["Classic Rummikub rules", "Strategic tile placement", "Family-friendly gameplay", "Competitive turn-based mode", "Easy to learn, hard to master"],
+        tags: ["Board Game", "Strategy", "Family", "Tile Game", "Classic"]
+    },
+    "Candy_Riddles_Free_Match_3_Puzzle": {
+        gameId: "639df47033804f18bf39e113ef29f4fa",
+        desc: "A sweet match-3 puzzle game full of candy riddles. Match delicious treats and complete hundreds of challenging levels.",
+        players: "2.8k",
+        rating: "4.6",
+        overview: "Candy Riddles is a colorful and addictive match-3 puzzle game with a charming candy theme and creative level objectives. Swap adjacent candies to create matches of 3 or more, and complete level goals like reaching a target score, clearing special candies, or collecting sweet ingredients. The game features hundreds of unique levels, powerful candy boosters, and a whimsical candy world to explore. With cute animations, satisfying match effects, and endless puzzle fun, it is the perfect game for match-3 fans.",
+        howToPlay: "Click and drag to swap two adjacent candies. Match 3 or more candies of the same type to clear them from the board. Match 4 or more candies to create special booster candies that clear large sections of the board. Complete the level’s objective before you run out of moves to advance. Use boosters to help you beat difficult levels and earn high scores.",
+        features: ["Hundreds of unique levels", "Powerful candy boosters", "Challenging level objectives", "Colorful candy theme", "Satisfying match-3 gameplay"],
+        tags: ["Match 3", "Puzzle", "Candy", "Casual", "Addictive"]
+    },
+    "Snow_Rider_3D": {
+        gameId: "3b79a8537ebc414fb4f9672a9b8c68c8",
+        desc: "A thrilling 3D snow sleigh racing game. Ride down snowy slopes, collect gifts, and set the highest score.",
+        players: "1.9k",
+        rating: "4.5",
+        overview: "Snow Rider 3D is an exciting 3D winter racing game that lets you experience the thrill of sledding down snowy mountain slopes anytime. Race down the hill as fast as you can, perform cool tricks to earn extra points, and collect gift boxes along the way to unlock new sleighs. Avoid obstacles like rocks, trees, and snow mounds to stay on track and keep your speed up. With stunning 3D winter visuals, smooth intuitive controls, and addictive high-score gameplay, it is perfect for winter-themed casual fun.",
+        howToPlay: "Use the left and right arrow keys to steer your sleigh. Press the up arrow to accelerate, and the down arrow to brake. Press the spacebar to jump over obstacles. Collect gifts to increase your score and unlock new sleigh skins. Perform tricks while in the air to earn bonus points. The farther you go and the more tricks you perform, the higher your final score will be.",
+        features: ["Stunning 3D winter visuals", "Exciting snow racing action", "Trick and stunt mechanics", "Gift collection & unlock system", "High-score challenge mode"],
+        tags: ["Racing", "Action", "3D", "Winter", "Snow"]
+    },
+    "Block_Blast": {
+        gameId: "3a364ed8d075418abb7849e1d63b6015",
+        desc: "An addictive block puzzle game. Place blocks to clear lines, relax your mind, and challenge your brain.",
+        players: "2.4k",
+        rating: "4.5",
+        overview: "Block Blast is an exciting and relaxing block puzzle game that combines the best of woody puzzle, cube block, and grid game genres. Drag and drop block pieces onto the grid to fill and clear full horizontal and vertical lines. The game features smooth satisfying gameplay, multiple game modes, and increasing difficulty that will test your spatial reasoning and strategic planning. Perfect for unwinding after a long day or giving your brain a quick workout, it offers endless casual puzzle fun.",
+        howToPlay: "Drag block pieces from the bottom of the screen and place them onto the grid. Fill an entire horizontal or vertical line to clear it and free up space. The game ends when there is no more room to place the next block. Plan your placements carefully to create chain clears and earn higher scores. There is no time limit, so take your time and think strategically.",
+        features: ["Relaxing block puzzle gameplay", "Smooth satisfying clearing effects", "Multiple game modes", "Simple one-finger controls", "Endless casual replay value"],
+        tags: ["Puzzle", "Block Puzzle", "Casual", "Relaxing", "Single Player"]
+    },
+    "Kris_Mahjong": {
+        gameId: "5ed3b1c510c3400db0ef580c60cbcdca",
+        desc: "A classic mahjong solitaire game. Match pairs of identical tiles and clear the board at your own pace.",
+        players: "2.0k",
+        rating: "4.5",
+        overview: "Kris Mahjong is a straightforward and relaxing mahjong solitaire game for players who love classic tile-matching. Your goal is to clear the entire board by removing all pairs of identical mahjong tiles. You can only select tiles that are not blocked by other tiles and have at least one free side. With clean minimalist visuals, calming background music, and multiple layouts to choose from, it is the perfect casual puzzle game for a quick brain break or a longer relaxing session.",
+        howToPlay: "Tap on two identical mahjong tiles to match and remove them from the board. You can only select tiles that have at least one left or right side open and are not covered by other tiles. Clear all tiles from the board to complete the level. Use the hint button if you get stuck, and try to beat your best completion time for each layout.",
+        features: ["Classic mahjong solitaire rules", "Multiple tile layouts", "Clean minimalist visuals", "Built-in hint system", "Relaxing casual gameplay"],
+        tags: ["Puzzle", "Mahjong", "Solitaire", "Relaxing", "Brain Teaser"]
+    },
+    "Garden_Tales": {
+        gameId: "fa29efc197d04cb1bb3074b8255f817f",
+        desc: "A vibrant garden-themed match-3 game. Combine flowers and fruits across over 700 exciting levels.",
+        players: "2.6k",
+        rating: "4.7",
+        overview: "Garden Tales is a colorful match-3 puzzle game set in a beautifully landscaped garden full of flowers, fruit, and mushrooms. Combine and match three or more of the same items to clear them, and create bigger matches to unlock powerful extras that make the game easier. Help the garden gnome Willy keep the beds tidy, remove obstacles like ice, puddles and stones, collect fruit baskets, and go treasure hunting. With over 700 levels, daily missions, and catchy soundtrack, it offers endless garden-themed puzzle fun.",
+        howToPlay: "Swap adjacent items to create matches of 3 or more of the same type. The bigger the match, the more powerful boosters you unlock. Complete each level’s objective before you run out of moves. Remove obstacles like ice, stones, and weeds by matching items next to them. Complete daily missions and challenges to earn extra coins and special gifts.",
+        features: ["Over 700 exciting levels", "Colorful garden theme", "Powerful match boosters", "Daily missions & challenges", "Charming gnome character story"],
+        tags: ["Match 3", "Puzzle", "Garden", "Casual", "Relaxing"]
+    },
+    "Skydom": {
+        gameId: "ae10263247c44278b33c845ff1c2df80",
+        desc: "A magical PvP match-3 puzzle game. Compete against real players and prove you are the best match-3 master.",
+        players: "3.1k",
+        rating: "4.6",
+        overview: "Skydom is a bright and exciting match-3 puzzle game set in magical floating kingdoms, featuring truly unique competitive game modes. If you have played through thousands of match-3 levels and want something fresh, this game lets you face off against real players from around the world in live matches. Show off your strategy and skill against opponents or connect with friends for friendly competition across hundreds of levels with unique settings, gorgeous effects, and unexpected gameplay twists.",
+        howToPlay: "Swap adjacent gems to create matches of 3 or more of the same color. Create bigger matches to charge powerful boosters. In PvP mode, race against your opponent to score more points before the timer runs out. Use boosters strategically to gain an edge over your rival. Win matches to climb the leaderboards and unlock new magical kingdoms.",
+        features: ["Live PvP match-3 gameplay", "Hundreds of unique levels", "Real-time player competition", "Gorgeous magical effects", "Friend match support"],
+        tags: ["Match 3", "Puzzle", "PvP", "Multiplayer", "Fantasy"]
+    },
+    "Tropical_Merge": {
+        gameId: "4eafc18cbceb45ed884f6c5d70df3963",
+        desc: "A tropical farm merge adventure. Renovate your island, grow crops, and solve island mysteries.",
+        players: "2.3k",
+        rating: "4.5",
+        overview: "Tropical Merge is a relaxing farm merge adventure set on a beautiful paradise island. Help the locals save their bay while renovating the island and growing your very own tropical farm. Merge plants, buildings, and resources to unlock new items and expand your farm. Go on expeditions to explore other nearby islands and solve even more riddles and mysteries. With charming tropical visuals, a heartwarming story, and endless merge possibilities, it is perfect for players who love casual merge and farm games.",
+        howToPlay: "Drag and drop identical items to merge them into better, more valuable objects. Merge three or more of the same item to unlock higher-tier crops, buildings, and decorations. Complete tasks to earn coins and unlock new areas of the island. Go on expeditions to discover rare items and solve island mysteries. Keep merging to build your perfect tropical farm paradise.",
+        features: ["Tropical island farm setting", "Relaxing merge mechanics", "Island renovation & customization", "Expedition & mystery content", "Charming casual gameplay"],
+        tags: ["Merge", "Casual", "Farm", "Tropical", "Adventure"]
+    },
+    "Traffic_Jam_3D": {
+        gameId: "337302b23b5943d8bcfc501d81d50cdb",
+        desc: "A thrilling 3D traffic racing game. Speed through busy streets, complete challenges, and beat the clock.",
+        players: "2.7k",
+        rating: "4.6",
+        overview: "Traffic Jam 3D is an outrageous and thrilling street racing game that puts you behind the wheel in busy urban traffic. Take on a variety of challenges: reach checkpoints on time, score a set number of points within a time limit, drive a specified distance before the clock runs out, and much more. Weave through traffic, overtake other cars, and avoid crashes to keep your speed up. With fast-paced 3D action, multiple game modes, and responsive controls, it delivers endless high-speed excitement.",
+        howToPlay: "Use the arrow keys to control your car: up to accelerate, down to brake, and left/right to steer. Weave through traffic and overtake other cars to keep your speed up. Complete each level’s objective before the timer runs out. Avoid crashing into other cars or obstacles, as this will slow you down. Unlock new cars and levels by completing challenges.",
+        features: ["Thrilling 3D street racing", "Multiple challenge modes", "Busy urban traffic environments", "Responsive car controls", "Unlockable cars & levels"],
+        tags: ["Racing", "Action", "3D", "Traffic", "Single Player"]
+    },
+    "Jewels_Blitz_5": {
+        gameId: "0dd92ae2a7214f289608049167f2ebd4",
+        desc: "The legendary Mayan-themed match-3 adventure. Explore ancient temples and solve jewel puzzles.",
+        players: "2.9k",
+        rating: "4.7",
+        overview: "Jewels Blitz 5 is the long-awaited fifth installment of the legendary match-3 series, taking you deep into the mystery of ancient Central American cultures. Explore mysterious Mayan Temples as you match sparkling jewels and try to solve their ancient secrets and mysteries. Enjoy hundreds of carefully designed levels, daily missions, and weekly challenges that keep the gameplay fresh. Earn gold and collect magical items to help you on your journey through the ancient ruins.",
+        howToPlay: "Swap adjacent jewels to create matches of 3 or more of the same color. Match 4 or more jewels to create special power jewels with explosive effects. Complete each level’s objective before you run out of moves. Complete daily missions and weekly challenges to earn extra gold and magical items. Use boosters to help you get through the toughest temple levels.",
+        features: ["Hundreds of match-3 levels", "Ancient Mayan temple theme", "Daily missions & weekly challenges", "Powerful magical boosters", "Atmospheric puzzle adventure"],
+        tags: ["Match 3", "Puzzle", "Mayan", "Adventure", "Jewel"]
+    },
+    "Jewels_Blitz_6": {
+        gameId: "bbd9c393a8b14f50aa19715f33ea50dc",
+        desc: "The sixth chapter of the iconic jewel match-3 series. Uncover deeper secrets of ancient Mayan temples.",
+        players: "3.0k",
+        rating: "4.8",
+        overview: "Jewels Blitz 6 continues the legendary match-3 saga with even more levels, new mechanics, and deeper mysteries of ancient Central American cultures. Journey further into the Mayan Temples, solve more complex jewel puzzles, and uncover long-lost secrets hidden deep within the ruins. The game features hundreds of brand-new levels, updated daily missions, fresh weekly challenges, and new magical items to collect. With improved visuals, smoother animations, and balanced difficulty, it is the best entry in the series yet.",
+        howToPlay: "Swap adjacent jewels to line up matches of 3 or more identical gems. Create larger matches to unlock powerful special jewels with unique effects. Complete each level’s goal before you run out of moves. Take part in daily missions and limited-time weekly challenges to earn exclusive rewards. Use your collected magical items strategically to beat the hardest levels.",
+        features: ["All-new match-3 levels", "Deeper Mayan temple lore", "Updated daily & weekly content", "New magical power-ups", "Polished visuals & animations"],
+        tags: ["Match 3", "Puzzle", "Mayan", "Adventure", "Jewel"]
+    },
+    "Match_Arena": {
+        gameId: "15e07594984f413f9b578afe16778eb9",
+        desc: "The world’s first real-time PvP match-3 game. Climb to the Golden League and prove your match-3 skill.",
+        players: "3.3k",
+        rating: "4.7",
+        overview: "Match Arena is the world’s first match-3 game where you compete against real players in real-time. Step into the arena and test your strategy and skill against live opponents, or connect with friends for friendly match-3 action across hundreds of levels with unique settings, gorgeous effects, and unexpected gameplay twists. Play and climb your way up to the prestigious Golden League by completing exciting challenges on your journey, accompanied by the cutest piggy-magic companion.",
+        howToPlay: "Swap tiles to create matches of 3 or more in real-time competition against another player. Score more points than your opponent before the timer runs out to win the match. Create powerful combo matches to gain a big score advantage. Win matches to earn trophies and climb through the leagues. Complete challenges to unlock new levels and rewards.",
+        features: ["Real-time PvP match-3", "Hundreds of competitive levels", "League ranking system", "Friend match support", "Charming piggy-magic theme"],
+        tags: ["Match 3", "Puzzle", "PvP", "Multiplayer", "Competitive"]
+    },
+    "Hexa_Stack": {
+        gameId: "ac3276e1819644858f0c8693c219064c",
+        desc: "A relaxing yet challenging hexagon puzzle game. Sort tiles, stack smart, and create powerful combos.",
+        players: "1.7k",
+        rating: "4.5",
+        overview: "Hexa Stack is an all-new hexagon puzzle game that is equal parts relaxing and challenging. Sort colorful hexagonal tiles by color, stack them strategically to create powerful combos, and think ahead before the board fills up. Each level adds new twists and mechanics that require focus, memory, and clever planning. If you get stuck, you can use boosters like swap and shuffle to keep your run going. With simple controls, satisfying merge effects, and endless brain-teasing fun, it is perfect for casual puzzle fans.",
+        howToPlay: "Tap to place incoming hex tiles onto the board. Stack tiles of the same color together to clear them and earn points. Create larger stacks to trigger powerful combos and earn bonus points. Plan your placements carefully to avoid filling up the board. Use boosters like swap and shuffle to rearrange tiles when you get stuck. Keep clearing tiles to keep the game going and beat your high score.",
+        features: ["Unique hexagon puzzle gameplay", "Strategic stacking mechanics", "Multiple difficulty twists", "Useful in-game boosters", "Simple controls, satisfying feedback"],
+        tags: ["Puzzle", "Hexagon", "Casual", "Relaxing", "Brain Teaser"]
+    },
+    "Mahjong_Match": {
+        gameId: "fe22c2e8ce44494cbde70fa8b30105d2",
+        desc: "A fresh take on mahjong puzzles. Match three mahjong tiles of the same color to clear the board.",
+        players: "1.9k",
+        rating: "4.5",
+        overview: "Mahjong Match offers a fresh twist on classic mahjong gameplay, combining traditional tile visuals with modern match-3 mechanics. Immerse yourself in brain-teasing levels, each waiting for your strategic mahjong-matching touch. Your objective is to match three mahjong tiles of the same color to clear them from the board puzzle. With every level presenting a new arrangement of mahjong tiles and fresh challenges, the excitement and puzzle fun never fade for casual and dedicated players alike.",
+        howToPlay: "Tap to select mahjong tiles and add them to your matching slot. When you collect three tiles of the same color, they will automatically clear from the board. Clear all tiles from the level to complete it. Plan your selections carefully to avoid filling up your slot with mismatched tiles. The fewer moves you use, the higher your final score will be.",
+        features: ["Fresh mahjong match-3 twist", "Dozens of puzzle levels", "Traditional mahjong tile art", "Strategic matching gameplay", "Brain-teasing casual fun"],
+        tags: ["Puzzle", "Mahjong", "Match 3", "Traditional", "Brain Teaser"]
+    },
+    "Arrow_Escape": {
+        gameId: "abda34d396174f6487968885157388e2",
+        desc: "A fast-paced strategic arrow puzzle game. Clear arrow blocks and solve intense escape challenges.",
+        players: "1.5k",
+        rating: "4.4",
+        overview: "Arrow Escape is an addictive arrow puzzle escape game built for players who love logic puzzles and intense puzzle escape moments. The board is filled with arrow blocks that only move in the direction they point. Your goal is to strategically tap and remove arrows one by one to clear the entire board without getting stuck. With fast-paced gameplay, increasing difficulty across levels, and satisfying chain reactions, it delivers tense and rewarding puzzle fun.",
+        howToPlay: "Tap on an arrow block to remove it from the grid. Arrows can only exit the board in the direction they are pointing. Plan your order of removal carefully to avoid blocking other arrows. Clear all arrow blocks from the board to complete the level. Work quickly to earn a higher score, but take time to think so you do not get stuck with no valid moves.",
+        features: ["Fast-paced arrow puzzle mechanics", "Dozens of challenging levels", "Strategic logical thinking", "Satisfying chain reactions", "Increasing difficulty curve"],
+        tags: ["Puzzle", "Logic", "Arrow", "Escape", "Single Player"]
+    },
+    "Fruit_Sort_Logic": {
+        gameId: "54794eb4734d4c0cb480bc876a5851cf",
+        desc: "A fun relaxing fruit sorting puzzle. Match juice bottles on shelves and clear all levels.",
+        players: "1.6k",
+        rating: "4.5",
+        overview: "Fruit Sort Logic is a fun and relaxing puzzle game where you sort colorful fruit juice bottles on shelves. Move the juices around and match three of the same kind to clear a shelf and earn points. Shelf space is limited, so every move matters and requires careful planning. Clear all shelves to finish the level and unlock new ones. With smooth intuitive controls, bright cheerful visuals, and endless levels, the game is easy to play and satisfying to master.",
+        howToPlay: "Tap on a shelf to pick up a juice bottle, then tap another shelf to place it down. Group three juice bottles of the same fruit type on the same shelf to clear them. You can only move the top bottle on each shelf. Plan your moves carefully to avoid getting stuck with no space left. Clear all shelves to complete the level and unlock new, more challenging puzzles.",
+        features: ["Relaxing fruit sorting gameplay", "Bright cheerful visuals", "Endless puzzle levels", "Simple intuitive controls", "Perfect for calm casual play"],
+        tags: ["Puzzle", "Sorting", "Casual", "Fruit", "Relaxing"]
+    },
+    "Cooking_Empire": {
+        gameId: "63e4110fb71d4588a8f4b6081fea5bdb",
+        desc: "A fast-paced cooking restaurant game. Fry, boil, bake dishes from around the world and build your cooking empire.",
+        players: "2.5k",
+        rating: "4.6",
+        overview: "Cooking Empire is not just a cooking game — it is a real explosion of flavors and speed! Start frying, boiling, baking and serving delicious dishes from all over the world with simple one-click controls. Serve hungry customers quickly to earn coins, then upgrade your kitchen and unlock new recipes and restaurants. With fast-paced time management gameplay, a huge variety of recipes, and endless restaurant upgrades, you will work your way from a small cook to a chef the whole world remembers.",
+        howToPlay: "Tap on ingredients and cooking stations to prepare each dish according to the customer’s order. Serve the finished meal to the customer before they lose patience and leave. Earn coins for every successful order you serve. Use your coins to upgrade your kitchen equipment, unlock new recipes, and open new restaurant locations. Keep customers happy to earn bigger tips and grow your empire.",
+        features: ["Fast-paced cooking action", "Dishes from around the world", "Kitchen upgrade system", "Multiple restaurant locations", "Addictive time management gameplay"],
+        tags: ["Casual", "Cooking", "Time Management", "Simulation", "Restaurant"]
+    },
+    "Coffee_Color_Blocks": {
+        gameId: "0904d5fb5d0044fe9fddf1cd5834cff2",
+        desc: "A bright relaxing color puzzle game. Guide colored shapes to matching gates and fill every coffee cup.",
+        players: "1.4k",
+        rating: "4.4",
+        overview: "Coffee Color Blocks is a bright and relaxing puzzle game with a cozy coffee shop theme. Move colored shapes around the board and guide them to gates of the matching color. Each correct connection fills the coffee cups inside the shape — your ultimate goal is to fill the entire figure without blocking the path. With clever level design, smooth satisfying animations, and a calming color palette, it is the perfect casual puzzle for a quick, relaxing break.",
+        howToPlay: "Drag colored shapes around the game board to move them. Guide each shape to the gate that matches its color to fill the coffee cups inside. Plan your moves carefully so that shapes do not block each other’s paths. Fill all coffee cups in every shape to complete the level. Each new level introduces more shapes and trickier layouts to solve.",
+        features: ["Cozy coffee shop theme", "Color-matching puzzle mechanics", "Clever level designs", "Smooth satisfying animations", "Relaxing casual gameplay"],
+        tags: ["Puzzle", "Color Matching", "Casual", "Relaxing", "Coffee"]
+    },
+    "Hidden_Objects_Island_Secrets": {
+        gameId: "7ffd63337f514fd1bb16fa54f15d1f68",
+        desc: "A thrilling hidden object adventure. Search a mysterious island and uncover ancient time-bending secrets.",
+        players: "1.8k",
+        rating: "4.6",
+        overview: "Hidden Objects: Island Secrets is an exciting hidden object game where magic and time intertwine in a thrilling adventure. Everything changed when a mysterious magical crystal activated, scattering lost objects across different time periods. You will enter a world full of riddles, hidden objects, and temporal paradoxes as you explore the island. Search detailed scenes, solve puzzles, and uncover the island’s ancient secrets across hours of immersive hidden object gameplay.",
+        howToPlay: "Search each detailed scene for the hidden items listed at the bottom of the screen. Tap on an item when you find it to collect it. Collect all items in the list to complete the scene and advance the story. Use hints if you get stuck and cannot find an item. Solve bonus puzzles to unlock new scenes and learn more about the island’s mysterious secrets.",
+        features: ["Dozens of detailed scenes", "Hundreds of hidden objects", "Mystery time-travel story", "Bonus puzzle challenges", "Hint system for tough finds"],
+        tags: ["Puzzle", "Hidden Object", "Adventure", "Mystery", "Single Player"]
+    },
+    "Bubble_Shooter_Crystal_Hunt": {
+        gameId: "11abb92c950f4b29a60b36037fde6951",
+        desc: "An endless bubble shooter adventure. Pop bubbles, collect magical crystals, and beat the advancing wall.",
+        players: "2.1k",
+        rating: "4.5",
+        overview: "Bubble Shooter Crystal Hunt is an exciting endless bubble-shooting puzzle game where players must collect specific target bubbles along with rare magical crystals hidden among the bubbles. Aim carefully and match three or more bubbles of the same color to clear space while the bubble wall slowly moves toward the border line, increasing tension with every shot. Crystals are hidden within bubble clusters and must also be collected to progress and boost your score. With endless levels and increasing difficulty, it offers addictive bubble-popping fun.",
+        howToPlay: "Aim your bubble shooter and tap to fire a bubble. Match 3 or more bubbles of the same color to pop them and clear space. Collect the magical crystals hidden in bubble clusters to increase your score and progress. The bubble wall will slowly move down toward you — do not let it cross the border line, or the game will end. Use special power bubbles to clear large sections and collect crystals faster.",
+        features: ["Endless bubble shooter gameplay", "Magical crystal collection", "Slowly advancing bubble wall", "Special power-up bubbles", "Increasing difficulty tension"],
+        tags: ["Puzzle", "Bubble Shooter", "Endless", "Crystal", "Casual"]
+    },
+    "Farm_Blast": {
+        gameId: "8e9f68b6765f4c39a4c243c4dc6a4ec5",
+        desc: "A vibrant farm-themed blast puzzle game. Complete objectives, unlock boosters, and play hundreds of levels.",
+        players: "2.0k",
+        rating: "4.5",
+        overview: "Farm Blast is a colorful level-based blast puzzle game set on a bright and vibrant farm. Complete exciting level objectives, overcome tricky obstacles, and unlock powerful boosters as you progress through hundreds of engaging levels. With bright cheerful visuals, satisfying chain reaction effects, and strategic gameplay, this addictive casual puzzle game is perfect for fans of match-3 games, farm games, and relaxing yet challenging brain teasers of all kinds.",
+        howToPlay: "Tap on groups of 2 or more adjacent farm items of the same type to blast them and earn points. Create bigger groups to trigger powerful boosters and chain reactions. Complete each level’s specific objective before you run out of taps. Unlock new boosters and power-ups as you progress through the game. Use your boosters strategically to beat the most challenging farm levels.",
+        features: ["Hundreds of puzzle levels", "Vibrant farm theme", "Satisfying chain blast effects", "Powerful in-game boosters", "Relaxing yet strategic gameplay"],
+        tags: ["Puzzle", "Blast", "Farm", "Casual", "Match 3"]
+    },
+    "Obby_Football_Soccer_3D": {
+        gameId: "7c03475573ec4a31b3926cc32b29bff1",
+        desc: "A fun 3D football game with obby challenges. Score goals, play with friends, and become a champion.",
+        players: "2.2k",
+        rating: "4.6",
+        overview: "Obby Football Soccer 3D is a fun online football game where you can play with friends or random opponents from around the world. Take part in exciting penalty shootouts and full matches, score amazing goals, make incredible saves, and become your team’s hero. Train your reaction and speed by completing fun obby obstacle courses between matches. With colorful 3D graphics, a real stadium atmosphere, and progression from rookie to champion, it delivers great football fun for all players.",
+        howToPlay: "Use the arrow keys to move your player across the pitch. Press the spacebar to kick the ball or make a save. In match mode, work to score more goals than your opponent before time runs out. In obby mode, jump over obstacles and complete the course as fast as possible to train your skills. Win matches to climb the ranks and unlock new gear and stadiums.",
+        features: ["Online football matches", "Penalty shootout mode", "Fun obby training courses", "Colorful 3D stadium graphics", "Rookie to champion progression"],
+        tags: ["Sports", "Football", "3D", "Multiplayer", "Obby"]
+    },
+    "Easter_Mahjong_Deluxe": {
+        gameId: "0056b0eab7c141aaaf8d7a5a76c02558",
+        desc: "A festive Easter-themed mahjong game. Match holiday tiles, beat the clock, and earn bonus points.",
+        players: "1.7k",
+        rating: "4.4",
+        overview: "Easter Mahjong Deluxe is a festive holiday take on the classic mahjong connect game, featuring cheerful Easter-themed tiles and decorations. You can eliminate pairs of similar holiday items, but you can only select pairs which have either the left or right side open. Use hints to help you when you get stuck. Race against the clock to clear the board, and unused hints plus saved time will be awarded as bonus points at the end of each level for a higher final score.",
+        howToPlay: "Tap on two identical Easter-themed tiles to connect and remove them. You can only select tiles that have at least one free side with no tile next to it. Clear all tiles from the board before the timer runs out to complete the level. Use your available hints if you cannot find a matching pair. Unused hints and remaining time will be converted into bonus points to boost your final score.",
+        features: ["Festive Easter theme", "Classic mahjong connect rules", "Countdown timer challenge", "Hint system with bonus rewards", "Cheerful holiday visuals"],
+        tags: ["Puzzle", "Mahjong", "Easter", "Holiday", "Timed"]
+    },
+    "Steal_Brainrot_Eggs": {
+        gameId: "e07da43b39e443738d6a84a4a6255c32",
+        desc: "A competitive action game for 1 or 2 players. Hatch brainrot characters, defend your base, and steal from rivals.",
+        players: "2.8k",
+        rating: "4.6",
+        overview: "Steal Brainrot Eggs is a chaotic competitive action game playable in both 1 Player and 2 Player modes. Players buy eggs from a central conveyor belt, carry them back to their base, and hatch random brainrot characters of varying rarity. Hatched characters generate coins over time, granting access to higher-tier eggs with more valuable rewards. You can defend your own base from thieves, or sneak into your rival's base to steal their eggs and characters. With character customization, evolving pets, and timed map events, it delivers endless competitive fun.",
+        howToPlay: "Move your character to the central conveyor to purchase eggs, then carry them back to your base to hatch. Collect coins generated by your characters to unlock rarer eggs and upgrades. In 2-player mode, sneak into your opponent's base to steal their eggs and characters, while defending your own base from raids. Complete timed events across the map to earn exclusive rewards and build the strongest brainrot collection.",
+        features: ["1 Player & 2 Player competitive modes", "Multiple egg rarities & character hatches", "Base defense & stealing mechanics", "Character customization & pet evolution", "Timed map events & rewards"],
+        tags: ["Action", "Competitive", "2 Player", "Casual", "Strategy"]
+    },
+    "Tap_3D_Blocks": {
+        gameId: "2c50bfeecb6c4849b504cfe446bf844e",
+        desc: "A layered 3D block puzzle. Flip, rotate and reveal tiles to clear the stacked board.",
+        players: "1.6k",
+        rating: "4.5",
+        overview: "Tap 3D Blocks presents layers upon layers of stacked dice blocks waiting for your skillful touch. Unlike flat puzzle games, this one dares you to see the whole picture from every angle. Flip, rotate and reveal new tiles as you uncover unexpected paths through the 3D stack. Boosters lend a hand when you get stuck, but the core strategy is all yours. With increasing difficulty and immersive 3D visuals, it tests your spatial awareness and delivers satisfying puzzle-solving fun.",
+        howToPlay: "Tap on visible tiles to remove them from the stack, unlocking layers underneath. Swipe to rotate the entire block pile and view it from different angles to find matchable tiles. Use boosters like hints and shuffle when you get stuck. Clear all blocks from the board to complete the level. Try to finish with as few moves as possible to earn a higher score.",
+        features: ["Immersive 3D stacked blocks", "Full rotation & angle control", "Dozens of challenging levels", "Helpful in-game boosters", "Spatial thinking puzzle gameplay"],
+        tags: ["Puzzle", "3D", "Block", "Single Player", "Brain Teaser"]
+    },
+    "My_Arcade_Center_2": {
+        gameId: "54aca2f7503041c0bd97e74d7e316a67",
+        desc: "A fast-paced arcade management tycoon game. Build, upgrade and expand your arcade empire.",
+        players: "2.4k",
+        rating: "4.7",
+        overview: "My Arcade Center 2 is a fast-paced arcade management tycoon game with deep business simulation mechanics. Build, customize, and expand your very own arcade across 7 unique maps. Earn revenue from customers during the day, then spend your earnings on upgrades at night: unlock new arcade machines, hire staff, and optimize your floor layout to maximize profits. Switch between centers anytime, unlock new characters and skins, complete daily missions, and grow your business with rewarding long-term progression.",
+        howToPlay: "Purchase arcade machines and place them around your hall to attract customers and earn coins. Reinvest your earnings to unlock new machines, upgrade facilities, and hire staff to improve efficiency. Complete daily missions for bonus rewards. Unlock new maps to open more arcade branches, and switch between them anytime to manage your empire. Keep optimizing your layout and upgrades to build the biggest arcade business.",
+        features: ["7 unique arcade maps", "Dozens of unlockable arcade machines", "Staff hiring & layout optimization", "Multi-center management system", "Daily missions & permanent upgrades"],
+        tags: ["Strategy", "Simulation", "Tycoon", "Management", "Casual"]
+    },
+
+    "Car_Eats_Car_Underwater_Adventure": {
+        gameId: "16de13074932401f9f65f4023e586ab4",
+        desc: "Play free online Car Eats Car Underwater Adventure racing game, fun monster car police chase driving simulator with turbo boost, underwater highway races, car upgrade & boss fight action for all ages.",
+        players: "2.4k",
+        rating: "4.6",
+        overview: "Dive into wild underwater racing combat filled with intense police pursuits and rival vehicle battles. Every race brings chaotic highway-style showdowns beneath the waves. Craft and customize your unique monster car with powerful turbo engines and combat upgrades. Your fellow racers are locked away, and it’s up to you to blast through opponents, evade patrolling police fleets, and defeat giant boss vehicles to break them free. Mix fast driving action with strategic vehicle building for endless chaotic racing fun for all players.",
+        howToPlay: "Use arrow keys to steer and activate turbo boosts for rapid acceleration. Overtake rival cars while dodging police patrols scattered across underwater tracks. Gather upgrade materials mid-race to strengthen your vehicle’s attack and speed stats. Clear every boss encounter to unlock brand-new monster car skins and high-performance engine parts.",
+        features: ["Submarine race environments", "Custom monster car crafting", "Intense police chase sequences", "Boss vehicle battles", "Turbo acceleration mechanics"],
+        tags: ["Racing", "Combat", "Underwater", "Car", "Action"]
+    },
+    "Traffic_Racing": {
+        gameId: "f3ee6674b4ea4579aeefd54d7bf388f0",
+        desc: "Free online Traffic Racing highway driving game, fast speed car race simulator, offline career mode & online multiplayer racing league with sports car unlocks.",
+        players: "2.1k",
+        rating: "4.5",
+        overview: "Feel the rush of high-speed highway driving in this adrenaline-fueled racing title. Navigate tight gaps between endless streams of moving traffic as you race against the clock. Test your driving skills across two distinct play modes: a solo career campaign packed with progressive challenges, and online racing leagues where you compete against real global players. Master sharp lane changes and precise speed control to climb leaderboards and unlock faster sports cars.",
+        howToPlay: "Control steering with left and right arrow buttons, hit up to accelerate smoothly. Slip between dense highway traffic to avoid collisions and maintain top speeds. Complete career race objectives to unlock premium sports cars, then join online leagues to race against competitors worldwide for high score rankings.",
+        features: ["Busy highway race maps", "Single-player career mode", "Global online racing leagues", "Wide sports car roster", "Realistic traffic physics"],
+        tags: ["Racing", "Highway", "Traffic", "Online", "Casual"]
+    },
+    "i8_City_Driver": {
+        gameId: "f6acd919192c441c9aca2d20a18e04c6",
+        desc: "Free i8 City Driver open world supercar game, city drift stunt simulator with nitro boost, pet dog companion & car upgrade driving missions.",
+        players: "2.7k",
+        rating: "4.7",
+        overview: "Roam a vast, vibrant open city behind the wheel of a sleek customizable supercar. This driving simulator blends smooth high-speed cruising with thrilling drift and stunt challenges scattered across every neighborhood. Modify your ride with speed, handling and nitro upgrades to dominate all city missions. Bring along your cute dog sidekick to unlock exclusive bonus rewards as you pull off tricky stunts and hit speed checkpoints all over town.",
+        howToPlay: "Steer with arrow keys, tap space to activate nitro bursts for instant speed surges. Wander freely across the full city map to locate stunt ramps and drift zones. Collect upgrade kits scattered around roads to boost your supercar’s stats, and bring your pet dog along to earn extra mission bonuses.",
+        features: ["Large open city map", "Supercar upgrade system", "Drift & stunt challenges", "Pet companion mechanic", "Nitro speed boost"],
+        tags: ["Racing", "OpenWorld", "Supercar", "Drift", "Stunt"]
+    },
+    "Epic_Stunts_PvP_3D": {
+        gameId: "a75b82d28b4b4083bbc8ad4394570d97",
+        desc: "Epic Stunts PvP 3D free online muscle car stunt game, two player split screen multiplayer racing, aerial trick & car custom simulator.",
+        players: "3.0k",
+        rating: "4.6",
+        overview: "Show off insane aerial stunts in powerful roaring muscle cars inside a dedicated stunt arena. Three unique game styles let you practice solo tricks or face off against a friend in split-screen PvP races. Tweak every part of your muscle vehicle, from paint colors to engine power, to craft a ride matching your racing style. Pull backflips, wheelies and combo stunts to rack up high stunt scores and outshine your opponent in competitive two-player contests.",
+        howToPlay: "Adjust your car’s balance mid-air to pull clean stunts off large ramps. Customize paintwork, tires and engine power before each race. Invite a friend for local split-screen PvP stunt matches, earn stunt points to unlock exclusive muscle car skins.",
+        features: ["Realistic muscle car physics", "Two-player PvP mode", "Massive stunt ramps", "Vehicle customization", "Stunt score ranking"],
+        tags: ["Racing", "Stunt", "PvP", "Multiplayer", "3D"]
+    },
+    "Driverz_Ed": {
+        gameId: "c18628dc38904a5c8da49c7ba330d93b",
+        desc: "Free Driverz Ed open world driving game, exploration car simulator with hidden puzzle collectibles, unlock all vehicles & fast travel system.",
+        players: "2.2k",
+        rating: "4.5",
+        overview: "Take a laid-back exploratory road trip across multiple unique open landscapes in this casual driving adventure. No harsh time limits or aggressive races here—instead, wander freely to hunt down hidden puzzle fragments scattered across every region. Complete delivery, sightseeing and exploration quests to unlock dozens of distinct vehicle models. Use fast travel points to jump between zones quickly and finish every side objective at your own comfortable pace.",
+        howToPlay: "Drive freely across multiple open maps, follow mission markers to collect hidden puzzle fragments. Complete delivery and exploration quests to unlock new vehicle models. Use fast travel points to quickly switch regions and finish all side challenges for extra rewards.",
+        features: ["Multi-region open world", "Puzzle collection missions", "Huge car unlock roster", "Fast travel system", "Mixed racing & strategy"],
+        tags: ["Racing", "OpenWorld", "Exploration", "Puzzle", "Simulation"]
+    },
+    "SpelunKing": {
+        gameId: "a3a4111db59d496b96de651c307009ad",
+        desc: "Free SpelunKing mine match 3 puzzle game, underground gem matching adventure, village building & mine level unlock casual browser game.",
+        players: "2.8k",
+        rating: "4.7",
+        overview: "Venture deep into twisting mine tunnels in this relaxing match-3 puzzle journey. Swap colorful gem tiles to clear underground layers and gather valuable stone treasures. Track down your grandfather’s forgotten lost artifacts while collecting enough resources to restore the rundown village above ground. Unlock deeper mine levels and construct new town facilities as you clear more matching combos and complete special mine event puzzles.",
+        howToPlay: "Swap adjacent gem tiles to form groups of three or more matching stones and clear mine layers. Collect rare mineral resources to renovate village buildings and unlock deeper mine tunnels. Complete special mine event stages to obtain powerful match boosters.",
+        features: ["Underground mine scene", "Town building upgrade", "Gem collection mechanics", "Deep progressive levels", "Match3 booster system"],
+        tags: ["Puzzle", "Match3", "Mine", "Casual", "Building"]
+    },
+     "Fierce_Shot": {
+        gameId: "837eb6bd30a14d818e8fb33e80f8df7d",
+        desc: "Play Fierce Shot free online - the best manga-style football shooting game. Train your shooting skills, win continental cups, and become the world champion striker in this addictive HTML5 soccer game.",
+        players: "2.3k",
+        rating: "4.6",
+        overview: "Fierce Shot is the top free online football game that blends thrilling soccer action with stunning manga art style. Play directly in your browser with no download required and kick off your professional striker career. Conquer every challenge across Continental and International Cup tournaments, master precision shooting in endless training mode, and manage your daily development to become the best football player in the world. This mobile-friendly HTML5 soccer game features progressive difficulty, satisfying goal physics, and hundreds of levels that keep you coming back for more. Perfect for quick casual breaks or longer gaming sessions, Fierce Shot delivers the best free penalty shootout experience online.",
+        howToPlay: "Play Fierce Shot free on desktop and mobile: aim your shot by adjusting angle and power with simple tap or click controls. Time your kicks perfectly to curve past the goalkeeper and score amazing goals. Complete all cup tournament challenges to advance your football career and unlock new stadiums. Use the endless free training mode to practice your accuracy and unlock stronger shot abilities. Upgrade your power, precision, and curve stats to become an unbeatable football striker. No download needed - play instantly in your browser.",
+        features: ["Free online football game no download", "Manga-style soccer gameplay", "Continental & International cup tournaments", "Endless free training mode", "Mobile friendly HTML5 game", "Progressive skill upgrade system", "Realistic shooting physics"],
+        tags: ["Football", "Soccer", "Sports", "Manga", "Penalty Kick", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Skill Game", "Browser Game", "No Download"]
+    },
+    "Barbee_Summer_Vacation": {
+        gameId: "37f8e78be66540648b0066d7f2826b6a",
+        desc: "Play Barbee Summer Vacation free online - the best summer dress up game for girls. Create stylish beach outfits with hundreds of clothes, dresses, and accessories in this fun HTML5 fashion game.",
+        players: "3.1k",
+        rating: "4.4",
+        overview: "Barbee Summer Vacation is the top free online dress up game for girls who love fashion and summer style. Play instantly in your browser with no download required and help Barbee and her best friends get ready for their dream summer vacation. Choose from hundreds of flowy summer dresses, trendy sunglasses, floral tops, beach hats, and fun accessories to create stunning sunshine-ready looks. This mobile-friendly HTML5 fashion game lets you mix and match outfits across multiple characters, each with their own unique vacation style. From pool parties to tropical beach walks, design the perfect outfit for every summer occasion. The best free girls dress up game you can play online right now.",
+        howToPlay: "Play Barbee Summer Vacation free on any device: select your favorite character to start the dress up adventure. Browse through clothing categories including dresses, tops, bottoms, shoes, hairstyles, and accessories. Tap items to try them on and build your perfect summer vacation look. Mix colors, patterns, and styles to create hundreds of unique outfit combinations. Save your favorite looks and unlock new characters and clothing collections as you progress. No installation needed - play directly in your web browser.",
+        features: ["Free online dress up game for girls", "Multiple stylish characters", "Hundreds of clothing items & accessories", "Summer beach vacation theme", "Mobile friendly HTML5 game", "Mix & match fashion mechanics", "Bright colorful cartoon visuals"],
+        tags: ["Dress Up", "Girls", "Fashion", "Summer", "Barbie Style", "Free Online Game", "HTML5", "Mobile Friendly", "Casual", "Single Player", "Browser Game", "Makeup"]
+    },
+    "Wake_Up_the_Box": {
+        gameId: "88d7078602364cfd845f7c2796c456c7",
+        desc: "Play Wake Up the Box free online - the best physics puzzle game. Use gravity and objects to wake the sleepy box in this challenging brain teaser HTML5 game perfect for all ages.",
+        players: "1.8k",
+        rating: "4.7",
+        overview: "Wake Up the Box is the top free online physics puzzle game that will test your creativity and problem-solving skills. Play instantly in your browser with no download required. Each level features a sleepy Mr. Box who just won't wake up, surrounded by fixed and moving objects you can interact with. Use realistic gravity, momentum, and clever chain reactions to disturb the box and successfully wake him up. This mobile-friendly HTML5 brain teaser features dozens of levels with increasing complexity, requiring you to think outside the box (pun intended) to find solutions. Simple one-tap controls and satisfying physics make this the best free puzzle game for quick brain training breaks or longer casual play sessions.",
+        howToPlay: "Play Wake Up the Box free on desktop and mobile: study each level layout carefully and identify which objects you can interact with. Click or tap objects to activate them and set the realistic physics engine in motion. Use gravity, swinging ropes, falling blocks, and chain reactions to bump, drop, or push the sleeping box. Complete all levels by successfully waking Mr. Box every time. Think ahead and plan your moves to find the optimal solution for each puzzle. No download required - play directly in any modern web browser.",
+        features: ["Free online physics puzzle game", "Dozens of unique brain teaser levels", "Realistic gravity physics engine", "Fixed and interactive moving objects", "Mobile friendly HTML5 game", "Simple one-tap controls", "Chain reaction puzzle mechanics"],
+        tags: ["Puzzle", "Physics", "Brain Teaser", "Wake Up Box", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Casual", "Browser Game", "Logic", "No Download"]
+    },
+    "SpelunKing": {
+        gameId: "a3a4111db59d496b96de651c307009ad",
+        desc: "Play SpelunKing free online - the best match 3 mining adventure game. Dig deep underground, collect gems, and rebuild the town in this addictive HTML5 match-3 building game.",
+        players: "2.7k",
+        rating: "4.5",
+        overview: "SpelunKing is the top free online match 3 game that combines classic gem matching with exciting mining adventure and town building gameplay. Play instantly in your browser with no download required. Dive deep underground, search for your grandfather's lost treasures, collect precious gemstones, and help the villagers rebuild the town of Farnsbury. Match colorful gems to dig deeper into the mine, upgrade buildings, unlock new facilities, and gain special power-ups as you progress. This mobile-friendly HTML5 match-3 adventure features dozens of mine levels, a full town building system, and an engaging story that drives you toward the bottom of the deepest mine. Become the ultimate Spelunk King or Queen in the best free match 3 game online.",
+        howToPlay: "Play SpelunKing free on any device: swap adjacent gems to match 3 or more of the same color and clear them from the board. Complete each level's unique objectives to dig deeper into the mine. Collect coins, gems, and resources to upgrade town buildings and unlock new facilities that grant powerful bonuses. Reach the bottom of each mine section to advance the story and discover hidden treasures. Use special power-ups and combos to clear tough levels faster. No installation needed - play directly in your web browser.",
+        features: ["Free online match 3 adventure game", "Deep mining gameplay with story", "Town building & upgrade system", "Dozens of gem matching levels", "Mobile friendly HTML5 game", "Special power-ups & combos", "Treasure hunting mechanics"],
+        tags: ["Match 3", "Match Three", "Mining", "Adventure", "Building", "Gems", "Free Online Game", "HTML5", "Mobile Friendly", "Puzzle", "Browser Game", "No Download"]
+    },
+    "Mansion_Story_Match": {
+        gameId: "1011183f1ce348f0a3735476f5523302",
+        desc: "Play Mansion Story Match free online - the best mystery match 3 puzzle game. Explore a haunted mansion, solve gem puzzles, and uncover hidden secrets in this story-driven HTML5 game.",
+        players: "2.4k",
+        rating: "4.6",
+        overview: "Mansion Story Match is the top free online match 3 game set inside a grand and mysterious old mansion. Play instantly in your browser with no download required. Explore dusty attics, lush gardens, forgotten hallways, and secret rooms as you uncover long-lost family secrets and dazzling hidden treasures. Solve hundreds of challenging gem matching puzzles, collect rare relics, and piece together an intriguing mystery story that unfolds room by room. This mobile-friendly HTML5 puzzle adventure features beautiful visuals, engaging narrative, and progressively challenging match 3 levels. Every corner of the mansion holds a surprise waiting to be discovered. The best free story-driven match 3 game you can play online today.",
+        howToPlay: "Play Mansion Story Match free on desktop and mobile: match 3 or more gems of the same color to clear them from the game board. Complete each level's specific objective to advance through the mysterious mansion. Unlock new rooms as you progress and reveal new chapters of the intriguing story. Collect rare relics, treasures, and clues along your exploration journey. Use special boosters and power-ups when you get stuck on difficult puzzles. No download needed - start playing instantly in any modern web browser.",
+        features: ["Free online story match 3 game", "Hundreds of gem matching levels", "Mysterious mansion exploration", "Deep narrative story progression", "Mobile friendly HTML5 game", "Rare relic & treasure collection", "Special boosters & power-ups"],
+        tags: ["Match 3", "Match Three", "Mystery", "Story", "Mansion", "Puzzle", "Free Online Game", "HTML5", "Mobile Friendly", "Adventure", "Browser Game", "No Download"]
+    },
+    "Offroad_Crash_Climber_4X4": {
+        gameId: "e779cdcaf9ee4dfe97b8df28e282a3e1",
+        desc: "Play Offroad Crash Climber 4X4 free online - the best offroad driving game. Climb steep hills, crash obstacles, and upgrade your truck in this physics-based HTML5 racing game.",
+        players: "2.9k",
+        rating: "4.8",
+        overview: "Offroad Crash Climber 4X4 is the top free online offroad driving game with realistic physics and epic mountain terrain. Play instantly in your browser with no download required. Take control of a powerful 4x4 truck and drive across rough rocky terrain, climb steep hills, avoid deadly hazards, and collect coins to fully upgrade your vehicle. Improve your engine power, suspension, wheels, repair system, and fuel capacity to tackle the toughest trails. Unlock special abilities including Bounce mode, Low Gear, and 4x4 traction to overcome impossible obstacles. This mobile-friendly HTML5 racing game features both Endless Mode and dedicated Crash Levels, with procedurally generated terrain that makes every run a new adventure. The best free offroad truck game you can play online.",
+        howToPlay: "Play Offroad Crash Climber 4X4 free on any device: use gas and brake controls to drive your 4x4 truck across challenging mountain terrain. Balance your speed carefully to climb steep hills without flipping your vehicle backwards. Collect coins scattered along the trail to purchase powerful vehicle upgrades. Unlock special abilities like Bounce, Low Gear, and 4WD to overcome the most difficult obstacles. Survive as long as possible in Endless Mode or complete specific crash objectives in dedicated level mode. No installation needed - play directly in your web browser.",
+        features: ["Free online offroad driving game", "Realistic 4x4 truck physics", "Endless mode & crash challenge levels", "Full vehicle upgrade system", "Mobile friendly HTML5 game", "Special abilities (Bounce, Low Gear, 4WD)", "Procedurally generated terrain"],
+        tags: ["Racing", "Driving", "Offroad", "4x4", "Truck", "Physics", "Hill Climb", "Free Online Game", "HTML5", "Mobile Friendly", "Upgrade", "Browser Game", "No Download"]
+    },
+
+
+    
+       "Escape_the_Alien_Prison": {
+        gameId: "be797a3996324c03b20bad496a82819f",
+        desc: "Play Escape the Alien Prison free online no download - the best sci-fi parkour action game for boys. Run jump fight escape alien spaceship prison in this unblocked HTML5 browser adventure game playable on mobile and desktop.",
+        players: "3.2k",
+        rating: "4.7",
+        overview: "Escape the Alien Prison is the best free online sci-fi action game you can play right now with no download required. This unblocked HTML5 browser game combines intense parkour running gameplay with an epic space prison escape story that works perfectly on mobile and desktop. You wake up trapped inside a massive high-tech alien spaceship lost deep in the cosmos, with only one mission: break out and fight your way to freedom. Navigate deadly obstacle courses, hack complex security systems, and take down dangerous extraterrestrial threats across dozens of challenging levels. Perfect for boys who love action games, this free parkour adventure features a complete single player story campaign, brain-teasing puzzles, hidden collectibles, and full character progression. Play instantly in your browser - no installation, no signup, just pure free sci-fi action gaming fun.",
+        howToPlay: "Play Escape the Alien Prison free on desktop and mobile: use arrow keys or touch controls to run, jump, and slide through the alien spaceship. Navigate dangerous obstacle courses and avoid deadly traps along your escape route. Hack security systems to unlock doors and disable alarms. Fight or sneak past extraterrestrial guards to stay alive. Collect hidden items and solve puzzles to progress through the story campaign. No download needed - start your escape instantly in any modern web browser.",
+        features: ["Free online sci-fi action game no download", "Epic alien prison escape story campaign", "Fast-paced parkour & running gameplay", "Challenging puzzles & hacking mechanics", "Mobile friendly HTML5 game", "Hidden collectibles & progression system", "High-tech spaceship environments"],
+        tags: ["Action", "Parkour", "Sci-Fi", "Running", "Escape", "Adventure", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Pop_Fruit": {
+        gameId: "36637018e58a4aaa91dd7603ab121852",
+        desc: "Play Pop Fruit free online no download - the best relaxing fruit sorting puzzle game for kids and adults. Match 3 fruits in baskets clear board in this unblocked HTML5 browser casual game playable on mobile.",
+        players: "2.1k",
+        rating: "4.4",
+        overview: "Pop Fruit is the best free online fruit sorting puzzle game for kids and adults, playable instantly with no download required. This unblocked HTML5 browser game features bright colorful visuals and relaxing casual gameplay that works perfectly on mobile phones, tablets, and desktop computers. Each bubble contains different juicy fruits, and your goal is to pick the right fruits and drop them into matching baskets below. Match three identical fruits in the same basket to clear them and keep the board moving. Perfect for quick 5-minute breaks, relaxing brain training, or casual gaming sessions at home or school. This free match 3 style puzzle game features dozens of levels, increasingly difficult fruit combinations, satisfying chain reactions, and smooth one-tap controls. Play now directly in your browser - no installation, no signup, just fun free fruit sorting entertainment.",
+        howToPlay: "Play Pop Fruit free on any device: tap or click fruit bubbles to select and drop them into the baskets below. Match three identical fruits in the same basket to clear them and earn points. Plan your moves carefully because each basket has limited space. Clear all fruits from the board to complete each level and unlock new stages with more challenging fruit combinations. Use strategy to avoid filling baskets with mismatched fruits. No installation needed - play directly in your web browser.",
+        features: ["Free online fruit sorting puzzle game", "Bright colorful fruit visuals", "Dozens of challenging levels", "Basket matching gameplay mechanics", "Mobile friendly HTML5 game", "Relaxing casual gameplay", "Increasing difficulty curve"],
+        tags: ["Puzzle", "Fruit", "Sorting", "Matching", "Casual", "Relaxing", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Cake_Merge_2": {
+        gameId: "c89cf76cc0804e51a12259a9e1e1f09f",
+        desc: "Play Cake Merge 2 free online no download - the best sweet dessert merge puzzle game for girls. Combine cake slices clear board in this unblocked HTML5 browser relaxing game playable on mobile and desktop.",
+        players: "2.6k",
+        rating: "4.6",
+        overview: "Cake Merge 2 is the best free online merge puzzle game for girls who love sweet desserts, playable instantly with no download required. This unblocked HTML5 browser game serves up even more delicious cake challenges than the original and works perfectly on both mobile and desktop. Place cake slices onto the tray, combine matching pieces into complete whole cakes, and clear the board before you run out of space. Enjoy all new dessert types including cupcakes, donuts, and pastries, plus satisfying chain reaction merges, smooth animations, and relaxing casual gameplay. Whether you played the first Cake Merge or you're new to merge games, this sequel delivers an even sweeter experience with smarter puzzles and more levels. Perfect for relaxing casual breaks at home, this free merge game features dozens of stages and easy drag-and-drop controls. Play now directly in your browser - no installation needed.",
+        howToPlay: "Play Cake Merge 2 free on desktop and mobile: drag and drop cake slices onto the game tray. Place two matching cake pieces next to each other to merge them into a larger dessert. Combine slices all the way up to complete full cakes to clear them from the board and free up space. Plan your placements carefully to avoid filling the tray before you can merge. Complete levels and unlock new dessert types as you progress. No download needed - start baking your merges instantly in any web browser.",
+        features: ["Free online merge puzzle sequel", "Delicious cake & dessert theme", "Satisfying chain reaction merges", "Dozens of challenging levels", "Mobile friendly HTML5 game", "Smooth animations & visuals", "Relaxing casual gameplay"],
+        tags: ["Puzzle", "Merge", "Cake", "Dessert", "Casual", "Relaxing", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Marble_Sort": {
+        gameId: "0ad5260ef01948faa1b4fab8ecd4c1b2",
+        desc: "Play Marble Sort free online no download - the best satisfying color marble sorting puzzle game. Sort colorful marbles into trays clear levels in this unblocked HTML5 browser relaxing brain game for all ages.",
+        players: "1.9k",
+        rating: "4.5",
+        overview: "Marble Sort is the best free online color sorting puzzle game with satisfying ASMR-style gameplay, playable instantly with no download required. This unblocked HTML5 browser game is perfect for brain training and relaxing casual sessions, and works smoothly on mobile, tablet, and desktop devices. Colorful marbles travel along a conveyor belt waiting to be sorted into matching colored trays. Fill each tray with sets of three identical marbles to clear them and complete each level. Plan your moves carefully, manage the flow of incoming marbles, and enjoy smooth satisfying animations, calming gameplay, and rewarding sorting challenges. Easy to learn but hard to master, this free puzzle game is great for kids and adults alike, featuring dozens of progressively difficult levels and simple one-tap controls. Play now directly in your browser - no installation, no signup, just satisfying free marble sorting fun.",
+        howToPlay: "Play Marble Sort free on any device: marbles come down the conveyor belt one by one. Tap or click to direct each marble into the correct matching tray. Fill a tray with three identical marbles to clear the set and free up space. Plan your sorting strategy carefully to manage the flow and avoid overflowing trays. Clear all marbles to complete each level and unlock more challenging stages. No installation needed - play the satisfying sorting game directly in your web browser.",
+        features: ["Free online marble sorting puzzle game", "Satisfying color sorting mechanics", "Dozens of challenging levels", "Conveyor belt gameplay", "Mobile friendly HTML5 game", "Smooth satisfying animations", "Easy to learn, hard to master"],
+        tags: ["Puzzle", "Sorting", "Marbles", "Color", "Casual", "Relaxing", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
+    },
+    "Sweet_Match": {
+        gameId: "d54d5b9cc9ee42f6b51df68efee2259a",
+        desc: "Play Sweet Match free online no download - the best candy matching puzzle game for kids. Match sweets candies donuts create chain reactions in this unblocked HTML5 browser relaxing game playable on mobile.",
+        players: "2.3k",
+        rating: "4.6",
+        overview: "Sweet Match is the best free online candy matching puzzle game for kids who love sweet treats, playable instantly with no download required. This unblocked HTML5 browser game features delicious colorful visuals and relaxing casual gameplay that works perfectly on mobile phones and desktop computers. Clear the board by selecting matching sweets including candies, donuts, waffles, marshmallows, lollipops, and other tasty treats. Choose treats in the right order so they fall freely into the basket below. When two identical sweets meet in the basket, they instantly disappear, creating more space for new matches and satisfying chain reactions. Think ahead, remove blocker pieces, and solve increasingly challenging levels. Perfect for quick casual breaks or relaxing gaming sessions, this free match puzzle game features dozens of stages and simple tap controls. Play now directly in your browser - no installation, no signup, just sweet free gaming fun.",
+        howToPlay: "Play Sweet Match free on desktop and mobile: tap or click on sweets to remove them from the board and drop them into the basket below. Plan your order carefully so sweets can fall freely without getting blocked. When two identical sweets land in the basket together, they match and disappear, clearing space. Remove blocker pieces to access hidden sweets. Create satisfying chain reactions by matching multiple pairs in sequence. Clear all sweets from the board to complete each level. No download needed - play directly in any modern web browser.",
+        features: ["Free online candy matching puzzle game", "Delicious sweet & dessert theme", "Satisfying chain reaction matches", "Dozens of challenging levels", "Mobile friendly HTML5 game", "Blocker removal mechanics", "Relaxing casual gameplay"],
+        tags: ["Puzzle", "Match", "Candy", "Sweets", "Casual", "Relaxing", "Free Online Game", "HTML5", "Mobile Friendly", "Single Player", "Browser Game", "No Download"]
     }
+
+
 };
+
+
+
+
+// ============================================
+// New Game Template (copy and modify)
+// ============================================
+/*
+["Game_Name_Here", "/games/game-name-here/", "", "", "thumbnail-url", "Desktop iPadOld iPadNew iPhone AndroidLow AndroidMid AndroidHigh", "Category New Landscape", "2026-06-13", 90, 87, 84, 80, "game-id-here"],
+
+"Game_Name_Here": { 
+    gameId: "game-id-here",
+    desc: "Short description for homepage card", 
+    players: "1.5k", 
+    rating: "4.5",
+    overview: "Full detailed description, around 120-180 words",
+    howToPlay: "Gameplay instruction text",
+    features: ["Feature 1", "Feature 2", "Feature 3", "Feature 4"],
+    tags: ["Tag 1", "Tag 2", "Tag 3"]
+}
+*/
