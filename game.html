@@ -1042,8 +1042,8 @@
                     <p class="loader-text">LOADING GAME...</p>
                 </div>
                 <iframe id="gameIframe" allowfullscreen="true" allow="fullscreen; autoplay; gamepad; pointer-lock"
-                    sandbox="allow-scripts allow-same-origin allow-fullscreen allow-pointer-lock allow-forms allow-popups allow-top-navigation-by-user-activation"
-                    referrerpolicy="strict-origin-when-cross-origin">
+                    sandbox="allow-scripts allow-same-origin allow-fullscreen allow-pointer-lock allow-forms"
+                    referrerpolicy="no-referrer-when-downgrade" loading="lazy">
                 </iframe>
             </div>
 
@@ -1155,6 +1155,11 @@
     <script>
         var basePaddingTop = 56.25; // Default 16:9 ratio
         var currentSizeOffset = 0;
+
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
 
         const gameIframe = document.getElementById("gameIframe");
 
